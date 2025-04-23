@@ -1,0 +1,13 @@
+query getMovieAction {
+    movies_by_genre (
+      value: {genre:"Sci-Fi"},
+       orderBy: [year_DESC]) {
+      values {
+      	year,
+        title,
+        duration,
+        synopsis,
+        thumbnail
+      }
+    }
+}
