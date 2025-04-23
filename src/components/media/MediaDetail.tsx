@@ -15,7 +15,7 @@ export default function MediaDetail({ media }: { media: Media }) {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10" />
         <Image
-          src={`https://image.tmdb.org/t/p/original${media.backdropPath}`}
+          src={`https://image.tmdb.org/t/p/original${media.imageUrl}`}
           alt={media.title}
           fill
           className="object-cover"
@@ -36,25 +36,22 @@ export default function MediaDetail({ media }: { media: Media }) {
             </div>
             <div className="flex items-center text-gray-300">
               <Clock className="mr-1" />
-              <span>{media.runtime} min</span>
+              <span>{media.duration} min</span>
             </div>
             <div className="flex items-center text-gray-300">
               <Calendar className="mr-1" />
-              <span>{media.releaseDate}</span>
+              <span>{media.year}</span>
             </div>
           </div>
 
-          {/* Genres */}
-          {media.genres && media.genres.length > 0 && (
+          {/* Genre */}
+          {media.genre && (
             <div className="flex flex-wrap gap-2 mb-6">
-              {media.genres.map((genre) => (
                 <span
-                  key={genre.id}
                   className="px-3 py-1 bg-gray-800 rounded-full text-sm"
                 >
-                  {genre.name}
+                  {media.genre}
                 </span>
-              ))}
             </div>
           )}
 
@@ -68,7 +65,7 @@ export default function MediaDetail({ media }: { media: Media }) {
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-2">Overview</h2>
             <p className={`text-gray-300 ${showFullOverview ? '' : 'line-clamp-3'}`}>
-              {media.overview}
+              {media.synopsis}
             </p>
             <button
               onClick={() => setShowFullOverview(!showFullOverview)}
@@ -83,7 +80,7 @@ export default function MediaDetail({ media }: { media: Media }) {
           <div className="hidden lg:block absolute right-0 top-0 -translate-y-1/3">
             <div className="relative w-64 h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src={`https://image.tmdb.org/t/p/w500${media.posterPath}`}
+                src={`https://image.tmdb.org/t/p/w500${media.imageUrl}`}
                 alt={media.title}
                 fill
                 className="object-cover"

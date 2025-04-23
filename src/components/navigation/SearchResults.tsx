@@ -23,7 +23,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
               >
                 <div className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src={`https://image.tmdb.org/t/p/w200${result.posterPath}`}
+                    src={`https://image.tmdb.org/t/p/w200${result.imageUrl}`}
                     alt={result.title}
                     fill
                     className="object-cover rounded"
@@ -32,7 +32,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                 <div className="ml-4">
                   <h3 className="text-white font-medium">{result.title}</h3>
                   <p className="text-gray-400 text-sm line-clamp-2">
-                    {result.overview}
+                    {result.synopsis}
                   </p>
                 </div>
               </Link>

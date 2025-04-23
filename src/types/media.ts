@@ -1,19 +1,13 @@
 export interface Media {
   id: string
   title: string
-  overview: string
-  posterPath: string
-  backdropPath: string
-  mediaType?: 'movie' | 'tv'
-  releaseDate?: string
-  runtime?: number
-  voteAverage?: number
-  genres?: Genre[]
-}
-
-export interface Genre {
-  id: number
-  name: string
+  genre: string,
+  year: number
+  duration: number
+  synopsis: string
+  thumbnail: string
+  imageUrl: string,
+  voteAverage: number
 }
 
 export interface MediaListResponse {

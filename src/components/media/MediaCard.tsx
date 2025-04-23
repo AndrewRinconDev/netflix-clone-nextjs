@@ -15,7 +15,7 @@ function MediaCard({ media, onClick }: MediaCardProps) {
       onClick={onClick}
     >
       <Image
-        src={`https://image.tmdb.org/t/p/w500${media.posterPath}`}
+        src={`https://image.tmdb.org/t/p/w500${media.imageUrl}`}
         alt={media.title}
         className="rounded object-cover"
         fill

@@ -3,11 +3,14 @@ query getMovieAction {
       value: {genre:"Sci-Fi"},
        orderBy: [year_DESC]) {
       values {
+        id,
+        genre,
       	year,
         title,
         duration,
         synopsis,
-        thumbnail
+        thumbnail,
+        imageUrl
       }
     }
 }

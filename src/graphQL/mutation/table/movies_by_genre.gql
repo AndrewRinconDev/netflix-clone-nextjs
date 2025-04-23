@@ -4,6 +4,7 @@ mutation {
     tableName:"movies_by_genre",
     ifNotExists: true,
     partitionKeys: [
+      { name: "id", type: {basic: INT} },
       { name: "genre", type: {basic: TEXT} }
     ]
     clusteringKeys: [ 
@@ -14,6 +15,7 @@ mutation {
       { name: "synopsis", type: {basic: TEXT} },
       { name: "duration", type: {basic: INT} },
       { name: "thumbnail", type: {basic: TEXT} }
+      { name: "imageUrl", type: {basic: TEXT} }
     ]
   )
 }
