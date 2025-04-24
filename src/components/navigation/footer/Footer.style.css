@@ -10,6 +10,7 @@
 }
 .footer-icons img{
     width: 30px;
+    height: auto;
     cursor: pointer;
 }
 .footer ul{
@@ -27,6 +28,7 @@
 @media (max-width:800px) {
     .footer-icons img{
         width: 25px;
+        height: auto;
     }
     .footer ul{
         grid-template-columns: auto auto;

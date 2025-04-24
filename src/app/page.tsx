@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
-import TitleCards from "@/components/navigation/titileCards/TitleCards";
+import TitleCards from "@/components/titileCards/TitleCards";
 import hero_banner from '@/assets/hero_banner.jpg'
 import hero_title from '@/assets/hero_title.png'
 import play_icon from '@/assets/icons/play_icon.png'
@@ -59,17 +59,17 @@ const App = () => {
               More Info
             </button>
           </div>
-          <TitleCards />
+          <TitleCards category={data.reference_list.values[0].value} />
         </div>
       </div>
       <div className="more-cards">
-        {data.reference_list.values.map((item: { value: string }) => (
-          <TitleCards key={`${item.value}-carousel`} category={item.value} />
+        {/* {data.reference_list.values.map((item: { value: string }) => (
+        ))} */}
+        {data.reference_list.values.map((item: { value: string }, index: number) => (
+          index > 0 && (
+            <TitleCards key={`${item.value}-carousel`} category={item.value} />
+          )
         ))}
-        {/* <TitleCards title={"Blockbuster Movies"} category={"top_rated"} />
-        <TitleCards title={"Only on Netflix"} category={"popular"} />
-        <TitleCards title={"Upcoming"} category={"upcoming"} />
-        <TitleCards title={"Top Pics for You"} category={"now_playing"} /> */}
       </div>
     </>
   );
