@@ -1,41 +1,33 @@
 import { gql } from '@apollo/client'
 
-export const GET_HOME_PAGE_DATA = gql`
-  query GetHomePageData {
-    heroBanner {
-      id
-      title
-      overview
-      backdropPath
+export const GET_ALL_GENRES = gql`
+  query getAllGenres($limit: Int!) {
+      reference_list (
+        value: { label: "genre"},
+        options: { limit: $limit }
+      ) {
+        values {
+          value
+        }
+      }
     }
-    trendingNow {
-      id
-      title
-      posterPath
-    }
-    topRated {
-      id
-      title
-      posterPath
-    }
-  }
 `
 
-export const GET_MEDIA_DETAIL = gql`
-  query GetMediaDetail($id: ID!) {
-    media(id: $id) {
-      id
-      title
-      overview
-      backdropPath
-      posterPath
-      releaseDate
-      runtime
-      voteAverage
-      genres {
-        id
-        name
+export const GET_MOVIES_BY_GENRE = gql`
+  query getMovieAction ($genre: String!, $pageState: String) {
+    movies_by_genre (
+      value: { genre: $genre },
+      orderBy: [year_DESC],
+      options: { pageSize: 6, pageState: $pageState}
+    ) {
+      values {
+        year,
+        title,
+        duration,
+        synopsis,
+        thumbnail
       }
+      pageState
     }
   }
 `
