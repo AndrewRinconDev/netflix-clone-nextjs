@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Play, Plus, Info, Check } from 'lucide-react'
+import { Play, Plus, Check } from 'lucide-react'
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_TO_LIST } from '@/lib/apollo/queries'

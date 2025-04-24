@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -24,9 +23,11 @@ const signup = async (name: string, email: string, password: string) => {
       authProvider: "local",
       email,
     });
-  } catch (error: Error | any) {
-    console.log(error);
-    toast.error(error.code.split("/")[1].split("-").join(" "));
+  } catch (error: unknown) {
+    console.error(error);
+    if (error instanceof Error) {
+      toast.error(error.message.split("/")[1].split("-").join(" "));
+    }
   }
 };
 
@@ -38,9 +39,11 @@ const login = async (email: string, password: string, redirect: () => void) => {
       toast.success("Login Successful");
       redirect();
     }
-  } catch (error: Error | any) {
-    console.log(error);
-    toast.error(error.code.split("/")[1].split("-").join(" "));
+  } catch (error: unknown) {
+    console.error(error);
+    if (error instanceof Error) {
+      toast.error(error.message.split("/")[1].split("-").join(" "));
+    }
   }
 };
 

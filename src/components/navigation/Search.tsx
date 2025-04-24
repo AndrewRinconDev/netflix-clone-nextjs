@@ -1,9 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useLazyQuery } from '@apollo/client'
-import { SEARCH_MEDIA } from '@/lib/apollo/queries'
-import SearchResults from './SearchResults'
 
 export default function Search() {
   const [query, setQuery] = useState('')

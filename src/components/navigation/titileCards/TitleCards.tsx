@@ -20,14 +20,12 @@ const TitleCards = ({ category }: ITitleCardsProps) => {
 
   const handleWheel = (event: WheelEvent) => {
     event.preventDefault();
-    console.log('***********', cardsRef.current);
     if (!cardsRef.current) return;
 
     cardsRef.current.scrollLeft += event.deltaY;
   };
 
   useEffect(() => {
-    console.log('***********2', cardsRef.current);
     if (!cardsRef.current) return;
     cardsRef.current?.addEventListener("wheel", handleWheel as EventListener);
   }, [cardsRef.current]);

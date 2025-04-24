@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import netflix_spinner from "@/assets/netflix_spinner.gif";
 
-import "./loadingSpinner.style.css";
+import "./LoadingSpinner.style.css";
 
 function LoadingSpinner() {
   return (

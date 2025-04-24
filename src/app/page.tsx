@@ -63,7 +63,7 @@ const App = () => {
         </div>
       </div>
       <div className="more-cards">
-        {data.reference_list.values.map((item: any) => (
+        {data.reference_list.values.map((item: { value: string }) => (
           <TitleCards key={`${item.value}-carousel`} category={item.value} />
         ))}
         {/* <TitleCards title={"Blockbuster Movies"} category={"top_rated"} />
