@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import Link from "next/link";
 
 import { Media } from "@/types/media";
@@ -55,4 +55,4 @@ const Carousel = ({ category }: ICarouselProps) => {
   );
 };
 
-export default Carousel;
+export default memo(Carousel);

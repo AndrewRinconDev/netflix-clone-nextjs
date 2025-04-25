@@ -58,7 +58,7 @@ const HomePage = () => {
           <Carousel category="Action" />
         </div>
       </div>
-      {/* <Suspense> */}
+
       <Suspense fallback={<CarouselSectionSkeleton rows={4} />}>
         <LazyCarouselSection />
       </Suspense>

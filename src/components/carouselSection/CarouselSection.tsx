@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useQuery, useSuspenseQuery } from "@apollo/client";
+import { useSuspenseQuery } from "@apollo/client";
 
 import Carousel from "@/components/carousel/Carousel";
 import { GET_ALL_GENRES } from "@/lib/apollo/queries";
@@ -13,6 +13,7 @@ function CarouselSection() {
   const [hasMore, setHasMore] = useState(true);
   const loaderRef = useRef<HTMLDivElement>(null);
   const PAGE_SIZE = 5;
+  const TOTAL_RESULTS = 15;
 
   const { data, fetchMore, error } = useSuspenseQuery<IGenreResponse>(
     GET_ALL_GENRES,
@@ -35,15 +36,17 @@ function CarouselSection() {
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
 
-          if (!fetchMoreResult.reference_list.pageState) {
+          const newValues = [
+            ...prev.reference_list.values,
+            ...fetchMoreResult.reference_list.values,
+          ];
+
+          if (!fetchMoreResult.reference_list.pageState || newValues.length >= TOTAL_RESULTS) {
             setHasMore(false);
           }
           return {
             reference_list: {
-              values: [
-                ...prev.reference_list.values,
-                ...fetchMoreResult.reference_list.values,
-              ],
+              values: newValues,
               pageState: fetchMoreResult.reference_list.pageState,
             },
           };
