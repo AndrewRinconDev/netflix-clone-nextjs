@@ -15,7 +15,7 @@ interface ICarouselProps {
 const Carousel = ({ category }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
 
-  const { loading, error, data } = useQuery(GET_MOVIES_BY_GENRE, {
+  const { loading, data } = useQuery(GET_MOVIES_BY_GENRE, {
     variables: { genre: category, pageState: null },
   });
 
