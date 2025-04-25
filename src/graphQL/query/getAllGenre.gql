@@ -1,7 +1,11 @@
 query getAllGenre {
-    reference_list (value: {label:"genre"}) {
+    reference_list (
+      	value: {label:"genre"},
+      	options: { pageSize: 4, pageState: null}
+    ) {
       values {
       	value
-      }
+      },
+    	pageState
     }
 }

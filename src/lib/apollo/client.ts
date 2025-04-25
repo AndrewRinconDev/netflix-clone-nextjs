@@ -19,19 +19,18 @@ export const apolloClient = new ApolloClient({
     typePolicies: {
       Query: {
         fields: {
-          trendingNow: {
-            merge(existing = [], incoming) {
-              return [...existing, ...incoming]
-            },
-          },
-        },
-      },
-      Media: {
-        keyFields: ["id"],
-        fields: {
-          //TODO: Configuration for Media fields
-        },
-      },
-    },
-  }),
+          your_table: {
+            keyArgs: false,
+            merge(existing = { values: [] }, incoming) {
+              return {
+                ...incoming,
+                values: [...existing.values, ...incoming.values],
+                pageState: incoming.pageState,
+              };
+            }
+          }
+        }
+      }
+    }
+  })
 });

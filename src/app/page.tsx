@@ -16,7 +16,6 @@ import CarouselSectionSkeleton from "@/components/skeletons/carouselSection.tsx/
 const HomePage = () => {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const [currentLimit, setCurrentLimit] = useState(4);
   const LazyCarouselSection = lazy(
     () => import("@/components/carouselSection/CarouselSection")
   );
@@ -59,8 +58,9 @@ const HomePage = () => {
           <Carousel category="Action" />
         </div>
       </div>
-      <Suspense fallback={<CarouselSectionSkeleton rows={currentLimit} />}>
-        <LazyCarouselSection currentLimit={currentLimit} setCurrentLimit={setCurrentLimit} />
+      {/* <Suspense> */}
+      <Suspense fallback={<CarouselSectionSkeleton rows={4} />}>
+        <LazyCarouselSection />
       </Suspense>
     </>
   );

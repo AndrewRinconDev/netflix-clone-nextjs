@@ -1,13 +1,13 @@
 export interface Media {
-  id: string
-  title: string
-  genre: string,
-  year: number
-  duration: number
-  synopsis: string
-  thumbnail: string
-  imageUrl: string,
-  voteAverage: number
+  id: string;
+  title: string;
+  genre: string;
+  year: number;
+  duration: number;
+  synopsis: string;
+  thumbnail: string;
+  imageUrl: string;
+  voteAverage: number;
 }
 
 export interface IGenre {
@@ -15,15 +15,18 @@ export interface IGenre {
 }
 
 export interface IGenreResponse {
-  reference_list: { values: IGenre[] };
+  reference_list: {
+    values: IGenre[];
+    pageState: string | null;
+  };
 }
 export interface MediaListResponse {
-  page: number
-  results: Media[]
-  totalPages: number
-  totalResults: number
+  page: number;
+  results: Media[];
+  totalPages: number;
+  totalResults: number;
 }
 
 export interface SearchResults {
-  searchMedia: Media[]
+  searchMedia: Media[];
 }

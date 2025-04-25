@@ -1,14 +1,15 @@
 import { gql } from '@apollo/client'
 
 export const GET_ALL_GENRES = gql`
-  query getAllGenres($limit: Int!) {
+  query getAllGenres($pageSize: Int!, $pageState: String) {
       reference_list (
         value: { label: "genre"},
-        options: { limit: $limit }
+        options: { pageSize: $pageSize, pageState: $pageState}
       ) {
         values {
           value
         }
+        pageState
       }
     }
 `
