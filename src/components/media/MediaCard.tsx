@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import type { Media } from '@/types/media'
+import type { Movie } from '@/types/media'
 
 interface MediaCardProps {
-  media: Media
+  media: Movie
   onClick: () => void
 }
 
@@ -15,7 +15,7 @@ function MediaCard({ media, onClick }: MediaCardProps) {
       onClick={onClick}
     >
       <Image
-        src={`https://image.tmdb.org/t/p/w500${media.imageUrl}`}
+        src={`https://image.tmdb.org/t/p/w500${media.imagePath}`}
         alt={media.title}
         className="rounded object-cover"
         fill

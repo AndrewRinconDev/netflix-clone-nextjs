@@ -1,133 +1,198 @@
 mutation movies_actions {
   creed_1: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2015,
-      title:"Creed",
-      synopsis:"The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-      duration:133,
-      thumbnail:"https://i.imgur.com/NQTuLtb.mp4"}) {
-    value{title}
-  }
-  
-  creed_2: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2005,
-      title:"Creed",
-      synopsis:"The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-      duration:133,
-      thumbnail:"https://i.imgur.com/NQTuLtb.mp4"}) {
-    value{title}
-  }
-  
-  creed_3: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:1995,
-      title:"Creed",
-      synopsis:"The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-      duration:133,
-      thumbnail:"https://i.imgur.com/NQTuLtb.mp4"}) {
-    value{title}
-  }
-  
-  furious7_1: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2015,
-      title:"Furious7",
-      synopsis:"Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.",
-      duration:137,
-      thumbnail:"https://i.imgur.com/7ax74eb.mp4"}) {
-    value{title}
-  }
-  
-  furious7_2: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2005,
-      title:"Furious7",
-      synopsis:"Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.",
-      duration:137,
-      thumbnail:"https://i.imgur.com/7ax74eb.mp4"}) {
-    value{title}
-  }
-  
-  furious7_3: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:1995,
-      title:"Furious7",
-      synopsis:"Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.",
-      duration:137,
-      thumbnail:"https://i.imgur.com/7ax74eb.mp4"}) {
-    value{title}
-  }
-  
-  guardian_1: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2014,
-      title:"Guardians of the Galaxy",
-      synopsis:"A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.",
-      duration:121,
-      thumbnail:"https://i.imgur.com/AylKL2G.mp4"}) {
-    value{title}
-  }
-  
-  guardian_2: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2004,
-      title:"Guardians of the Galaxy",
-      synopsis:"A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.",
-      duration:121,
-      thumbnail:"https://i.imgur.com/AylKL2G.mp4"}) {
-    value{title}
-  }
-  
-  guardian_3: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:1994,
-      title:"Guardians of the Galaxy",
-      synopsis:"A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.",
-      duration:121,
-      thumbnail:"https://i.imgur.com/AylKL2G.mp4"}) {
-    value{title}
-  }
-  
-  suicide_1: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2016,
-      title:"Suicide Squad",
-      synopsis:"A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/hwUzoyu.mp4"}) {
-    value{title}
-  }
-  
-  suicide_2: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:2006,
-      title:"Suicide Squad",
-      synopsis:"A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/hwUzoyu.mp4"}) {
-    value{title}
-  }
-  suicide_3: insertmovies_by_genre(
-    value: { 
-      genre:"Action", 
-      year:1996,
-      title:"Suicide Squad",
-      synopsis:"A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/hwUzoyu.mp4"}) {
-    value{title}
+    value: {
+      id: "e3fe8d54-5057-4340-8b56-2216761c51e1"
+      genre: "Action"
+      year: 2005
+      title: "Creed"
+      synopsis: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed."
+      duration: 133
+      thumbnail: "https://i.imgur.com/NQTuLtb.mp4"
+      imagePath: "creed_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
+  creed_2: insertmovies_by_genre(
+    value: {
+      id: "5a09c307-c6c1-4ccd-b5e4-cea6feded4f0"
+      genre: "Action"
+      year: 2010
+      title: "Creed II"
+      synopsis: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed."
+      duration: 133
+      thumbnail: "https://i.imgur.com/NQTuLtb.mp4"
+      imagePath: "creed_2.jpg"
+      voteAverage: 8.5
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  creed_3: insertmovies_by_genre(
+    value: {
+      id: "735eba46-02e4-4219-8d83-b933943cb654"
+      genre: "Action"
+      year: 2020
+      title: "Creed III"
+      synopsis: "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed."
+      duration: 133
+      thumbnail: "https://i.imgur.com/NQTuLtb.mp4"
+      imagePath: "creed_3.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  furious7_1: insertmovies_by_genre(
+    value: {
+      id: "991c3b6a-096c-4dc1-98f5-014c2ccd707e"
+      genre: "Action"
+      year: 2015
+      title: "Furious7"
+      synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
+      duration: 137
+      thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  furious7_2: insertmovies_by_genre(
+    value: {
+      id: "9ec5b004-e09f-4e60-9157-2332affe894f"
+      genre: "Action"
+      year: 2005
+      title: "Furious7"
+      synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
+      duration: 137
+      thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  furious7_3: insertmovies_by_genre(
+    value: {
+      id: "1c34e1a1-2e36-4366-a789-5e7beeef33dd"
+      genre: "Action"
+      year: 1995
+      title: "Furious7"
+      synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
+      duration: 137
+      thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  guardian_1: insertmovies_by_genre(
+    value: {
+      id: "f2e3d9b9-9797-421c-a767-be4fbb53fd2c"
+      genre: "Action"
+      year: 2014
+      title: "Guardians of the Galaxy"
+      synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
+      duration: 121
+      thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  guardian_2: insertmovies_by_genre(
+    value: {
+      id: "32bdb39a-c263-4493-a414-9833c01a2807"
+      genre: "Action"
+      year: 2004
+      title: "Guardians of the Galaxy"
+      synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
+      duration: 121
+      thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  guardian_3: insertmovies_by_genre(
+    value: {
+      id: "bc9f8174-7e15-4342-8ae4-bcb223ddc501"
+      genre: "Action"
+      year: 1994
+      title: "Guardians of the Galaxy"
+      synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
+      duration: 121
+      thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  suicide_1: insertmovies_by_genre(
+    value: {
+      id: "5dc73f00-41d6-40ec-821b-eb628a83c0de"
+      genre: "Action"
+      year: 2016
+      title: "Suicide Squad"
+      synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
+      duration: 123
+      thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  suicide_2: insertmovies_by_genre(
+    value: {
+      id: "5851a91e-fc4c-4ea3-b309-c4c16903311f"
+      genre: "Action"
+      year: 2006
+      title: "Suicide Squad"
+      synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
+      duration: 123
+      thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
+  suicide_3: insertmovies_by_genre(
+    value: {
+      id: "f078c535-d0bc-4113-a7e9-60c4e445a00e"
+      genre: "Action"
+      year: 1996
+      title: "Suicide Squad"
+      synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
+      duration: 123
+      thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+    }
+  ) {
+    value {
+      title
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client'
+import { MovieFields } from './fragments'
+
 
 export const GET_ALL_GENRES = gql`
   query getAllGenres($pageSize: Int!, $pageState: String) {
@@ -15,22 +17,27 @@ export const GET_ALL_GENRES = gql`
 `
 
 export const GET_MOVIES_BY_GENRE = gql`
-  query getMovieAction ($genre: String!, $pageState: String) {
+  query getMovieAction ($genre: String!) {
+  # query getMovieAction ($genre: String!, $pageState: String) {
     movies_by_genre (
       value: { genre: $genre },
       orderBy: [year_DESC],
-      options: { pageSize: 6, pageState: $pageState}
+      # options: { pageSize: 6, pageState: $pageState}
     ) {
-      values {
-        year,
-        title,
-        duration,
-        synopsis,
-        thumbnail
-      }
+      values {...MovieFields}
       pageState
     }
   }
+  ${MovieFields}
+`
+
+export const GET_MOVIES_BY_ID = gql`
+  query getMovieById($id: String!) {
+    movie_by_id(id: $id) {
+      values {...MovieFields}
+    }
+  }
+  ${MovieFields}
 `
 
 export const SEARCH_MEDIA = gql`

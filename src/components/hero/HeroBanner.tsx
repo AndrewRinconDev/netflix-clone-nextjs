@@ -1,8 +1,8 @@
-import type { Media } from '@/types/media'
+import type { Movie } from '@/types/media'
 import { PlayButton, InfoButton } from '@/components/ui/Button'
 
 interface HeroBannerProps {
-  media: Media
+  media: Movie
 }
 
 export default function HeroBanner({ media }: HeroBannerProps) {
@@ -10,7 +10,7 @@ export default function HeroBanner({ media }: HeroBannerProps) {
     <div className="relative h-screen">
       <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent z-10" />
       <img
-        src={`https://image.tmdb.org/t/p/original${media.imageUrl}`}
+        src={`https://image.tmdb.org/t/p/original${media.imagePath}`}
         alt={media.title}
         className="w-full h-full object-cover"
       />

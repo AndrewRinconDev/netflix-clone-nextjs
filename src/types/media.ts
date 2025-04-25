@@ -1,4 +1,4 @@
-export interface Media {
+export interface Movie {
   id: string;
   title: string;
   genre: string;
@@ -6,7 +6,7 @@ export interface Media {
   duration: number;
   synopsis: string;
   thumbnail: string;
-  imageUrl: string;
+  imagePath: string;
   voteAverage: number;
 }
 
@@ -22,11 +22,11 @@ export interface IGenreResponse {
 }
 export interface MediaListResponse {
   page: number;
-  results: Media[];
+  results: Movie[];
   totalPages: number;
   totalResults: number;
 }
 
 export interface SearchResults {
-  searchMedia: Media[];
+  searchMedia: Movie[];
 }

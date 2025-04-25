@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSuspenseQuery } from "@apollo/client";
 
 import Carousel from "@/components/carousel/Carousel";
-import { GET_ALL_GENRES } from "@/lib/apollo/queries";
+import { GET_ALL_GENRES } from "@/lib/gql/queries";
 import { IGenre, IGenreResponse } from "@/types/media";
 
 import "./CarouselSection.styles.css";
@@ -12,7 +12,7 @@ function CarouselSection() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const loaderRef = useRef<HTMLDivElement>(null);
-  const PAGE_SIZE = 5;
+  const PAGE_SIZE = 4;
   const TOTAL_RESULTS = 15;
 
   const { data, fetchMore, error } = useSuspenseQuery<IGenreResponse>(
@@ -41,7 +41,10 @@ function CarouselSection() {
             ...fetchMoreResult.reference_list.values,
           ];
 
-          if (!fetchMoreResult.reference_list.pageState || newValues.length >= TOTAL_RESULTS) {
+          if (
+            !fetchMoreResult.reference_list.pageState ||
+            newValues.length >= TOTAL_RESULTS
+          ) {
             setHasMore(false);
           }
           return {
@@ -98,11 +101,10 @@ function CarouselSection() {
               )
           )}
       </div>
-      <div ref={loaderRef} className="flex justify-center py-8 min-h-20">
-        {isLoadingMore && (
-          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
-        )}
-      </div>
+
+      {!isLoadingMore && hasMore && (
+        <div ref={loaderRef} className="flex justify-center py-8 min-h-20"></div>
+      )}
     </>
   );
 }

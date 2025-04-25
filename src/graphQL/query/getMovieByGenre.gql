@@ -1,4 +1,4 @@
-query getMovieAction {
+query getMovieByGenre {
     movies_by_genre (
       value: {genre:"Sci-Fi"},
        orderBy: [year_DESC]) {

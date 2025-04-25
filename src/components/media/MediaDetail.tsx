@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import type { Media } from '@/types/media'
+import type { Movie } from '@/types/media'
 import { PlayButton, AddToListButton } from '../ui/Button'
 import { Info, Star, Clock, Calendar } from 'lucide-react'
 
-export default function MediaDetail({ media }: { media: Media }) {
+export default function MediaDetail({ media }: { media: Movie }) {
   const [showFullOverview, setShowFullOverview] = useState(false)
 
   return (
@@ -15,7 +15,7 @@ export default function MediaDetail({ media }: { media: Media }) {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10" />
         <Image
-          src={`https://image.tmdb.org/t/p/original${media.imageUrl}`}
+          src={`https://image.tmdb.org/t/p/original${media.imagePath}`}
           alt={media.title}
           fill
           className="object-cover"
@@ -80,7 +80,7 @@ export default function MediaDetail({ media }: { media: Media }) {
           <div className="hidden lg:block absolute right-0 top-0 -translate-y-1/3">
             <div className="relative w-64 h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src={`https://image.tmdb.org/t/p/w500${media.imageUrl}`}
+                src={`https://image.tmdb.org/t/p/w500${media.imagePath}`}
                 alt={media.title}
                 fill
                 className="object-cover"

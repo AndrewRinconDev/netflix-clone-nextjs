@@ -24,7 +24,7 @@
   margin-bottom: 30px;
 }
 
-.hero-caption p {
+.hero-caption > p {
   max-width: 700px;
   font-size: 17px;
   margin-bottom: 20px;
@@ -70,6 +70,7 @@
 
 .more-cards {
   padding-left: 6%;
+  margin-top: -30px;
 }
 
 @media (max-width: 1024px) {
@@ -92,7 +93,7 @@
     width: 40%;
   }
 
-  .hero-caption p {
+  .hero-caption > p {
     font-size: 12px;
     margin-bottom: 10px;
   }
@@ -110,7 +111,7 @@
 @media (max-width: 500px) {
 
   .caption-img,
-  .hero-caption p {
+  .hero-caption > p {
     display: none;
   }
 

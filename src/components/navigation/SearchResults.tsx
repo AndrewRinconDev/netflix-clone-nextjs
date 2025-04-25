@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Media } from '@/types/media'
+import type { Movie } from '@/types/media'
 
 interface SearchResultsProps {
-  results: Media[]
+  results: Movie[]
 }
 
 export default function SearchResults({ results }: SearchResultsProps) {
@@ -23,7 +23,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
               >
                 <div className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src={`https://image.tmdb.org/t/p/w200${result.imageUrl}`}
+                    src={`https://image.tmdb.org/t/p/w200${result.imagePath}`}
                     alt={result.title}
                     fill
                     className="object-cover rounded"

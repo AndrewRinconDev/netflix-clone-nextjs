@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef } from "react";
 import Link from "next/link";
 
-import { Media } from "@/types/media";
+import { Movie } from "@/types/media";
 import { useQuery } from "@apollo/client";
-import { GET_MOVIES_BY_GENRE } from "@/lib/apollo/queries";
+import { GET_MOVIES_BY_GENRE } from "@/lib/gql/queries";
 import CarouselSkeleton from "@/components/skeletons/carousel/CarouselSkeleton";
 
 import "./Carousel.styles.css";
@@ -39,14 +39,14 @@ const Carousel = ({ category }: ICarouselProps) => {
     <div className="title-cards">
       <h2>{category}</h2>
       <div className="card-list" ref={cardsRef}>
-        {data.movies_by_genre.values.map((movie: Media, index: number) => {
+        {data.movies_by_genre.values.map((movie: Movie, index: number) => {
           return (
-            <Link href={`/player/${movie.id}`} className="card" key={index}>
+            <Link href={`/detail/${movie.id}`} className="card" key={index}>
               <video className="video">
                 <source src={movie.thumbnail} type="video/mp4" />
               </video>
               {/* <img
-                src="/background_banner.jpg"
+                src="/images/movies/creed_1.jpg"
                 alt={`${movie.title}-thumbnail`}
               /> */}
               <p>{movie.title}</p>

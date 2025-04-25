@@ -14,8 +14,9 @@ mutation {
     values: [
       { name: "synopsis", type: {basic: TEXT} },
       { name: "duration", type: {basic: INT} },
-      { name: "thumbnail", type: {basic: TEXT} }
-      { name: "imageUrl", type: {basic: TEXT} }
+      { name: "thumbnail", type: {basic: TEXT} },
+      { name: "imagePath", type: {basic: TEXT} },
+      { name: "voteAverage", type: {basic: INT} }
     ]
   )
 }

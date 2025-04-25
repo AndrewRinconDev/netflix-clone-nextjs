@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { Play, Plus, Check } from 'lucide-react'
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { ADD_TO_LIST } from '@/lib/apollo/queries'
+import { ADD_TO_LIST } from '@/lib/gql/queries'
 import { FaInfoCircle } from 'react-icons/fa'
 
 export function PlayButton() {
