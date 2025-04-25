@@ -1,28 +1,28 @@
 "use client";
-import Image from "next/image";
-import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { useRouter } from "next/navigation";
-
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase/firebase";
-import TitleCards from "@/components/titileCards/TitleCards";
-import hero_banner from '@/assets/hero_banner.jpg'
-import hero_title from '@/assets/hero_title.png'
-import play_icon from '@/assets/icons/play_icon.png'
-import info_icon from '@/assets/icons/info_icon.png'
-import { GET_ALL_GENRES } from "@/lib/apollo/queries";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import hero_banner from "@/assets/hero_banner.jpg";
+import hero_title from "@/assets/hero_title.png";
+import play_icon from "@/assets/icons/play_icon.png";
+import info_icon from "@/assets/icons/info_icon.png";
+import { auth } from "@/firebase/firebase";
+import Carousel from "@/components/carousel/Carousel";
+import CarouselSectionSkeleton from "@/components/skeletons/carouselSection.tsx/CarouselSectionSkeleton";
 
-import "./page.style.css";
-
-const App = () => {
+const HomePage = () => {
   const router = useRouter();
-  const { loading, error, data } = useQuery(GET_ALL_GENRES, {
-    variables: { limit: "4" },
-  });
+  const [isClient, setIsClient] = useState(false);
+  const [currentLimit, setCurrentLimit] = useState(4);
+  const LazyCarouselSection = lazy(
+    () => import("@/components/carouselSection/CarouselSection")
+  );
 
   useEffect(() => {
+    setIsClient(true);
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
         router.push("/login");
@@ -31,11 +31,8 @@ const App = () => {
     });
   }, []);
 
-  if (loading) return <LoadingSpinner />;
-
-  if (error) {
-    console.error("Error fetching genres:", error);
-    return <div>Error fetching genres</div>;
+  if (!isClient) {
+    return <LoadingSpinner />;
   }
 
   return (
@@ -59,20 +56,14 @@ const App = () => {
               More Info
             </button>
           </div>
-          <TitleCards category={data.reference_list.values[0].value} />
+          <Carousel category="Action" />
         </div>
       </div>
-      <div className="more-cards">
-        {/* {data.reference_list.values.map((item: { value: string }) => (
-        ))} */}
-        {data.reference_list.values.map((item: { value: string }, index: number) => (
-          index > 0 && (
-            <TitleCards key={`${item.value}-carousel`} category={item.value} />
-          )
-        ))}
-      </div>
+      <Suspense fallback={<CarouselSectionSkeleton rows={currentLimit} />}>
+        <LazyCarouselSection currentLimit={currentLimit} setCurrentLimit={setCurrentLimit} />
+      </Suspense>
     </>
   );
 };
 
-export default App;
+export default HomePage;

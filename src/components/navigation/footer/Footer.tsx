@@ -6,7 +6,7 @@ import twitter_icon from '@/assets/icons/twitter_icon.png'
 import instagram_icon from '@/assets/icons/instagram_icon.png'
 import facebook_icon from '@/assets/icons/facebook_icon.png'
 
-import './Footer.style.css'
+import './Footer.styles.css'
 
 const Footer = () => {
   return (

@@ -108,6 +108,7 @@
 }
 
 @media (max-width: 500px) {
+
   .caption-img,
   .hero-caption p {
     display: none;

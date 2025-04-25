@@ -9,7 +9,7 @@ import caret_icon from '@/assets/icons/caret_icon.svg'
 import profile_img from '@/assets/profile_img.png'
 import { logout } from '@/firebase/firebase'
 
-import './Navbar.style.css'
+import './Navbar.styles.css'
 
 const Navbar = () => {
   const navRef = useRef<HTMLDivElement | null>(null);

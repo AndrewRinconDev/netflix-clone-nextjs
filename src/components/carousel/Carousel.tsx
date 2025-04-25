@@ -5,13 +5,13 @@ import { Media } from "@/types/media";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES_BY_GENRE } from "@/lib/apollo/queries";
 
-import "./TitleCards.style.css";
+import "./Carousel.styles.css";
 
-interface ITitleCardsProps {
+interface ICarouselProps {
   category?: string;
 }
 
-const TitleCards = ({ category }: ITitleCardsProps) => {
+const Carousel = ({ category }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
 
   const { loading, error, data } = useQuery(GET_MOVIES_BY_GENRE, {
@@ -22,7 +22,7 @@ const TitleCards = ({ category }: ITitleCardsProps) => {
     event.preventDefault();
     if (!cardsRef.current) return;
 
-    cardsRef.current.scrollLeft += event.deltaY;
+    // cardsRef.current.scrollLeft += event.deltaY;
   };
 
   useEffect(() => {
@@ -55,4 +55,4 @@ const TitleCards = ({ category }: ITitleCardsProps) => {
   );
 };
 
-export default TitleCards;
+export default Carousel;

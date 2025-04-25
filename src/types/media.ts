@@ -10,6 +10,13 @@ export interface Media {
   voteAverage: number
 }
 
+export interface IGenre {
+  value: string;
+}
+
+export interface IGenreResponse {
+  reference_list: { values: IGenre[] };
+}
 export interface MediaListResponse {
   page: number
   results: Media[]

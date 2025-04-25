@@ -6,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "@/components/navigation/navbar/Navbar";
 import Footer from "@/components/navigation/footer/Footer";
+import ApolloWrapper from "@/provider/ApolloWrapper";
 
 import "./globals.css";
-import { ApolloProvider } from "@apollo/client";
-import { apolloClient } from "@/lib/apollo/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,15 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloWrapper>
       <html lang="en">
         <body className={`${inter.className} bg-black text-white`}>
           <ToastContainer theme="dark" />
           <Navbar />
-          <main className="pt-16">{children}</main>
+          <main className="pt-16 relative">{children}</main>
           <Footer />
         </body>
       </html>
-    </ApolloProvider>
+    </ApolloWrapper>
   );
 }

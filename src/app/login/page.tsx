@@ -6,7 +6,7 @@ import logo from "@/assets/logo.png";
 import { login, signup } from "@/firebase/firebase";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
-import "./page.style.css";
+import "./page.styles.css";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
