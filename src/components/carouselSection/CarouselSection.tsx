@@ -66,7 +66,7 @@ function CarouselSection() {
           loadMoreData();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1, rootMargin: "250px 0px" }
     );
 
     const currentLoader = loaderRef.current;

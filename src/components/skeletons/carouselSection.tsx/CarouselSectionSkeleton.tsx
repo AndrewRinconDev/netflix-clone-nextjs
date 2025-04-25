@@ -4,7 +4,7 @@ function CarouselSectionSkeleton({rows = 1}: {rows?: number}) {
   return (
     <>
     {Array.from({ length: rows }, (_, index) => (
-      <CarouselSkeleton key={`carousel-skeleton-${index}`} cards={5}  />
+      <CarouselSkeleton key={`carousel-skeleton-${index}`} cards={6}  />
     ))}
     </>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Media } from "@/types/media";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES_BY_GENRE } from "@/lib/apollo/queries";
+import CarouselSkeleton from "@/components/skeletons/carousel/CarouselSkeleton";
 
 import "./Carousel.styles.css";
 
@@ -30,7 +31,9 @@ const Carousel = ({ category }: ICarouselProps) => {
     cardsRef.current?.addEventListener("wheel", handleWheel as EventListener);
   }, [cardsRef.current]);
   
-  if (loading || error) return;
+  if (loading || !data || !data.movies_by_genre) return (
+    <CarouselSkeleton />
+  );
 
   return (
     <div className="title-cards">
