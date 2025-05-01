@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/clien
 
 const httpLink = new HttpLink({
   uri: '/api/graphql-proxy',
+  fetchOptions: { cache: 'no-store' }
 });
 
 const authLink = new ApolloLink((operation, forward) => {
