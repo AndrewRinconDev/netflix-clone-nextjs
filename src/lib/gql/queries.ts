@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client'
 import { MovieFields } from './fragments'
 
-
 export const GET_ALL_GENRES = gql`
   query getAllGenres($pageSize: Int!, $pageState: String) {
       reference_list (

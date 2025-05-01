@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ApolloWrapper>
+    <ApolloWrapper initialState={null}>
       <html lang="en">
         <body className={`${inter.className} bg-black text-white`}>
           <ToastContainer theme="dark" />

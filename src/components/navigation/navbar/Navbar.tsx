@@ -1,5 +1,7 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 import logo from '@/assets/logo.png'
@@ -7,12 +9,15 @@ import search_icon from '@/assets/icons/search_icon.svg'
 import bell_icon from '@/assets/icons/bell_icon.svg'
 import caret_icon from '@/assets/icons/caret_icon.svg'
 import profile_img from '@/assets/profile_img.png'
-import { logout } from '@/firebase/firebase'
+import { auth, logout } from '@/firebase/firebase'
+import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner'
 
 import './Navbar.styles.css'
 
 const Navbar = () => {
   const navRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(()=>{
     window.addEventListener('scroll', ()=>{
@@ -23,6 +28,20 @@ const Navbar = () => {
       }
     })
   },[])
+
+  useEffect(() => {
+    setIsClient(true);
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+    });
+  }, []);
+
+  if (!isClient) {
+    return <LoadingSpinner width={150} height={135} />;
+  }
 
   return (
     <div ref={navRef} className='navbar'>

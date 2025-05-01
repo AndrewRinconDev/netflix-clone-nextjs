@@ -1,38 +1,30 @@
 "use client";
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import React, { Suspense } from "react";
+import { useQuery } from "@apollo/client";
 import Image from "next/image";
 
-import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import hero_banner from "@/assets/hero_banner.jpg";
 import hero_title from "@/assets/hero_title.png";
 import play_icon from "@/assets/icons/play_icon.png";
 import info_icon from "@/assets/icons/info_icon.png";
-import { auth } from "@/firebase/firebase";
 import Carousel from "@/components/carousel/Carousel";
 import CarouselSectionSkeleton from "@/components/skeletons/carouselSection.tsx/CarouselSectionSkeleton";
+import { GET_ALL_GENRES } from "@/lib/gql/queries";
+import CarouselSection from "@/components/carouselSection/CarouselSection";
+import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
-const HomePage = () => {
-  const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
-  const LazyCarouselSection = lazy(
-    () => import("@/components/carouselSection/CarouselSection")
-  );
-
-  useEffect(() => {
-    setIsClient(true);
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        router.push("/login");
-        return;
+function HomePage() {
+  const { data, loading } = useQuery(GET_ALL_GENRES, {
+      variables: { pageSize: 4, pageState: null },
+      context: {
+        fetchOptions: {
+          next: { revalidate: 60 }
+        }
       }
     });
-  }, []);
 
-  if (!isClient) {
-    return <LoadingSpinner />;
-  }
+  if (loading) return <LoadingSpinner width={150} height={135} />;
+  if (!data || !data.reference_list) return <div>No data available</div>;
 
   return (
     <>
@@ -58,9 +50,9 @@ const HomePage = () => {
           <Carousel category="Action" />
         </div>
       </div>
-
+          
       <Suspense fallback={<CarouselSectionSkeleton rows={4} />}>
-        <LazyCarouselSection />
+        <CarouselSection initialData={data} />
       </Suspense>
     </>
   );

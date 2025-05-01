@@ -8,102 +8,111 @@ import { IGenre, IGenreResponse } from "@/types/media";
 
 import "./CarouselSection.styles.css";
 
-function CarouselSection() {
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const loaderRef = useRef<HTMLDivElement>(null);
-  const PAGE_SIZE = 4;
+function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
+  const [dataState, setDataState] = useState({
+    items: initialData.reference_list.values,
+    isLoading: false,
+    hasMore: true,
+    pageState: initialData.reference_list.pageState,
+    pageSize: 4,
+  });
   const TOTAL_RESULTS = 15;
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const { data, fetchMore, error } = useSuspenseQuery<IGenreResponse>(
-    GET_ALL_GENRES,
-    {
-      variables: { pageSize: PAGE_SIZE, pageState: null },
-    }
-  );
+
+  const { fetchMore } = useSuspenseQuery<IGenreResponse>(GET_ALL_GENRES, {
+    variables: { pageSize: dataState.pageSize, pageState: dataState.pageState },
+    skip: true,
+  });
 
   const loadMoreData = useCallback(async () => {
-    if (!hasMore || isLoadingMore) return;
+    if (!dataState.hasMore || dataState.isLoading) return;
 
-    setIsLoadingMore(true);
+    setDataState((prev) => ({ ...prev, loading: true }));
 
     try {
-      await fetchMore({
+      const { data } = await fetchMore({
         variables: {
-          pageSize: PAGE_SIZE,
-          pageState: data?.reference_list.pageState,
-        },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prev;
-
-          const newValues = [
-            ...prev.reference_list.values,
-            ...fetchMoreResult.reference_list.values,
-          ];
-
-          if (
-            !fetchMoreResult.reference_list.pageState ||
-            newValues.length >= TOTAL_RESULTS
-          ) {
-            setHasMore(false);
-          }
-          return {
-            reference_list: {
-              values: newValues,
-              pageState: fetchMoreResult.reference_list.pageState,
-            },
-          };
+          pageSize: dataState.pageSize,
+          pageState: dataState.pageState,
         },
       });
+
+      if (!data) return;
+
+      setDataState((prev) => ({
+        items: [...prev.items, ...data.reference_list.values],
+        isLoading: false,
+        hasMore:
+          (data.reference_list.pageState &&
+          [...prev.items, ...data.reference_list.values].length < TOTAL_RESULTS) || false,
+        pageState: data.reference_list.pageState,
+        pageSize: prev.pageSize,
+      }));
     } catch (error) {
+      setDataState((prev) => ({ ...prev, loading: false }));
       console.error("Error loading more categories:", error);
-    } finally {
-      setIsLoadingMore(false);
     }
-  }, [fetchMore, hasMore, isLoadingMore, data]);
+  }, [
+    dataState.pageSize,
+    dataState.pageState,
+    dataState.hasMore,
+    dataState.isLoading,
+    fetchMore,
+  ]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !isLoadingMore) {
+        if (
+          entries[0].isIntersecting &&
+          !dataState.isLoading &&
+          dataState.hasMore
+        ) {
           loadMoreData();
         }
       },
-      { threshold: 0.1, rootMargin: "250px 0px" }
+      {
+        threshold: 0.5,
+        rootMargin: "400px 0px",
+      }
     );
 
-    const currentLoader = loaderRef.current;
-
-    if (currentLoader && hasMore) {
-      observer.observe(currentLoader);
+    if (loaderRef.current && dataState.hasMore) {
+      observerRef.current.observe(loaderRef.current);
     }
 
     return () => {
-      if (currentLoader) {
-        observer.unobserve(currentLoader);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
     };
-  }, [loadMoreData, hasMore, isLoadingMore]);
-
-  if (error) return <div>Error loading categories</div>;
+  }, [loadMoreData, dataState.hasMore, dataState.isLoading]);
 
   return (
     <>
       <div className="more-cards">
-        {data &&
-          data.reference_list.values.map(
-            (genre: IGenre, index: number) =>
-              index > 0 && (
-                <Carousel
-                  key={`${genre.value}-carousel`}
-                  category={genre.value}
-                />
-              )
-          )}
+        {dataState.items.map(
+          (genre: IGenre, index: number) =>
+            index > 0 && (
+              <Carousel
+                key={`${genre.value}-carousel`}
+                category={genre.value}
+              />
+            )
+        )}
       </div>
 
-      {!isLoadingMore && hasMore && (
-        <div ref={loaderRef} className="flex justify-center py-8 min-h-20"></div>
+      {!dataState.isLoading && dataState.hasMore && (
+        <div
+          ref={loaderRef}
+          className="flex justify-center py-8 min-h-20"
+        ></div>
       )}
     </>
   );

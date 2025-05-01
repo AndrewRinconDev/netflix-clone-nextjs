@@ -1,3 +1,4 @@
+'use client';
 import React, { memo, useEffect, useRef } from "react";
 import Link from "next/link";
 

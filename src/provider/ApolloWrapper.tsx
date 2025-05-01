@@ -1,10 +1,16 @@
 import { ApolloProvider } from "@apollo/client";
 
-import { apolloClient } from "@/lib/apollo/client";
+import { useApollo } from "@/lib/apollo/client";
 
-export default function ApolloWrapper({ children }: React.PropsWithChildren) {
+interface ApolloWrapperProps {
+  children?: React.ReactNode;
+  initialState: unknown | null;
+}
+
+export default function ApolloWrapper({ children, initialState }: ApolloWrapperProps) {
+  const client = useApollo(initialState);
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       {children}
     </ApolloProvider>
   );
