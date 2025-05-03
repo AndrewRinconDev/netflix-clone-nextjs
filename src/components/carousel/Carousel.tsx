@@ -24,6 +24,7 @@ const Carousel = ({ category }: ICarouselProps) => {
     event.preventDefault();
     if (!cardsRef.current) return;
 
+    // TODO: Add button to scroll left and right
     // cardsRef.current.scrollLeft += event.deltaY;
   };
 
