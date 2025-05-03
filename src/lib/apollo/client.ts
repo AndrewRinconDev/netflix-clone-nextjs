@@ -35,7 +35,7 @@ export function getApolloClient() {
       typePolicies: {
         Query: {
           fields: {
-            reference_list: {
+            genres: {
               keyArgs: false,
               merge(existing = { values: [] }, incoming) {
                 return {

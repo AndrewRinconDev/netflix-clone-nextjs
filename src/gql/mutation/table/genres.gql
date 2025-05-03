@@ -1,0 +1,9 @@
+mutation {
+  genres: createTable(
+    keyspaceName: "netflix"
+    tableName: "genres"
+    ifNotExists: true
+    partitionKeys: [{ name: "label", type: { basic: TEXT } }]
+    clusteringKeys: [{ name: "value", type: { basic: TEXT }, order: "ASC" }]
+  )
+}

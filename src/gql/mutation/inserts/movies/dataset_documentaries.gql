@@ -1,90 +1,109 @@
 mutation movies_documentaries {
-
-  firstp1: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:2011,
-      title:"First Position",
-      synopsis:"A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world.",
-      duration:95,
-      thumbnail:"https://i.imgur.com/Coz5yzb.mp4"}) {
-    value{title}
+  firstp1: insertmovies(
+    value: {
+      id: "1e0e3596-8be8-4c16-a7f7-d3a1d29604be"
+      genre: "Documentaries"
+      year: 2011
+      title: "First Position"
+      synopsis: "A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world."
+      duration: 95
+      thumbnail: "https://i.imgur.com/Coz5yzb.mp4"
+      imagePath: "first_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  firstp2: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:2001,
-      title:"First Position",
-      synopsis:"A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world.",
-      duration:95,
-      thumbnail:"https://i.imgur.com/Coz5yzb.mp4"}) {
-    value{title}
+  firstp2: insertmovies(
+    value: {
+      id: "9b05fec7-c6cd-457b-906b-cb0b80d3cea9"
+      genre: "Documentaries"
+      year: 2001
+      title: "First Position"
+      synopsis: "A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world."
+      duration: 95
+      thumbnail: "https://i.imgur.com/Coz5yzb.mp4"
+      imagePath: "first_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  firstp3: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:1991,
-      title:"First Position",
-      synopsis:"A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world.",
-      duration:95,
-      thumbnail:"https://i.imgur.com/Coz5yzb.mp4"}) {
-    value{title}
+  firstp3: insertmovies(
+    value: {
+      id: "ceb64e29-e211-4494-bb15-904252be09eb"
+      genre: "Documentaries"
+      year: 1991
+      title: "First Position"
+      synopsis: "A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world."
+      duration: 95
+      thumbnail: "https://i.imgur.com/Coz5yzb.mp4"
+      imagePath: "first_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  firstp4: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:1981,
-      title:"First Position",
-      synopsis:"A documentary that follows six young dancers from around the world as they prepare for the Youth America Grand Prix, one of the most prestigious ballet competitions in the world.",
-      duration:95,
-      thumbnail:"https://i.imgur.com/Coz5yzb.mp4"}) {
-    value{title}
+  path1: insertmovies(
+    value: {
+      id: "ba412226-375b-4721-aacd-c16db1f6cc73"
+      genre: "Documentaries"
+      year: 2007
+      title: "Path of glory"
+      synopsis: "After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them."
+      duration: 88
+      thumbnail: "https://i.imgur.com/xZid5oj.mp4"
+      imagePath: "path_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  path1: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:2007,
-      title:"Path of glory",
-      synopsis:"After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/xZid5oj.mp4"}) {
-    value{title}
+  path2: insertmovies(
+    value: {
+      id: "3741afd0-4e94-4aca-91be-3bbf3bb9a23c"
+      genre: "Documentaries"
+      year: 1997
+      title: "Path of glory"
+      synopsis: "After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them."
+      duration: 88
+      thumbnail: "https://i.imgur.com/xZid5oj.mp4"
+      imagePath: "path_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   path2: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:1997,
-      title:"Path of glory",
-      synopsis:"After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/xZid5oj.mp4"}) {
-    value{title}
+  path3: insertmovies(
+    value: {
+      id: "de41edff-314e-4e0f-b1dc-d4549d7a8acd"
+      genre: "Documentaries"
+      year: 1987
+      title: "Path of glory"
+      synopsis: "After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them."
+      duration: 88
+      thumbnail: "https://i.imgur.com/xZid5oj.mp4"
+      imagePath: "path_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
-
-   path3: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:1987,
-      title:"Path of glory",
-      synopsis:"After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/xZid5oj.mp4"}) {
-    value{title}
-  }
-
-   path4: insertmovies_by_genre(
-    value: { 
-      genre:"Documentaries", 
-      year:2017,
-      title:"Path of glory",
-      synopsis:"After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/xZid5oj.mp4"}) {
-    value{title}
-  } 
 }

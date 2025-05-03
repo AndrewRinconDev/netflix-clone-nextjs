@@ -1,12 +1,15 @@
 mutation movies_dramas {
-  jaws: insertmovies_by_genre(
+  jaws: insertmovies(
     value: {
+      id: "cbeadc77-e6b3-49e0-aa22-908352ce4281"
       genre: "Thriller"
       year: 2018
       title: "Jaws"
       synopsis: "A movie about an angry Shark."
       duration: 112
       thumbnail: "https://i.imgur.com/yinQyyT.mp4"
+      imagePath: "jaws.webp"
+      voteAverage: 8
     }
   ) {
     value {

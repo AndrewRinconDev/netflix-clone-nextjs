@@ -1,56 +1,181 @@
 mutation movies_fantasy {
-  doctorstrange1: insertmovies_by_genre(
-    value: { 
-      genre:"Fantasy", 
-      year:2016,
-      title:"Doctor Strange",
-      synopsis:"While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts.",
-      duration:115,
-      thumbnail:"https://i.imgur.com/AARIL26.mp4"}) {
-    value{title}
+  doctorstrange1: insertmovies(
+    value: {
+      id: "a9cf22e4-3f19-4bcd-8509-cb3a28adaf3f"
+      genre: "Fantasy"
+      year: 2016
+      title: "Doctor Strange"
+      synopsis: "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts."
+      duration: 115
+      thumbnail: "https://i.imgur.com/AARIL26.mp4"
+      imagePath: "strange_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  fantastic_beast1: insertmovies_by_genre(
-    value: { 
-      genre:"Fantasy", 
-      year:2016,
-      title:"Fantastic Beasts and Where to Find Them",
-      synopsis:"The adventures of writer Newt Scamander in New York's secret community of witches and wizards seventy years before Harry Potter reads his book in school.",
-      duration:132,
-      thumbnail:"https://i.imgur.com/NhenJym.mp4"}) {
-    value{title}
+  doctorstrange2: insertmovies(
+    value: {
+      id: "596767ed-82c3-4e46-a318-981807cc61f7"
+      genre: "Fantasy"
+      year: 2019
+      title: "Doctor Strange 2"
+      synopsis: "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts."
+      duration: 115
+      thumbnail: "https://i.imgur.com/AARIL26.mp4"
+      imagePath: "strange_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  sleeping_beauty1: insertmovies_by_genre(
-    value: { 
-      genre:"Fantasy", 
-      year:2016,
-      title:"The Curse of Sleeping Beauty",
-      synopsis:"Thomas unexpectedly inherits a property with a mysterious curse.",
-      duration:132,
-      thumbnail:"https://i.imgur.com/LcqMMwG.mp4"}) {
-    value{title}
+  doctorstrange3: insertmovies(
+    value: {
+      id: "6adc7a6b-a6b7-423b-ae9e-4937318de155"
+      genre: "Fantasy"
+      year: 2023
+      title: "Doctor Strange 3"
+      synopsis: "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts."
+      duration: 115
+      thumbnail: "https://i.imgur.com/AARIL26.mp4"
+      imagePath: "strange_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  lotr1: insertmovies_by_genre(
-    value: { 
-      genre:"Fantasy", 
-      year:2001,
-      title:"The Fellowship of the Ring",
-      synopsis:"A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-      duration:178,
-      thumbnail:"https://i.imgur.com/YdhTLqF.mp4"}) {
-    value{title}
+  fantastic_beast1: insertmovies(
+    value: {
+      id: "e208af27-9a26-4c55-9e4b-7dc389fd0906"
+      genre: "Fantasy"
+      year: 2016
+      title: "Fantastic Beasts and Where to Find Them"
+      synopsis: "The adventures of writer Newt Scamander in New York's secret community of witches and wizards seventy years before Harry Potter reads his book in school."
+      duration: 132
+      thumbnail: "https://i.imgur.com/NhenJym.mp4"
+      imagePath: "beasts_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  mummy1: insertmovies_by_genre(
-    value: { 
-      genre:"Fantasy", 
-      year:1999,
-      title:"The Mummy",
-      synopsis:"At an archaeological dig in the ancient city of Hamunaptra, an American serving in the French Foreign Legion accidentally awakens a mummy who begins to wreak havoc as he searches for the reincarnation of his long-lost love.",
-      duration:124,
-      thumbnail:"https://i.imgur.com/62tJ58E.mp4"}) {
-    value{title}
+  fantastic_beast2: insertmovies(
+    value: {
+      id: "10f1cf65-a30c-4bb7-bbb6-842896985109"
+      genre: "Fantasy"
+      year: 2016
+      title: "Fantastic Beasts and Where to Find Them"
+      synopsis: "The adventures of writer Newt Scamander in New York's secret community of witches and wizards seventy years before Harry Potter reads his book in school."
+      duration: 132
+      thumbnail: "https://i.imgur.com/NhenJym.mp4"
+      imagePath: "beasts_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  sleeping_beauty1: insertmovies(
+    value: {
+      id: "43168534-de61-4a60-913a-0125f8b8e073"
+      genre: "Fantasy"
+      year: 2016
+      title: "The Curse of Sleeping Beauty"
+      synopsis: "Thomas unexpectedly inherits a property with a mysterious curse."
+      duration: 132
+      thumbnail: "https://i.imgur.com/LcqMMwG.mp4"
+      imagePath: "sleeping_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  lotr1: insertmovies(
+    value: {
+      id: "c63987d1-d553-417d-a562-3b7fece5e9b1"
+      genre: "Fantasy"
+      year: 2001
+      title: "The Lord of the Rings"
+      synopsis: "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
+      duration: 178
+      thumbnail: "https://i.imgur.com/YdhTLqF.mp4"
+      imagePath: "lotr_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  mummy1: insertmovies(
+    value: {
+      id: "8cf8efeb-eed9-40d5-8a1d-480c6bb585bb"
+      genre: "Fantasy"
+      year: 1999
+      title: "The Mummy"
+      synopsis: "At an archaeological dig in the ancient city of Hamunaptra, an American serving in the French Foreign Legion accidentally awakens a mummy who begins to wreak havoc as he searches for the reincarnation of his long-lost love."
+      duration: 124
+      thumbnail: "https://i.imgur.com/62tJ58E.mp4"
+      imagePath: "mummy_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  mummy2: insertmovies(
+    value: {
+      id: "ea30387c-c335-4bcd-9c6f-9bd608698d6b"
+      genre: "Fantasy"
+      year: 1999
+      title: "The Mummy 2"
+      synopsis: "At an archaeological dig in the ancient city of Hamunaptra, an American serving in the French Foreign Legion accidentally awakens a mummy who begins to wreak havoc as he searches for the reincarnation of his long-lost love."
+      duration: 124
+      thumbnail: "https://i.imgur.com/62tJ58E.mp4"
+      imagePath: "mummy_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  mummy3: insertmovies(
+    value: {
+      id: "2656029b-49bd-4d83-b55e-b6999f40059f"
+      genre: "Fantasy"
+      year: 1999
+      title: "The Mummy 3"
+      synopsis: "At an archaeological dig in the ancient city of Hamunaptra, an American serving in the French Foreign Legion accidentally awakens a mummy who begins to wreak havoc as he searches for the reincarnation of his long-lost love."
+      duration: 124
+      thumbnail: "https://i.imgur.com/62tJ58E.mp4"
+      imagePath: "mummy_3.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 }

@@ -1,5 +1,5 @@
 query getMovieByGenre {
-    movies_by_genre (
+    movies (
       value: {genre:"Sci-Fi"},
        orderBy: [year_DESC]) {
       values {
@@ -10,7 +10,7 @@ query getMovieByGenre {
         duration,
         synopsis,
         thumbnail,
-        imageUrl
+        imagePath
       }
     }
 }

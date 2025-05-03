@@ -15,7 +15,7 @@ export interface IGenre {
 }
 
 export interface IGenreResponse {
-  reference_list: {
+  genres: {
     values: IGenre[];
     pageState: string | null;
   };

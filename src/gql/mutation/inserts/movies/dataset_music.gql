@@ -1,24 +1,37 @@
 mutation movies_music {
-
-  goldenage1: insertmovies_by_genre(
-    value: { 
-      genre:"Music", 
-      year:2004,
-      title:"The Golden Age",
-      synopsis:"A seemingly perfect family looks to fix their problems with the help of Miss Clara, an older, wiser woman.",
-      duration:114,
-      thumbnail:"https://i.imgur.com/SQyPd7N.mp4"}) {
-    value{title}
+  goldenage1: insertmovies(
+    value: {
+      id: "f3fd233c-1f40-4f32-81b8-8e1a21cab823"
+      genre: "Music"
+      year: 2004
+      title: "The Golden Age"
+      synopsis: "A seemingly perfect family looks to fix their problems with the help of Miss Clara, an older, wiser woman."
+      duration: 114
+      thumbnail: "https://i.imgur.com/SQyPd7N.mp4"
+      imagePath: "goldenage.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   whiplash1: insertmovies_by_genre(
-    value: { 
-      genre:"Music", 
-      year:2014,
-      title:"Whiplash",
-      synopsis:"A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
-      duration:106,
-      thumbnail:"https://i.imgur.com/ZTOIYrc.mp4"}) {
-    value{title}
+  whiplash1: insertmovies(
+    value: {
+      id: "87c00e5b-9d36-4c88-8bbd-f004c6289a21"
+      genre: "Music"
+      year: 2014
+      title: "Whiplash"
+      synopsis: "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."
+      duration: 106
+      thumbnail: "https://i.imgur.com/ZTOIYrc.mp4"
+      imagePath: "whiplash.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 }

@@ -1,134 +1,217 @@
 mutation movies_awardwinning {
-  forest1: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:1994,
-      title:"Forest Gump",
-      synopsis:"The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-      duration:142,
-      thumbnail:"https://i.imgur.com/V6WMXYx.mp4"}) {
-    value{title}
+  forest1: insertmovies(
+    value: {
+      id: "0c0c6059-9a74-4b83-a1be-175f20b68408"
+      genre: "Award-Winning"
+      year: 1994
+      title: "Forest Gump"
+      synopsis: "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
+      duration: 142
+      thumbnail: "https://i.imgur.com/V6WMXYx.mp4"
+      imagePath: "forest_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  forest2: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2004,
-      title:"Forest Gump",
-      synopsis:"The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-      duration:142,
-      thumbnail:"https://i.imgur.com/V6WMXYx.mp4"}) {
-    value{title}
+  forest2: insertmovies(
+    value: {
+      id: "90a8dd37-0db9-45aa-8c4b-a19b881d766d"
+      genre: "Award-Winning"
+      year: 2004
+      title: "Forest Gump"
+      synopsis: "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
+      duration: 142
+      thumbnail: "https://i.imgur.com/V6WMXYx.mp4"
+      imagePath: "forest_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  forest3: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2014,
-      title:"Forest Gump",
-      synopsis:"The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-      duration:142,
-      thumbnail:"https://i.imgur.com/V6WMXYx.mp4"}) {
-    value{title}
+  forest3: insertmovies(
+    value: {
+      id: "179d4680-69d6-47d9-bde5-51df8496bba3"
+      genre: "Award-Winning"
+      year: 2024
+      title: "Forest Gump"
+      synopsis: "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
+      duration: 142
+      thumbnail: "https://i.imgur.com/V6WMXYx.mp4"
+      imagePath: "forest_3.webp"
+      voteAverage: 9
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  matrix1: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:1999,
-      title:"The Matrix",
-      synopsis:"When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-      duration:136,
-      thumbnail:"https://i.imgur.com/QzJe4nJ.mp4"}) {
-    value{title}
+  matrix1: insertmovies(
+    value: {
+      id: "2a9628dd-ad2d-4d7b-808d-8a80e3e92262"
+      genre: "Award-Winning"
+      year: 1999
+      title: "The Matrix"
+      synopsis: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence."
+      duration: 136
+      thumbnail: "https://i.imgur.com/QzJe4nJ.mp4"
+      imagePath: "matrix_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  matrix2: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2009,
-      title:"The Matrix",
-      synopsis:"When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-      duration:136,
-      thumbnail:"https://i.imgur.com/QzJe4nJ.mp4"}) {
-    value{title}
+  matrix2: insertmovies(
+    value: {
+      id: "544861df-b304-4416-a49f-06e36f35c8b9"
+      genre: "Award-Winning"
+      year: 2003
+      title: "The Matrix"
+      synopsis: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence."
+      duration: 136
+      thumbnail: "https://i.imgur.com/QzJe4nJ.mp4"
+      imagePath: "matrix_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  matrix3: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2019,
-      title:"The Matrix",
-      synopsis:"When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-      duration:136,
-      thumbnail:"https://i.imgur.com/QzJe4nJ.mp4"}) {
-    value{title}
+  matrix3: insertmovies(
+    value: {
+      id: "ad48a73c-6de0-4f93-963a-4167fd559824"
+      genre: "Award-Winning"
+      year: 2010
+      title: "The Matrix"
+      synopsis: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence."
+      duration: 136
+      thumbnail: "https://i.imgur.com/QzJe4nJ.mp4"
+      imagePath: "matrix_3.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  pulpfiction1: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:1994,
-      title:"Pulp Fiction",
-      synopsis:"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      duration:154,
-      thumbnail:"https://i.imgur.com/8xf630M.mp4"}) {
-    value{title}
+  pulpfiction1: insertmovies(
+    value: {
+      id: "348008ff-25bd-440f-a475-1bd1da9244af"
+      genre: "Award-Winning"
+      year: 1994
+      title: "Pulp Fiction"
+      synopsis: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+      duration: 154
+      thumbnail: "https://i.imgur.com/8xf630M.mp4"
+      imagePath: "pulp_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  pulpfiction2: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2004,
-      title:"Pulp Fiction",
-      synopsis:"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      duration:154,
-      thumbnail:"https://i.imgur.com/8xf630M.mp4"}) {
-    value{title}
+  pulpfiction2: insertmovies(
+    value: {
+      id: "49a214f1-b5b2-492b-9eac-a46d26520b0e"
+      genre: "Award-Winning"
+      year: 2004
+      title: "Pulp Fiction 2"
+      synopsis: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+      duration: 154
+      thumbnail: "https://i.imgur.com/8xf630M.mp4"
+      imagePath: "pulp_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  pulpfiction3: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2014,
-      title:"Pulp Fiction",
-      synopsis:"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      duration:154,
-      thumbnail:"https://i.imgur.com/8xf630M.mp4"}) {
-    value{title}
+  pulpfiction3: insertmovies(
+    value: {
+      id: "b19574af-8e68-47da-957b-0bc37b2fb7ff"
+      genre: "Award-Winning"
+      year: 2014
+      title: "Pulp Fiction 30 anniversary"
+      synopsis: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+      duration: 154
+      thumbnail: "https://i.imgur.com/8xf630M.mp4"
+      imagePath: "pulp_3.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   miamadre1: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2015,
-      title:"Mia Madre",
-      synopsis:"Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother.",
-      duration:106,
-      thumbnail:"https://i.imgur.com/mRz7x3g.mp4"}) {
-    value{title}
+  miamadre1: insertmovies(
+    value: {
+      id: "ebaef1aa-716a-4334-bb03-715a819fc088"
+      genre: "Award-Winning"
+      year: 2015
+      title: "Mia Madre"
+      synopsis: "Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother."
+      duration: 106
+      thumbnail: "https://i.imgur.com/mRz7x3g.mp4"
+      imagePath: "mia_madre_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   miamadre2: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:2005,
-      title:"Mia Madre",
-      synopsis:"Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother.",
-      duration:106,
-      thumbnail:"https://i.imgur.com/mRz7x3g.mp4"}) {
-    value{title}
+  miamadre2: insertmovies(
+    value: {
+      id: "d6d3ebd0-e46a-4cc9-bd3e-440056cdcfd0"
+      genre: "Award-Winning"
+      year: 2014
+      title: "Mia Madre"
+      synopsis: "Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother."
+      duration: 106
+      thumbnail: "https://i.imgur.com/mRz7x3g.mp4"
+      imagePath: "mia_madre_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   miamadre3: insertmovies_by_genre(
-    value: { 
-      genre:"Award-Winning", 
-      year:1995,
-      title:"Mia Madre",
-      synopsis:"Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother.",
-      duration:106,
-      thumbnail:"https://i.imgur.com/mRz7x3g.mp4"}) {
-    value{title}
+  miamadre3: insertmovies(
+    value: {
+      id: "00b5cbdd-2494-4999-b5e7-38656331af5c"
+      genre: "Award-Winning"
+      year: 2018
+      title: "Mia Madre 3"
+      synopsis: "Margherita, a director in the middle of an existential crisis, has to deal with the inevitable and still unacceptable loss of her mother."
+      duration: 106
+      thumbnail: "https://i.imgur.com/mRz7x3g.mp4"
+      imagePath: "mia_madre_3.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
-  
 }

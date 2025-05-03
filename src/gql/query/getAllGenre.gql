@@ -1,5 +1,5 @@
 query getAllGenre {
-    reference_list (
+    genres (
       	value: {label:"genre"},
       	options: { pageSize: 4, pageState: null}
     ) {

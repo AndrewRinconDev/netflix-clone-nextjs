@@ -24,7 +24,7 @@ function HomePage() {
     });
 
   if (loading) return <LoadingSpinner width={150} height={135} />;
-  if (!data || !data.reference_list) return <div>No data available</div>;
+  if (!data || !data.genres) return <div>No data available</div>;
 
   return (
     <>

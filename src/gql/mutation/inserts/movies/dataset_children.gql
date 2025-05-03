@@ -1,167 +1,271 @@
 mutation movies_children {
-  nemo1: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2003,
-      title:"Finding Nemo",
-      synopsis:"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/HtjzC5p.mp4"}) {
-    value{title}
+  nemo1: insertmovies(
+    value: {
+      id: "0240282c-35e7-4d8b-906c-40b3b17f73b0"
+      genre: "Children & Family"
+      year: 2003
+      title: "Finding Nemo"
+      synopsis: "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home."
+      duration: 100
+      thumbnail: "https://i.imgur.com/HtjzC5p.mp4"
+      imagePath: "nemo_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   nemo2: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2013,
-      title:"Finding Nemo",
-      synopsis:"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/HtjzC5p.mp4"}) {
-    value{title}
+  nemo2: insertmovies(
+    value: {
+      id: "88a7c779-f314-445c-90df-9251f998ca61"
+      genre: "Children & Family"
+      year: 2018
+      title: "Finding Nemo 2"
+      synopsis: "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home."
+      duration: 100
+      thumbnail: "https://i.imgur.com/HtjzC5p.mp4"
+      imagePath: "nemo_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-   nemo3: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:1993,
-      title:"Finding Nemo",
-      synopsis:"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/HtjzC5p.mp4"}) {
-    value{title}
+  nemo3: insertmovies(
+    value: {
+      id: "43b79a5e-9f32-4f46-8727-925920a6ab77"
+      genre: "Children & Family"
+      year: 2023
+      title: "Finding Nemo 3"
+      synopsis: "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home."
+      duration: 100
+      thumbnail: "https://i.imgur.com/HtjzC5p.mp4"
+      imagePath: "nemo_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  frog1: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2013,
-      title:"Frog Kingdom",
-      synopsis:"Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor.",
-      duration:86,
-      thumbnail:"https://i.imgur.com/TYDj9ud.mp4"}) {
-    value{title}
+  frog1: insertmovies(
+    value: {
+      id: "df8cf2c3-55bb-4be9-a6a5-eb36f88ddd87"
+      genre: "Children & Family"
+      year: 2013
+      title: "Frog Kingdom"
+      synopsis: "Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor."
+      duration: 86
+      thumbnail: "https://i.imgur.com/TYDj9ud.mp4"
+      imagePath: "frog_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  frog2: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2003,
-      title:"Frog Kingdom",
-      synopsis:"Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor.",
-      duration:86,
-      thumbnail:"https://i.imgur.com/TYDj9ud.mp4"}) {
-    value{title}
+  frog2: insertmovies(
+    value: {
+      id: "cef64468-ce5d-4740-bb28-1182df7811b0"
+      genre: "Children & Family"
+      year: 2008
+      title: "Frog Kingdom 2"
+      synopsis: "Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor."
+      duration: 86
+      thumbnail: "https://i.imgur.com/TYDj9ud.mp4"
+      imagePath: "frog_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  frog3: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:1993,
-      title:"Frog Kingdom",
-      synopsis:"Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor.",
-      duration:86,
-      thumbnail:"https://i.imgur.com/TYDj9ud.mp4"}) {
-    value{title}
+  frog3: insertmovies(
+    value: {
+      id: "def4b93e-fa6d-4c85-9eb2-96e1157dd397"
+      genre: "Children & Family"
+      year: 2023
+      title: "Frog Kingdom 3"
+      synopsis: "Princess Froglegs goes undercover to compete in her father's Froglympics in order to avoid being married off to a male suitor."
+      duration: 86
+      thumbnail: "https://i.imgur.com/TYDj9ud.mp4"
+      imagePath: "frog_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  turtle1: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2016,
-      title:"Teenage Mutant Ninja Turtles 2",
-      synopsis:"The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang.",
-      duration:116,
-      thumbnail:"https://i.imgur.com/KNgrqaP.mp4"}) {
-    value{title}
+  turtle1: insertmovies(
+    value: {
+      id: "5a86de83-969b-43b2-aa8d-581de11af08a"
+      genre: "Children & Family"
+      year: 2010
+      title: "Teenage Mutant Ninja Turtles"
+      synopsis: "The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang."
+      duration: 116
+      thumbnail: "https://i.imgur.com/KNgrqaP.mp4"
+      imagePath: "turtles_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  turtle2: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2006,
-      title:"Teenage Mutant Ninja Turtles 2",
-      synopsis:"The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang.",
-      duration:116,
-      thumbnail:"https://i.imgur.com/KNgrqaP.mp4"}) {
-    value{title}
+  turtle2: insertmovies(
+    value: {
+      id: "05c189cf-8432-4a65-831e-68db9eb2b01b"
+      genre: "Children & Family"
+      year: 2016
+      title: "Teenage Mutant Ninja Turtles 2"
+      synopsis: "The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang."
+      duration: 116
+      thumbnail: "https://i.imgur.com/KNgrqaP.mp4"
+      imagePath: "turtles_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  turtle3: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:1996,
-      title:"Teenage Mutant Ninja Turtles 2",
-      synopsis:"The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang.",
-      duration:116,
-      thumbnail:"https://i.imgur.com/KNgrqaP.mp4"}) {
-    value{title}
+  turtle3: insertmovies(
+    value: {
+      id: "c25c9363-29c8-4284-b04f-45192daf9f16"
+      genre: "Children & Family"
+      year: 2023
+      title: "Teenage Mutant Ninja Turtles 3"
+      synopsis: "The Turtles get into another battle with their enemy the Shredder, who has acquired new allies: the mutant thugs Bebop and Rocksteady and the alien being Krang."
+      duration: 116
+      thumbnail: "https://i.imgur.com/KNgrqaP.mp4"
+      imagePath: "turtles_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  incredible1: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2004,
-      title:"The incredibles",
-      synopsis:"A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world.",
-      duration:105,
-      thumbnail:"https://i.imgur.com/eThziEz.mp4"}) {
-    value{title}
+  incredible1: insertmovies(
+    value: {
+      id: "29a4e01a-bb86-46de-846a-dffc0acd7bbb"
+      genre: "Children & Family"
+      year: 2004
+      title: "The incredibles"
+      synopsis: "A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world."
+      duration: 105
+      thumbnail: "https://i.imgur.com/eThziEz.mp4"
+      imagePath: "incredibles_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  incredible2: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2014,
-      title:"The incredibles",
-      synopsis:"A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world.",
-      duration:105,
-      thumbnail:"https://i.imgur.com/eThziEz.mp4"}) {
-    value{title}
+  incredible2: insertmovies(
+    value: {
+      id: "e2fe3847-cf84-4d39-9105-0af4fd4f07d2"
+      genre: "Children & Family"
+      year: 2014
+      title: "The incredibles 2"
+      synopsis: "A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world."
+      duration: 105
+      thumbnail: "https://i.imgur.com/eThziEz.mp4"
+      imagePath: "incredibles_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  incredible3: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:1994,
-      title:"The incredibles",
-      synopsis:"A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world.",
-      duration:105,
-      thumbnail:"https://i.imgur.com/eThziEz.mp4"}) {
-    value{title}
+  incredible3: insertmovies(
+    value: {
+      id: "9597f860-04a7-4ff9-a65d-fe226fa1de9f"
+      genre: "Children & Family"
+      year: 2023
+      title: "The incredibles 3"
+      synopsis: "A family of undercover superheroes, while trying to live the quiet suburban life, are forced into action to save the world."
+      duration: 105
+      thumbnail: "https://i.imgur.com/eThziEz.mp4"
+      imagePath: "incredibles_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  toystory1: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:1995,
-      title:"Toy Story",
-      synopsis:"A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.",
-      duration:81,
-      thumbnail:"https://i.imgur.com/8kisA8v.mp4"}) {
-    value{title}
+  toystory1: insertmovies(
+    value: {
+      id: "100979b4-126f-4616-8421-ab94c1ea7dc4"
+      genre: "Children & Family"
+      year: 1995
+      title: "Toy Story"
+      synopsis: "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+      duration: 81
+      thumbnail: "https://i.imgur.com/8kisA8v.mp4"
+      imagePath: "toy_story_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  toystory2: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2005,
-      title:"Toy Story",
-      synopsis:"A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.",
-      duration:81,
-      thumbnail:"https://i.imgur.com/8kisA8v.mp4"}) {
-    value{title}
+  toystory2: insertmovies(
+    value: {
+      id: "644829e9-008c-4b26-adf1-fb178e661a84"
+      genre: "Children & Family"
+      year: 2015
+      title: "Toy Story 3"
+      synopsis: "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+      duration: 81
+      thumbnail: "https://i.imgur.com/8kisA8v.mp4"
+      imagePath: "toy_story_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-toystory3: insertmovies_by_genre(
-    value: { 
-      genre:"Children & Family", 
-      year:2015,
-      title:"Toy Story",
-      synopsis:"A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.",
-      duration:81,
-      thumbnail:"https://i.imgur.com/8kisA8v.mp4"}) {
-    value{title}
+  toystory3: insertmovies(
+    value: {
+      id: "5e7d7f32-6e35-4466-9182-c9022526378b"
+      genre: "Children & Family"
+      year: 2020
+      title: "Toy Story 4"
+      synopsis: "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+      duration: 81
+      thumbnail: "https://i.imgur.com/8kisA8v.mp4"
+      imagePath: "toy_story_4.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
-
 }

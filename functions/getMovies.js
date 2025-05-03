@@ -7,7 +7,7 @@ exports.handler = async function (event) {
   const url = process.env.NEXT_PUBLIC_ASTRA_GRAPHQL_ENDPOINT
   const query = `
   query {
-    movies_by_genre (
+    movies (
       value: { genre: ${JSON.stringify(genre)}},
       orderBy: [year_DESC],
       options: { pageSize: 6, pageState: ${JSON.stringify(pageState)} }

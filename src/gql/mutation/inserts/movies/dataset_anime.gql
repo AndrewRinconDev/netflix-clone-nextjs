@@ -1,135 +1,217 @@
 mutation movies_animes {
-  
-  gundamn_1: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2007,
-      title:"Gundam 00",
-      synopsis:"In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/BR9EUGh.mp4"}) {
-    value{title}
-  }
-  
-  gundamn_2: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2017,
-      title:"Gundam 00",
-      synopsis:"In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/BR9EUGh.mp4"}) {
-    value{title}
+  gundamn_1: insertmovies(
+    value: {
+      id: "68dd76a1-4d24-4fac-b48c-765d1195150f"
+      genre: "Anime"
+      year: 2007
+      title: "Gundam 00"
+      synopsis: "In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams."
+      duration: 100
+      thumbnail: "https://i.imgur.com/BR9EUGh.mp4"
+      imagePath: "gundamn_1.webp"
+      voteAverage: 7
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  gundamn_3: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:1997,
-      title:"Gundam 00",
-      synopsis:"In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/BR9EUGh.mp4"}) {
-    value{title}
+  gundamn_2: insertmovies(
+    value: {
+      id: "652903da-1d1c-496d-b704-bdc20a9ef9da"
+      genre: "Anime"
+      year: 2017
+      title: "Gundam 00"
+      synopsis: "In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams."
+      duration: 100
+      thumbnail: "https://i.imgur.com/BR9EUGh.mp4"
+      imagePath: "gundamn_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  dbs_1: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2015,
-      title:"Dragon Ball Super",
-      synopsis:"Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/6u0PCQK.mp4"}) {
-    value{title}
+  gundamn_3: insertmovies(
+    value: {
+      id: "b9c3ba2d-e269-441b-8743-c9b7b10b4005"
+      genre: "Anime"
+      year: 2021
+      title: "Gundam 00"
+      synopsis: "In the distant future, mankind has used up all of its fossil fuels, forcing them to turn to Solar Power as an alternate energy source. As a result, this causes a rift to form between richer and poorer nations, eventually leading to war. In the midst of this conflict, a mysterious military group known as 'Celestial Being' aims to use force to bring peace to the world, by using special humanoid weapons known as Gundams."
+      duration: 100
+      thumbnail: "https://i.imgur.com/BR9EUGh.mp4"
+      imagePath: "gundamn_3.jpg"
+      voteAverage: 9
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  dbs_2: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2005,
-      title:"Dragon Ball Super",
-      synopsis:"Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/6u0PCQK.mp4"}) {
-    value{title}
+  dbs_1: insertmovies(
+    value: {
+      id: "3597435d-3bb3-4b48-80e7-ce4a743f3807"
+      genre: "Anime"
+      year: 2015
+      title: "Dragon Ball Z"
+      synopsis: "Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger."
+      duration: 100
+      thumbnail: "https://i.imgur.com/6u0PCQK.mp4"
+      imagePath: "dbs_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  dbs_3: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:1995,
-      title:"Dragon Ball Super",
-      synopsis:"Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/6u0PCQK.mp4"}) {
-    value{title}
+  dbs_2: insertmovies(
+    value: {
+      id: "1d70469b-ee44-4998-a223-c5a4c7d8cf42"
+      genre: "Anime"
+      year: 2020
+      title: "Dragon Ball GT"
+      synopsis: "Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger."
+      duration: 100
+      thumbnail: "https://i.imgur.com/6u0PCQK.mp4"
+      imagePath: "dbs_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  aot_1: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2015,
-      title:"Attack on Titan",
-      synopsis:"After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/LItJ5qS.mp4"}) {
-    value{title}
+  dbs_3: insertmovies(
+    value: {
+      id: "770ed7c0-e2b5-4812-a3c5-944b85e6834d"
+      genre: "Anime"
+      year: 2024
+      title: "Dragon Ball Super"
+      synopsis: "Six months after the defeat of Majin Buu, The mighty Saiyan Son Goku continues his quest on becoming stronger."
+      duration: 100
+      thumbnail: "https://i.imgur.com/6u0PCQK.mp4"
+      imagePath: "dbs_3.webp"
+      voteAverage: 9
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  aot_2: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2005,
-      title:"Attack on Titan",
-      synopsis:"After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/LItJ5qS.mp4"}) {
-    value{title}
+  aot_1: insertmovies(
+    value: {
+      id: "45267074-b218-4799-a69d-e04b4407c434"
+      genre: "Anime"
+      year: 2012
+      title: "Attack on Titan"
+      synopsis: "After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction."
+      duration: 100
+      thumbnail: "https://i.imgur.com/LItJ5qS.mp4"
+      imagePath: "aot_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  aot_3: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:1995,
-      title:"Attack on Titan",
-      synopsis:"After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/LItJ5qS.mp4"}) {
-    value{title}
+  aot_2: insertmovies(
+    value: {
+      id: "82fe400b-14e5-4ee2-a69c-b821b0e70a93"
+      genre: "Anime"
+      year: 2018
+      title: "Attack on Titan 2"
+      synopsis: "After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction."
+      duration: 100
+      thumbnail: "https://i.imgur.com/LItJ5qS.mp4"
+      imagePath: "aot_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bleach_1: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2004,
-      title:"Bleach",
-      synopsis:"High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/W3fTtFS.mp4"}) {
-    value{title}
+  aot_3: insertmovies(
+    value: {
+      id: "c0c8762d-6637-48bf-b876-d174bc9fe8d4"
+      genre: "Anime"
+      year: 2022
+      title: "Attack on Titan 3"
+      synopsis: "After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction."
+      duration: 100
+      thumbnail: "https://i.imgur.com/LItJ5qS.mp4"
+      imagePath: "aot_3.jpg"
+      voteAverage: 9
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bleach_2: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:1994,
-      title:"Bleach",
-      synopsis:"High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/W3fTtFS.mp4"}) {
-    value{title}
+  bleach_1: insertmovies(
+    value: {
+      id: "bfecb6fe-7e25-4f92-9ebc-4678fe76b10d"
+      genre: "Anime"
+      year: 2004
+      title: "Bleach"
+      synopsis: "High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'."
+      duration: 100
+      thumbnail: "https://i.imgur.com/W3fTtFS.mp4"
+      imagePath: "bleach_1.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bleach_3: insertmovies_by_genre(
-    value: { 
-      genre:"Anime", 
-      year:2014,
-      title:"Bleach",
-      synopsis:"High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'.",
-      duration:100,
-      thumbnail:"https://i.imgur.com/W3fTtFS.mp4"}) {
-    value{title}
+  bleach_2: insertmovies(
+    value: {
+      id: "0e2e01eb-bb26-4e39-947e-25d4c0f0fb48"
+      genre: "Anime"
+      year: 2012
+      title: "Bleach 2"
+      synopsis: "High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'."
+      duration: 100
+      thumbnail: "https://i.imgur.com/W3fTtFS.mp4"
+      imagePath: "bleach_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
-   
+
+  bleach_3: insertmovies(
+    value: {
+      id: "06f23757-60a3-4452-b892-d105ffcd5121"
+      genre: "Anime"
+      year: 2017
+      title: "Bleach"
+      synopsis: "High school student Ichigo Kurosaki, who has the ability to see ghosts, gains soul reaper powers from Rukia Kuchiki and sets out to save the world from 'Hollows'."
+      duration: 100
+      thumbnail: "https://i.imgur.com/W3fTtFS.mp4"
+      imagePath: "bleach_3.jpg"
+      voteAverage: 9
+    }
+  ) {
+    value {
+      title
+    }
+  }
 }

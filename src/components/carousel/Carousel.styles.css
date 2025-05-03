@@ -20,12 +20,16 @@
 .card-list img,
 .card-list video {
   width: 240px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .card-list .card {
   position: relative;
+  width: 240px;
 }
 
 .card-list .card p {
@@ -47,6 +51,7 @@
   }
 
   .card-list img,
+  .card-list .card,
   .card-list video {
     width: 200px;
   }
@@ -63,6 +68,7 @@
   }
 
   .card-list img,
+  .card-list .card
   .card-list video {
     width: 165px;
   }

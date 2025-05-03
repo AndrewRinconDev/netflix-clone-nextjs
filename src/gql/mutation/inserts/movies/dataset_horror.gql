@@ -1,45 +1,91 @@
 mutation movies_horror {
- ava1: insertmovies_by_genre(
-    value: { 
-      genre:"Horror", 
-      year:2015,
-      title:"Ava's possession.",
-      synopsis:"A young woman recovers from a demonic possession.",
-      duration:89,
-      thumbnail:"https://i.imgur.com/l6krM70.mp4"}) {
-    value{title}
+  ava1: insertmovies(
+    value: {
+      id: "28f264ea-342e-4eb8-9a2a-559ba3f2197e"
+      genre: "Horror"
+      year: 2015
+      title: "Ava's possession."
+      synopsis: "A young woman recovers from a demonic possession."
+      duration: 89
+      thumbnail: "https://i.imgur.com/l6krM70.mp4"
+      imagePath: "ava_1.webp"
+      voteAverage: 5
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  rotting1: insertmovies_by_genre(
-    value: { 
-      genre:"Horror", 
-      year:2016,
-      title:"Little Dead Rotting Hood",
-      synopsis:"The residents of a small town discover that something more sinister than killer wolves is lurking in the backwoods: first the wolves start turning up dead...then people.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/C2XcrZJ.mp4"}) {
-    value{title}
+  rotting1: insertmovies(
+    value: {
+      id: "5083c16a-8de9-416d-b4ee-0e29f5d0fd3f"
+      genre: "Horror"
+      year: 2016
+      title: "Little Dead Rotting Hood"
+      synopsis: "The residents of a small town discover that something more sinister than killer wolves is lurking in the backwoods: first the wolves start turning up dead...then people."
+      duration: 88
+      thumbnail: "https://i.imgur.com/C2XcrZJ.mp4"
+      imagePath: "rotting_1.webp"
+      voteAverage: 4
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  room1: insertmovies_by_genre(
-    value: { 
-      genre:"Horror", 
-      year:2015,
-      title:"Room",
-      synopsis:"Held captive for 7 years in an enclosed space, a woman and her young son finally gain their freedom, allowing the boy to experience the outside world for the first time.",
-      duration:118,
-      thumbnail:"https://i.imgur.com/Fx5iKwZ.mp4"}) {
-    value{title}
+  room1: insertmovies(
+    value: {
+      id: "194413b9-a54d-464f-adbb-38af5146ff7b"
+      genre: "Horror"
+      year: 2015
+      title: "Room"
+      synopsis: "Held captive for 7 years in an enclosed space, a woman and her young son finally gain their freedom, allowing the boy to experience the outside world for the first time."
+      duration: 118
+      thumbnail: "https://i.imgur.com/Fx5iKwZ.mp4"
+      imagePath: "room.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  conjuring1: insertmovies_by_genre(
-    value: { 
-      genre:"Horror", 
-      year:2016,
-      title:"The Conjuring 2",
-      synopsis:"Ed and Lorraine Warren travel to North London to help a single mother raising four children alone in a house plagued by a supernatural spirit.",
-      duration:134,
-      thumbnail:"https://i.imgur.com/j3qBgq8.mp4"}) {
-    value{title}
-  } 
+  conjuring1: insertmovies(
+    value: {
+      id: "55aece80-a3d1-4a07-b72b-57ff1ffdb54e"
+      genre: "Horror"
+      year: 2016
+      title: "The Conjuring"
+      synopsis: "Ed and Lorraine Warren travel to North London to help a single mother raising four children alone in a house plagued by a supernatural spirit."
+      duration: 134
+      thumbnail: "https://i.imgur.com/j3qBgq8.mp4"
+      imagePath: "conjuring_1.webp"
+      voteAverage: 7
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  conjuring2: insertmovies(
+    value: {
+      id: "79d03cad-d718-4d56-bcd8-b44cc1873d7c"
+      genre: "Horror"
+      year: 2016
+      title: "The Conjuring 2"
+      synopsis: "Ed and Lorraine Warren travel to North London to help a single mother raising four children alone in a house plagued by a supernatural spirit."
+      duration: 134
+      thumbnail: "https://i.imgur.com/j3qBgq8.mp4"
+      imagePath: "conjuring_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
 }

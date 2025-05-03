@@ -32,7 +32,7 @@ const Carousel = ({ category }: ICarouselProps) => {
     cardsRef.current?.addEventListener("wheel", handleWheel as EventListener);
   }, [cardsRef.current]);
   
-  if (loading || !data || !data.movies_by_genre) return (
+  if (loading || !data || !data.movies) return (
     <CarouselSkeleton />
   );
 
@@ -40,17 +40,17 @@ const Carousel = ({ category }: ICarouselProps) => {
     <div className="title-cards">
       <h2>{category}</h2>
       <div className="card-list" ref={cardsRef}>
-        {data.movies_by_genre.values.map((movie: Movie, index: number) => {
+        {data.movies.values.map((movie: Movie, index: number) => {
           return (
             <Link href={`/detail/${movie.id}`} className="card" key={index}>
-              <video className="video">
+              {/* <video className="video">
                 <source src={movie.thumbnail} type="video/mp4" />
-              </video>
-              {/* <img
-                src="/images/movies/creed_1.jpg"
+              </video> */}
+              <img
+                src={`/images/movies/${movie.imagePath}`}
                 alt={`${movie.title}-thumbnail`}
-              /> */}
-              <p>{movie.title}</p>
+              />
+              {/* <p>{movie.title}</p> */}
             </Link>
           );
         })}

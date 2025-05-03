@@ -1,5 +1,5 @@
 mutation movies_actions {
-  creed_1: insertmovies_by_genre(
+  creed_1: insertmovies(
     value: {
       id: "e3fe8d54-5057-4340-8b56-2216761c51e1"
       genre: "Action"
@@ -17,7 +17,7 @@ mutation movies_actions {
     }
   }
 
-  creed_2: insertmovies_by_genre(
+  creed_2: insertmovies(
     value: {
       id: "5a09c307-c6c1-4ccd-b5e4-cea6feded4f0"
       genre: "Action"
@@ -27,7 +27,7 @@ mutation movies_actions {
       duration: 133
       thumbnail: "https://i.imgur.com/NQTuLtb.mp4"
       imagePath: "creed_2.jpg"
-      voteAverage: 8.5
+      voteAverage: 8
     }
   ) {
     value {
@@ -35,7 +35,7 @@ mutation movies_actions {
     }
   }
 
-  creed_3: insertmovies_by_genre(
+  creed_3: insertmovies(
     value: {
       id: "735eba46-02e4-4219-8d83-b933943cb654"
       genre: "Action"
@@ -53,15 +53,17 @@ mutation movies_actions {
     }
   }
 
-  furious7_1: insertmovies_by_genre(
+  furious7_8: insertmovies(
     value: {
       id: "991c3b6a-096c-4dc1-98f5-014c2ccd707e"
       genre: "Action"
       year: 2015
-      title: "Furious7"
+      title: "Fast & Furious 8"
       synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
       duration: 137
       thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+      imagePath: "furious_8.jpg"
+      voteAverage: 8
     }
   ) {
     value {
@@ -69,15 +71,17 @@ mutation movies_actions {
     }
   }
 
-  furious7_2: insertmovies_by_genre(
+  furious7_3: insertmovies(
     value: {
       id: "9ec5b004-e09f-4e60-9157-2332affe894f"
       genre: "Action"
       year: 2005
-      title: "Furious7"
+      title: "Fast & Furious Tokio Drift"
       synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
       duration: 137
       thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+      imagePath: "furious_3.jpg"
+      voteAverage: 8
     }
   ) {
     value {
@@ -85,15 +89,17 @@ mutation movies_actions {
     }
   }
 
-  furious7_3: insertmovies_by_genre(
+  furious7_1: insertmovies(
     value: {
       id: "1c34e1a1-2e36-4366-a789-5e7beeef33dd"
       genre: "Action"
       year: 1995
-      title: "Furious7"
+      title: "Fast & Furious"
       synopsis: "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother."
       duration: 137
       thumbnail: "https://i.imgur.com/7ax74eb.mp4"
+      imagePath: "furious_1.webp"
+      voteAverage: 8
     }
   ) {
     value {
@@ -101,15 +107,17 @@ mutation movies_actions {
     }
   }
 
-  guardian_1: insertmovies_by_genre(
+  guardian_3: insertmovies(
     value: {
       id: "f2e3d9b9-9797-421c-a767-be4fbb53fd2c"
       genre: "Action"
-      year: 2014
-      title: "Guardians of the Galaxy"
+      year: 2024
+      title: "Guardians of the Galaxy Vol. 3"
       synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
       duration: 121
       thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+      imagePath: "guardians_3.webp"
+      voteAverage: 9
     }
   ) {
     value {
@@ -117,15 +125,17 @@ mutation movies_actions {
     }
   }
 
-  guardian_2: insertmovies_by_genre(
+  guardian_2: insertmovies(
     value: {
       id: "32bdb39a-c263-4493-a414-9833c01a2807"
       genre: "Action"
-      year: 2004
-      title: "Guardians of the Galaxy"
+      year: 2020
+      title: "Guardians of the Galaxy Vol. 2"
       synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
       duration: 121
       thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+      imagePath: "guardians_2.jpg"
+      voteAverage: 8
     }
   ) {
     value {
@@ -133,15 +143,17 @@ mutation movies_actions {
     }
   }
 
-  guardian_3: insertmovies_by_genre(
+  guardian_1: insertmovies(
     value: {
       id: "bc9f8174-7e15-4342-8ae4-bcb223ddc501"
       genre: "Action"
-      year: 1994
+      year: 2017
       title: "Guardians of the Galaxy"
       synopsis: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe."
       duration: 121
       thumbnail: "https://i.imgur.com/AylKL2G.mp4"
+      imagePath: "guardians_1.webp"
+      voteAverage: 8
     }
   ) {
     value {
@@ -149,7 +161,7 @@ mutation movies_actions {
     }
   }
 
-  suicide_1: insertmovies_by_genre(
+  suicide_1: insertmovies(
     value: {
       id: "5dc73f00-41d6-40ec-821b-eb628a83c0de"
       genre: "Action"
@@ -158,6 +170,8 @@ mutation movies_actions {
       synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
       duration: 123
       thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+      imagePath: "suicide_1.jpg"
+      voteAverage: 7
     }
   ) {
     value {
@@ -165,30 +179,34 @@ mutation movies_actions {
     }
   }
 
-  suicide_2: insertmovies_by_genre(
+  suicide_2: insertmovies(
     value: {
       id: "5851a91e-fc4c-4ea3-b309-c4c16903311f"
       genre: "Action"
-      year: 2006
-      title: "Suicide Squad"
+      year: 2020
+      title: "Suicide Squad 2"
       synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
       duration: 123
       thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+      imagePath: "suicide_2.jpg"
+      voteAverage: 8
     }
   ) {
     value {
       title
     }
   }
-  suicide_3: insertmovies_by_genre(
+  suicide_3: insertmovies(
     value: {
       id: "f078c535-d0bc-4113-a7e9-60c4e445a00e"
       genre: "Action"
-      year: 1996
-      title: "Suicide Squad"
+      year: 2024
+      title: "Suicide Squad 3"
       synopsis: "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse."
       duration: 123
       thumbnail: "https://i.imgur.com/hwUzoyu.mp4"
+      imagePath: "suicide_3.jpg"
+      voteAverage: 8
     }
   ) {
     value {

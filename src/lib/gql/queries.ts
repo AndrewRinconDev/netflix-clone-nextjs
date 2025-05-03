@@ -3,7 +3,7 @@ import { MovieFields } from './fragments'
 
 export const GET_ALL_GENRES = gql`
   query getAllGenres($pageSize: Int!, $pageState: String) {
-      reference_list (
+      genres (
         value: { label: "genre"},
         options: { pageSize: $pageSize, pageState: $pageState}
       ) {
@@ -18,9 +18,9 @@ export const GET_ALL_GENRES = gql`
 export const GET_MOVIES_BY_GENRE = gql`
   query getMovieAction ($genre: String!) {
   # query getMovieAction ($genre: String!, $pageState: String) {
-    movies_by_genre (
+    movies (
       value: { genre: $genre },
-      orderBy: [year_DESC],
+      # orderBy: [year_DESC],
       # options: { pageSize: 6, pageState: $pageState}
     ) {
       values {...MovieFields}

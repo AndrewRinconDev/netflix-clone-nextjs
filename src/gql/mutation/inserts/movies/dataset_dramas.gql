@@ -1,12 +1,54 @@
 mutation movies_dramas {
- girl1: insertmovies_by_genre(
-    value: { 
-      genre:"Dramas", 
-      year:2016,
-      title:"The girl on the Train",
-      synopsis:"A divorcee becomes entangled in a missing persons investigation that promises to send shockwaves throughout her life.",
-      duration:112,
-      thumbnail:"https://i.imgur.com/yinQyyT.mp4"}) {
-    value{title}
+  girl1: insertmovies(
+    value: {
+      id: "fbe98b95-1bce-4570-9080-fc114262e4cd"
+      genre: "Dramas"
+      year: 2016
+      title: "The Girl on the Train"
+      synopsis: "A divorcee becomes entangled in a missing persons investigation that promises to send shockwaves throughout her life."
+      duration: 112
+      thumbnail: "https://i.imgur.com/yinQyyT.mp4"
+      imagePath: "girl_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
+  girl2: insertmovies(
+    value: {
+      id: "b536ae9c-237c-47ad-af0f-ae9886299568"
+      genre: "Dramas"
+      year: 2020
+      title: "The Girl on the Train"
+      synopsis: "A divorcee becomes entangled in a missing persons investigation that promises to send shockwaves throughout her life."
+      duration: 112
+      thumbnail: "https://i.imgur.com/yinQyyT.mp4"
+      imagePath: "girl_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+  girl3: insertmovies(
+    value: {
+      id: "658fe735-77b5-40e8-84bb-6a82f4568867"
+      genre: "Dramas"
+      year: 2023
+      title: "The Girl on the Train"
+      synopsis: "A divorcee becomes entangled in a missing persons investigation that promises to send shockwaves throughout her life."
+      duration: 112
+      thumbnail: "https://i.imgur.com/yinQyyT.mp4"
+      imagePath: "girl_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 }

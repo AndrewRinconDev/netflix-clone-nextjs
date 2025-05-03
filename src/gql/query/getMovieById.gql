@@ -1,5 +1,5 @@
 query getMovieAction {
-    movies_by_genre (
+    movies (
       value: {id:"e3fe8d54-5057-4340-8b56-2216761c51e1"},
        orderBy: [year_DESC]) {
       values {
@@ -10,7 +10,7 @@ query getMovieAction {
         duration,
         synopsis,
         thumbnail,
-        imageUrl
+        imagePath
       }
     }
 }

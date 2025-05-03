@@ -1,133 +1,163 @@
 mutation movies_comedies {
-  bridget1: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2016,
-      title:"Bridget Jones's Baby",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/O6XpreV.mp4"}) {
-    value{title}
+  bridget1: insertmovies(
+    value: {
+      id: "0c2f441b-a2d2-4433-ba43-d6de3f9bd68d"
+      genre: "Comedies"
+      year: 2016
+      title: "Bridget Jones's Baby"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 123
+      thumbnail: "https://i.imgur.com/O6XpreV.mp4"
+      imagePath: "bridget_1.webp",
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bridget2: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2006,
-      title:"Bridget Jones's Baby",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/O6XpreV.mp4"}) {
-    value{title}
+  bridget2: insertmovies(
+    value: {
+      id: "c1d635ee-9afc-4e14-a6b3-15fca86889aa"
+      genre: "Comedies"
+      year: 2006
+      title: "Bridget Jones's Baby"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 123
+      thumbnail: "https://i.imgur.com/O6XpreV.mp4"
+      imagePath: "bridget_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bridget3: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1996,
-      title:"Bridget Jones's Baby",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/O6XpreV.mp4"}) {
-    value{title}
+  bridget3: insertmovies(
+    value: {
+      id: "60170ffe-3d72-4713-9449-ef2f9bb145a4"
+      genre: "Comedies"
+      year: 1996
+      title: "Bridget Jones's Baby"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 123
+      thumbnail: "https://i.imgur.com/O6XpreV.mp4"
+      imagePath: "bridget_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  bridget4: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1986,
-      title:"Bridget Jones's Baby",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:123,
-      thumbnail:"https://i.imgur.com/O6XpreV.mp4"}) {
-    value{title}
+  ninelives1: insertmovies(
+    value: {
+      id: "01bbbf8e-0a22-4483-9896-d0c1545b47f1"
+      genre: "Comedies"
+      year: 2016
+      title: "Nine Lives"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 87
+      thumbnail: "https://i.imgur.com/u24oIR1.mp4"
+      imagePath: "nine_lives_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  ninelives1: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2016,
-      title:"Nine Lives",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:87,
-      thumbnail:"https://i.imgur.com/u24oIR1.mp4"}) {
-    value{title}
+  ninelives2: insertmovies(
+    value: {
+      id: "b8af0b24-2d69-4a18-935d-9d32b4a900ef"
+      genre: "Comedies"
+      year: 2006
+      title: "Nine Lives"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 87
+      thumbnail: "https://i.imgur.com/u24oIR1.mp4"
+      imagePath: "nine_lives_2.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  ninelives2: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2006,
-      title:"Nine Lives",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:87,
-      thumbnail:"https://i.imgur.com/u24oIR1.mp4"}) {
-    value{title}
+  ninelives3: insertmovies(
+    value: {
+      id: "669cc0dc-2b30-4e38-9ce4-92cbf43ed27d"
+      genre: "Comedies"
+      year: 1996
+      title: "Nine Lives"
+      synopsis: "Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father."
+      duration: 87
+      thumbnail: "https://i.imgur.com/u24oIR1.mp4"
+      imagePath: "nine_lives_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  ninelives3: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1996,
-      title:"Nine Lives",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:87,
-      thumbnail:"https://i.imgur.com/u24oIR1.mp4"}) {
-    value{title}
+  mike2: insertmovies(
+    value: {
+      id: "4e6bf5b4-99f3-4bff-9ff6-d2804efb3711"
+      genre: "Comedies"
+      year: 2006
+      title: "Mike and Dave Need Wedding Dates"
+      synopsis: "Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo."
+      duration: 88
+      thumbnail: "https://i.imgur.com/4nlbiGT.mp4"
+      imagePath: "mike_dave_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  ninelives4: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1986,
-      title:"Nine Lives",
-      synopsis:"Forty-something and single again, Bridget decides to focus on her job and surround herself with friends. In a twist, she finds herself pregnant, but with one hitch - she can only be fifty percent sure of the identity of her baby's father.",
-      duration:87,
-      thumbnail:"https://i.imgur.com/u24oIR1.mp4"}) {
-    value{title}
+  mike3: insertmovies(
+    value: {
+      id: "43e30a39-c30a-46a9-8656-a499ce16e517"
+      genre: "Comedies"
+      year: 1996
+      title: "Mike and Dave Need Wedding Dates"
+      synopsis: "Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo."
+      duration: 88
+      thumbnail: "https://i.imgur.com/4nlbiGT.mp4"
+      imagePath: "mike_dave_2.jpg"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 
-  mike1: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2016,
-      title:"Mike and Dave Need Wedding Dates",
-      synopsis:"Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/4nlbiGT.mp4"}) {
-    value{title}
-  }
-
-  mike2: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:2006,
-      title:"Mike and Dave Need Wedding Dates",
-      synopsis:"Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/4nlbiGT.mp4"}) {
-    value{title}
-  }
-
-  mike3: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1996,
-      title:"Mike and Dave Need Wedding Dates",
-      synopsis:"Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/4nlbiGT.mp4"}) {
-    value{title}
-  }
-
-  mike4: insertmovies_by_genre(
-    value: { 
-      genre:"Comedies", 
-      year:1986,
-      title:"Mike and Dave Need Wedding Dates",
-      synopsis:"Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo.",
-      duration:88,
-      thumbnail:"https://i.imgur.com/4nlbiGT.mp4"}) {
-    value{title}
+  mike4: insertmovies(
+    value: {
+      id: "8b6d9180-b15e-4de7-a8e7-479086d0be75"
+      genre: "Comedies"
+      year: 1986
+      title: "Mike and Dave Need Wedding Dates"
+      synopsis: "Two hard-partying brothers place an online ad to find the perfect dates for their sister's Hawaiian wedding. Hoping for a wild getaway, the boys instead find themselves out-hustled by an uncontrollable duo."
+      duration: 88
+      thumbnail: "https://i.imgur.com/4nlbiGT.mp4"
+      imagePath: "mike_dave_3.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
   }
 }

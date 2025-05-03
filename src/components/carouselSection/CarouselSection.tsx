@@ -10,10 +10,10 @@ import "./CarouselSection.styles.css";
 
 function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
   const [dataState, setDataState] = useState({
-    items: initialData.reference_list.values,
+    items: initialData.genres.values,
     isLoading: false,
     hasMore: true,
-    pageState: initialData.reference_list.pageState,
+    pageState: initialData.genres.pageState,
     pageSize: 4,
   });
   const TOTAL_RESULTS = 15;
@@ -42,12 +42,12 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
       if (!data) return;
 
       setDataState((prev) => ({
-        items: [...prev.items, ...data.reference_list.values],
+        items: [...prev.items, ...data.genres.values],
         isLoading: false,
         hasMore:
-          (data.reference_list.pageState &&
-          [...prev.items, ...data.reference_list.values].length < TOTAL_RESULTS) || false,
-        pageState: data.reference_list.pageState,
+          (data.genres.pageState &&
+          [...prev.items, ...data.genres.values].length < TOTAL_RESULTS) || false,
+        pageState: data.genres.pageState,
         pageSize: prev.pageSize,
       }));
     } catch (error) {

@@ -1,12 +1,19 @@
 mutation movies_french {
- amelie1: insertmovies_by_genre(
-    value: { 
-      genre:"French", 
-      year:2001,
-      title:"Amelie",
-      synopsis:"Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.",
-      duration:122,
-      thumbnail:"https://i.imgur.com/fan0H9k.mp4"}) {
-    value{title}
-  } 
+  amelie1: insertmovies(
+    value: {
+      id: "c8850ca9-3e34-4454-9e77-61e8aada3b68"
+      genre: "French"
+      year: 2001
+      title: "Amelie"
+      synopsis: "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love."
+      duration: 122
+      thumbnail: "https://i.imgur.com/fan0H9k.mp4"
+      imagePath: "amelie_1.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
 }
