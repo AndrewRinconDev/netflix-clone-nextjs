@@ -3,9 +3,12 @@
 }
 
 .banner-img {
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  max-width: 100%;
+  aspect-ratio: 16/9;
   max-height: 100vh;
+  object-fit: cover;
+  object-position: center center;
   mask-image: linear-gradient(to right, transparent, black 75%);
   -weblit-mask-image: linear-gradient(to right, transparent, black 75%);
 }
@@ -46,6 +49,8 @@
   outline: 0;
   padding: 8px 20px;
   display: inline-flex;
+  text-decoration: none;
+  color: #000;
   align-items: center;
   gap: 10px;
   font-size: 15px;

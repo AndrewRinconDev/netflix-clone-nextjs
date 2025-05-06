@@ -2,6 +2,7 @@
 import React, { Suspense } from "react";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
+import Link from "next/link";
 
 import hero_banner from "@/assets/hero_banner.jpg";
 import hero_title from "@/assets/hero_title.png";
@@ -38,14 +39,14 @@ function HomePage() {
             immortal enemy.
           </p>
           <div className="hero-btns">
-            <button className="btn text-black">
+            <Link href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn text-black">
               <Image src={play_icon} alt="" />
               Play
-            </button>
-            <button className="btn dark-btn">
+            </Link>
+            <Link href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn dark-btn">
               <Image src={info_icon} alt="" />
               More Info
-            </button>
+            </Link>
           </div>
           <Carousel category="Action" />
         </div>

@@ -9,14 +9,14 @@ import { IGenre, IGenreResponse } from "@/types/media";
 import "./CarouselSection.styles.css";
 
 function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
+  const TOTAL_RESULTS = 15;
   const [dataState, setDataState] = useState({
     items: initialData.genres.values,
     isLoading: false,
-    hasMore: true,
+    hasMore: initialData.genres.values.length < TOTAL_RESULTS,
     pageState: initialData.genres.pageState,
     pageSize: 4,
   });
-  const TOTAL_RESULTS = 15;
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 

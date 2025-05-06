@@ -20,6 +20,11 @@ export interface IGenreResponse {
     pageState: string | null;
   };
 }
+export interface IMovieResponse {
+  movies: {
+    values: Movie[];
+  };
+}
 export interface MediaListResponse {
   page: number;
   results: Movie[];

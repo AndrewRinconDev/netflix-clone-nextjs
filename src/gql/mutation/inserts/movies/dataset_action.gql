@@ -1,4 +1,22 @@
 mutation movies_actions {
+  protector: insertmovies(
+    value: {
+      id: "e3fe8d54-9457-4340-8b22-2285761c21e1"
+      genre: "Action"
+      year: 2007
+      title: "The Protector"
+      synopsis: "Discovering his ties to a secret ancient order, a young man living in modern Istanbul embarks on a quest to save the city from an immortal enemy."
+      duration: 133
+      thumbnail: "https://i.imgur.com/NQTuLtb.mp4"
+      imagePath: "protector.webp"
+      voteAverage: 8
+    }
+  ) {
+    value {
+      title
+    }
+  }
+
   creed_1: insertmovies(
     value: {
       id: "e3fe8d54-5057-4340-8b56-2216761c51e1"

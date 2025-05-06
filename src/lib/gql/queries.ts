@@ -31,8 +31,8 @@ export const GET_MOVIES_BY_GENRE = gql`
 `
 
 export const GET_MOVIES_BY_ID = gql`
-  query getMovieById($id: String!) {
-    movie_by_id(id: $id) {
+  query getMovieById($id: Uuid!) {
+    movies(value: { id: $id }) {
       values {...MovieFields}
     }
   }
