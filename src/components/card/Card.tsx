@@ -1,5 +1,5 @@
 'use client';
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useRef } from "react";
 import Link from "next/link";
 
 import { IMovie } from "@/types/media";
