@@ -42,7 +42,13 @@ function VideoPlayer({
 
   return (
     <div className="video-player-container">
-      <div className="video-player-wrapper">
+      <div
+        className="video-player-wrapper"
+        onMouseEnter={onShowOverlay}
+        onMouseMove={onShowOverlay}
+        onMouseLeave={handleMouseLeave}
+        onTouchStartCapture={onShowOverlay}
+      >
         {showOverlay && (
           <div className="video-player-overlay">
             {onBackClick && <BackButton onBackClick={onBackClick} />}
@@ -50,10 +56,6 @@ function VideoPlayer({
           </div>
         )}
         <video
-          onMouseEnter={onShowOverlay}
-          onMouseMove={onShowOverlay}
-          onMouseLeave={handleMouseLeave}
-          onTouchStartCapture={onShowOverlay}
           className="video-player"
           controls={controls}
           autoPlay={autoPlay}
