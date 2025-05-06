@@ -20,13 +20,13 @@ const Card = ({ category }: ICarouselProps) => {
     variables: { genre: category, pageState: null },
   });
 
-  const handleWheel = (event: WheelEvent) => {
-    event.preventDefault();
-    if (!cardsRef.current) return;
+  // const handleWheel = (event: WheelEvent) => {
+  //   event.preventDefault();
+  //   if (!cardsRef.current) return;
 
-    // TODO: Add button to scroll left and right
-    // cardsRef.current.scrollLeft += event.deltaY;
-  };
+  //   // TODO: Add button to scroll left and right
+  //   // cardsRef.current.scrollLeft += event.deltaY;
+  // };
 
   // useEffect(() => {
   //   if (!cardsRef.current) return;

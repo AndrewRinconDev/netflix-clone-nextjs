@@ -19,7 +19,7 @@ function VideoPlayer({
   const onShowOverlay = () => {
     setShowOverlay(true);
     clearTimeoutId();
-    
+
     // Set a timeout to hide the overlay after 2.9 seconds
     // This is to ensure that the overlay is visible for a short time even if the mouse moves quickly
     const id = setTimeout(() => {
@@ -41,12 +41,7 @@ function VideoPlayer({
   };
 
   return (
-    <div
-      className="video-player-container"
-      onMouseEnter={onShowOverlay}
-      onMouseMove={onShowOverlay}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="video-player-container">
       <div className="video-player-wrapper">
         {showOverlay && (
           <div className="video-player-overlay">
@@ -55,6 +50,10 @@ function VideoPlayer({
           </div>
         )}
         <video
+          onMouseEnter={onShowOverlay}
+          onMouseMove={onShowOverlay}
+          onMouseLeave={handleMouseLeave}
+          onTouchStartCapture={onShowOverlay}
           className="video-player"
           controls={controls}
           autoPlay={autoPlay}
