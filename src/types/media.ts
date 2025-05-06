@@ -1,4 +1,4 @@
-export interface Movie {
+export interface IMovie {
   id: string;
   title: string;
   genre: string;
@@ -22,16 +22,16 @@ export interface IGenreResponse {
 }
 export interface IMovieResponse {
   movies: {
-    values: Movie[];
+    values: IMovie[];
   };
 }
 export interface MediaListResponse {
   page: number;
-  results: Movie[];
+  results: IMovie[];
   totalPages: number;
   totalResults: number;
 }
 
 export interface SearchResults {
-  searchMedia: Movie[];
+  searchMedia: IMovie[];
 }

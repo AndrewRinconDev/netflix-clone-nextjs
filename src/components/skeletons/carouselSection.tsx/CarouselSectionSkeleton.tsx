@@ -1,10 +1,10 @@
-import CarouselSkeleton from "../carousel/CarouselSkeleton";
+import CardSkeleton from "../card/CardSkeleton";
 
 function CarouselSectionSkeleton({rows = 1}: {rows?: number}) {
   return (
     <>
     {Array.from({ length: rows }, (_, index) => (
-      <CarouselSkeleton key={`carousel-skeleton-${index}`} cards={6}  />
+      <CardSkeleton key={`card-skeleton-${index}`} cards={6}  />
     ))}
     </>
   );

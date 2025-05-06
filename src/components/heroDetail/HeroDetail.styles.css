@@ -1,12 +1,3 @@
-.detail-page-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  max-width: 100%;
-}
-
 .image-container {
   width: 100vw;
   max-width: 100%;
@@ -50,6 +41,9 @@
   text-align: left;
   margin: 0;
   text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .detail-container p {
@@ -85,8 +79,7 @@
   margin-top: 20px;
 }
 
-.detail-buttons .play-button {
-  background-color: rgb(217 30 39);
+.detail-buttons button  {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,12 +90,19 @@
   font-size: 1rem;
   border: none
 }
+.detail-buttons .play-button {
+  background-color: rgb(217 30 39);
+}
+
 .detail-buttons .play-button:hover {
   background-color: rgb(189, 37, 45);
 }
 
-.video-player {
-  width: 100vw;
-  height: 100vh;
-  max-width: 100%;
+.detail-buttons .back-button {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.detail-buttons .back-button:hover {
+  color: #ccc;
+  background-color: rgba(0, 0, 0, 0.3);
 }

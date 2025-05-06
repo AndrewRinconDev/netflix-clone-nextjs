@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSuspenseQuery } from "@apollo/client";
 
-import Carousel from "@/components/carousel/Carousel";
+import Card from "@/components/card/Card";
 import { GET_ALL_GENRES } from "@/lib/gql/queries";
 import { IGenre, IGenreResponse } from "@/types/media";
 
@@ -19,7 +19,6 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
   });
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
-
 
   const { fetchMore } = useSuspenseQuery<IGenreResponse>(GET_ALL_GENRES, {
     variables: { pageSize: dataState.pageSize, pageState: dataState.pageState },
@@ -100,8 +99,8 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
         {dataState.items.map(
           (genre: IGenre, index: number) =>
             index > 0 && (
-              <Carousel
-                key={`${genre.value}-carousel`}
+              <Card
+                key={`${genre.value}-card-${index}`}
                 category={genre.value}
               />
             )

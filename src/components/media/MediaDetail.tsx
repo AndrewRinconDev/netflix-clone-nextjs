@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import type { Movie } from '@/types/media'
+import type { IMovie } from '@/types/media'
 import { PlayButton, AddToListButton } from '../ui/Button'
 import { Info, Star, Clock, Calendar } from 'lucide-react'
 
-export default function MediaDetail({ media }: { media: Movie }) {
+export default function MediaDetail({ media }: { media: IMovie }) {
   const [showFullOverview, setShowFullOverview] = useState(false)
 
   return (

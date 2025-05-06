@@ -2,18 +2,18 @@
 import React, { memo, useEffect, useRef } from "react";
 import Link from "next/link";
 
-import { Movie } from "@/types/media";
+import { IMovie } from "@/types/media";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES_BY_GENRE } from "@/lib/gql/queries";
-import CarouselSkeleton from "@/components/skeletons/carousel/CarouselSkeleton";
+import CarouselSkeleton from "@/components/skeletons/card/CardSkeleton";
 
-import "./Carousel.styles.css";
+import "./Card.styles.css";
 
 interface ICarouselProps {
   category?: string;
 }
 
-const Carousel = ({ category }: ICarouselProps) => {
+const Card = ({ category }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
 
   const { loading, data } = useQuery(GET_MOVIES_BY_GENRE, {
@@ -41,17 +41,13 @@ const Carousel = ({ category }: ICarouselProps) => {
     <div className="title-cards">
       <h2>{category}</h2>
       <div className="card-list" ref={cardsRef}>
-        {data.movies.values.map((movie: Movie, index: number) => {
+        {data.movies.values.map((movie: IMovie, index: number) => {
           return (
             <Link href={`/detail/${movie.id}`} className="card" key={index}>
-              {/* <video className="video">
-                <source src={movie.thumbnail} type="video/mp4" />
-              </video> */}
               <img
                 src={`/images/movies/${movie.imagePath}`}
                 alt={`${movie.title}-thumbnail`}
               />
-              {/* <p>{movie.title}</p> */}
             </Link>
           );
         })}
@@ -60,4 +56,4 @@ const Carousel = ({ category }: ICarouselProps) => {
   );
 };
 
-export default memo(Carousel);
+export default memo(Card);

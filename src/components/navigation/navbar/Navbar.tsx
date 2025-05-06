@@ -52,12 +52,12 @@ const Navbar = () => {
         </Link>
 
         <ul>
-          <li>Home</li>
-          <li>TV Shows</li>
-          <li>Movies</li>
-          <li>New & Popular</li>
-          <li>My List</li>
-          <li>Browse by Languages</li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/">TV Shows</Link></li>
+          <li><Link href="/">Movies</Link></li>
+          <li><Link href="/">New & Popular</Link></li>
+          <li><Link href="/">My List</Link></li>
+          <li><Link href="/">Browse by Languages</Link></li>
         </ul>
       </div>
       <div className="navbar-right">

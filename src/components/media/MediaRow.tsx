@@ -1,12 +1,12 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import type { Movie } from '@/types/media'
+import type { IMovie } from '@/types/media'
 import MediaCard from './MediaCard'
 
 interface MediaRowProps {
   title: string
-  items: Movie[]
+  items: IMovie[]
 }
 
 export default function MediaRow({ title, items }: MediaRowProps) {

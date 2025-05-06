@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Movie } from '@/types/media'
+import type { IMovie } from '@/types/media'
 
 interface SearchResultsProps {
-  results: Movie[]
+  results: IMovie[]
 }
 
 export default function SearchResults({ results }: SearchResultsProps) {
