@@ -28,10 +28,10 @@ const Card = ({ category }: ICarouselProps) => {
     // cardsRef.current.scrollLeft += event.deltaY;
   };
 
-  useEffect(() => {
-    if (!cardsRef.current) return;
-    cardsRef.current?.addEventListener("wheel", handleWheel as EventListener);
-  }, [cardsRef.current]);
+  // useEffect(() => {
+  //   if (!cardsRef.current) return;
+  //   cardsRef.current?.addEventListener("wheel", handleWheel as EventListener);
+  // }, [cardsRef.current]);
   
   if (loading || !data || !data.movies) return (
     <CarouselSkeleton />

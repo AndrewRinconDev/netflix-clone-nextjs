@@ -1,9 +1,9 @@
-import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
+
+import BackButton from "../backButton/BackButton";
 
 import IVideoPlayerProps from "./VideoPlayer.interfaces";
 import "./VideoPlayer.styles.css";
-import { useState } from "react";
-import BackButton from "../backButton/BackButton";
 
 function VideoPlayer({
   movie,
@@ -19,10 +19,12 @@ function VideoPlayer({
   const onShowOverlay = () => {
     setShowOverlay(true);
     clearTimeoutId();
+    
+    // Set a timeout to hide the overlay after 2.9 seconds
+    // This is to ensure that the overlay is visible for a short time even if the mouse moves quickly
     const id = setTimeout(() => {
       setShowOverlay(false);
-    }
-    , 2900);
+    }, 2900);
     setTimeoutId(id);
   };
 
@@ -48,9 +50,7 @@ function VideoPlayer({
       <div className="video-player-wrapper">
         {showOverlay && (
           <div className="video-player-overlay">
-            {onBackClick && (
-              <BackButton onBackClick={onBackClick} />
-            )}
+            {onBackClick && <BackButton onBackClick={onBackClick} />}
             <h1>{movie.title}</h1>
           </div>
         )}
