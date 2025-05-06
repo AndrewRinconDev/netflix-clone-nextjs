@@ -8,10 +8,6 @@ import { MdOutlineLocalMovies } from "react-icons/md";
 
 import "./page.styles.css";
 
-// interface IDetailPageProps {
-//   params: { id: string };
-// }
-
 interface IDetailPageProps {
   params: Promise<{
     id: string;
