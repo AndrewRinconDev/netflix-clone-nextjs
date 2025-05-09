@@ -54,3 +54,22 @@
   text-align: center;
   margin: 0;
 }
+
+@media screen and (max-width: 800px) {
+  .video-player-container {
+    padding: 80px 2% 0 2%;
+  }
+
+  .video-player-overlay {
+    padding: 10px 20px;
+    gap: 10px;
+  }
+
+  .video-player-overlay h1 {
+    font-size: 20px;
+  }
+
+  .video-player-overlay p {
+    font-size: 14px;
+  }  
+}

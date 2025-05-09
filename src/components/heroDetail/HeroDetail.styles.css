@@ -79,7 +79,7 @@
   margin-top: 20px;
 }
 
-.detail-buttons button  {
+.detail-buttons button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,6 +90,7 @@
   font-size: 1rem;
   border: none
 }
+
 .detail-buttons .play-button {
   background-color: rgb(217 30 39);
 }
@@ -105,4 +106,63 @@
 .detail-buttons .back-button:hover {
   color: #ccc;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 1024px) {
+  .detail-container {
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .detail-container {
+    position: relative;
+    padding: 0 20px 0 20px;
+    margin-top: -50px;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .detail-container h1 {
+    font-size: 2rem;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  }
+
+  .detail-container p {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    text-shadow: none;
+  }
+
+  .detail-badges {
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .detail-badges .badge {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+  }
+
+  .detail-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .detail-buttons button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 0.9rem;
+  }
+
+  .detail-buttons .back-button {
+    background-color: rgba(50, 50, 50, 0.6);
+  }
+
+  .detail-buttons .back-button:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+  }
 }

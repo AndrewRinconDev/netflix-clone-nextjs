@@ -83,6 +83,10 @@
     display: none;
   }
 
+  .banner-img{
+    max-height: 80vh;
+  }
+
   .hero-btns {
     margin-bottom: 30px;
   }
@@ -91,6 +95,10 @@
 @media (max-width: 800px) {
   .hero-caption {
     padding-left: 4%;
+  }
+
+  .banner-img{
+    max-height: fit-content;
   }
 
   .caption-img {
