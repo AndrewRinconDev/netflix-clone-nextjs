@@ -27,8 +27,6 @@
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  padding: 0 50px; /* Add padding to make room for buttons */
-  margin: 0 -50px; /* Compensate for padding to maintain alignment */
 }
 
 .card-list::-webkit-scrollbar {
@@ -48,7 +46,6 @@
 .card-list .card {
   position: relative;
   width: 240px;
-  height: 135px;
   flex-shrink: 0; /* Prevent cards from shrinking */
 }
 
@@ -135,10 +132,6 @@
     width: 200px;
   }
 
-  .card-list .card {
-    height: 112.5px;
-  }
-
   .card-list p {
     font-size: 12px;
   }
@@ -154,10 +147,6 @@
   .card-list .card,
   .card-list video {
     width: 165px;
-  }
-
-  .card-list .card {
-    height: 93.4px;
   }
 
   .card-list p {

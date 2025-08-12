@@ -42,7 +42,7 @@ const Carousel = ({ category }: ICarouselProps) => {
     if (!cardsRef.current) return;
     
     const container = cardsRef.current;
-    const scrollAmount = container.clientWidth * 0.8;
+    const scrollAmount = container.clientWidth * 0.85;
     
     if (direction === 'left') {
       container.scrollTo({
