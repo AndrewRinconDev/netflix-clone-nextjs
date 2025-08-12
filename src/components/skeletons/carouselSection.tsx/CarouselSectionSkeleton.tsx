@@ -1,4 +1,4 @@
-import CardSkeleton from "../card/CardSkeleton";
+import CardSkeleton from "../carouselSkeleton/CarouselSkeleton";
 
 function CarouselSectionSkeleton({rows = 1}: {rows?: number}) {
   return (

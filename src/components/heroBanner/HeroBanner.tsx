@@ -5,7 +5,7 @@ import hero_banner from "@/assets/hero_banner.jpg";
 import hero_title from "@/assets/hero_title.png";
 import play_icon from "@/assets/icons/play_icon.png";
 import info_icon from "@/assets/icons/info_icon.png";
-import Card from '../card/Card'
+import Carousel from '../carousel/Carousel'
 
 export default function HeroBanner() {
   return (
@@ -28,7 +28,7 @@ export default function HeroBanner() {
           More Info
         </Link>
       </div>
-      <Card category="Action" />
+      <Carousel category="Action" />
     </div>
   </div>
   )

@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSuspenseQuery } from "@apollo/client";
 
-import Card from "@/components/card/Card";
+import Carousel from "@/components/carousel/Carousel";
 import { GET_ALL_GENRES } from "@/lib/gql/queries";
 import { IGenre, IGenreResponse } from "@/types/media";
 
@@ -17,6 +17,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
     pageState: initialData.genres.pageState,
     pageSize: 4,
   });
+  
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -28,7 +29,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
   const loadMoreData = useCallback(async () => {
     if (!dataState.hasMore || dataState.isLoading) return;
 
-    setDataState((prev) => ({ ...prev, loading: true }));
+    setDataState((prev) => ({ ...prev, isLoading: true }));
 
     try {
       const { data } = await fetchMore({
@@ -50,7 +51,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
         pageSize: prev.pageSize,
       }));
     } catch (error) {
-      setDataState((prev) => ({ ...prev, loading: false }));
+      setDataState((prev) => ({ ...prev, isLoading: false }));
       console.error("Error loading more categories:", error);
     }
   }, [
@@ -99,8 +100,8 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
         {dataState.items.map(
           (genre: IGenre, index: number) =>
             index > 0 && (
-              <Card
-                key={`${genre.value}-card-${index}`}
+              <Carousel
+                key={`${genre.value}-carousel-${index}`}
                 category={genre.value}
               />
             )

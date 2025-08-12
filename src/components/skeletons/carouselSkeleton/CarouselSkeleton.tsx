@@ -1,4 +1,4 @@
-import "./CardSkeleton.styles.css";
+import "./CarouselSkeleton.styles.css";
 
 function CarouselSkeleton({ cards = 1 }: { cards?: number }) {
   return (
