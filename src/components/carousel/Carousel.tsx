@@ -1,12 +1,12 @@
 'use client';
 import React, { memo, useRef, useState, useCallback, useEffect } from "react";
-
-import { IMovie } from "@/types/media";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES_BY_GENRE } from "@/lib/gql/queries";
+
+import Card from "../card/Card";
+import { IMovie } from "@/types/media";
 import CarouselSkeleton from "@/components/skeletons/carouselSkeleton/CarouselSkeleton";
 import CarouselNavigationButton from "../carouselNavigationButton/CarouselNavigationButton";
-import Card from "../card/Card";
 
 import "./Carousel.styles.css";
 
@@ -24,30 +24,25 @@ const Carousel = ({ category }: ICarouselProps) => {
   });
 
   const checkScrollState = useCallback(() => {
-    if (!cardsRef.current) {
-      return;
-    }
+    if (!cardsRef.current) return;
     
     const { scrollLeft, scrollWidth, clientWidth } = cardsRef.current;
-    
-    // Add small tolerance for better button behavior
     const tolerance = 1;
     
     const newCanScrollLeft = scrollLeft > tolerance;
     const newCanScrollRight = scrollLeft < (scrollWidth - clientWidth - tolerance);
     
-    // Only update state if values actually changed
-    if (newCanScrollLeft !== canScrollLeft || newCanScrollRight !== canScrollRight) {      
+    if (newCanScrollLeft !== canScrollLeft || newCanScrollRight !== canScrollRight) {
       setCanScrollLeft(newCanScrollLeft);
       setCanScrollRight(newCanScrollRight);
     }
-  }, [category, canScrollLeft, canScrollRight]);
+  }, [canScrollLeft, canScrollRight]);
 
   const scrollTo = useCallback((direction: 'left' | 'right') => {
     if (!cardsRef.current) return;
     
     const container = cardsRef.current;
-    const scrollAmount = container.clientWidth * 0.8; // Scroll 80% of visible width
+    const scrollAmount = container.clientWidth * 0.8;
     
     if (direction === 'left') {
       container.scrollTo({
@@ -64,66 +59,44 @@ const Carousel = ({ category }: ICarouselProps) => {
       });
     }
 
-    // Force check scroll state after smooth scroll completes
-    setTimeout(() => {
-      checkScrollState();
-    }, 500); // Restored to 500ms to ensure smooth scroll completes
-  }, [category, checkScrollState]);
-
-  // Add scroll event listener with debouncing
-  useEffect(() => {
-    const container = cardsRef.current;
-    if (container) {
-      let scrollTimeout: NodeJS.Timeout;
-      
-      const handleScroll = () => {
-        // Clear previous timeout
-        clearTimeout(scrollTimeout);
-        
-        // Check scroll state immediately for better responsiveness
-        checkScrollState();
-        
-        // Set new timeout to check scroll state after scroll ends (for final position)
-        scrollTimeout = setTimeout(() => {
-          checkScrollState();
-        }, 100);
-      };
-      
-      container.addEventListener('scroll', handleScroll);
-      
-      // Initial check only once
-      setTimeout(checkScrollState, 100);
-      
-      return () => {
-        container.removeEventListener('scroll', handleScroll);
-        clearTimeout(scrollTimeout);
-      };
-    }
+    // Check scroll state after smooth scroll completes
+    setTimeout(checkScrollState, 500);
   }, [checkScrollState]);
 
-  // Check when data changes
+  // Single useEffect to handle scroll events and initial setup
+  useEffect(() => {
+    const container = cardsRef.current;
+    if (!container) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      checkScrollState();
+      
+      scrollTimeout = setTimeout(() => {
+        checkScrollState();
+      }, 100);
+    };
+    
+    container.addEventListener('scroll', handleScroll);
+    
+    // Initial check and data change check
+    const initialTimer = setTimeout(checkScrollState, 100);
+    
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+      clearTimeout(initialTimer);
+    };
+  }, [checkScrollState]);
+
+  // Check scroll state when data changes
   useEffect(() => {
     if (data?.movies?.values) {
       setTimeout(checkScrollState, 200);
     }
   }, [data, checkScrollState]);
-
-  // Force check on mount
-  useEffect(() => {
-    setTimeout(checkScrollState, 500);
-  }, [checkScrollState]);
-
-  // Listen for window resize to recheck scroll state
-  useEffect(() => {
-    const handleResize = () => {
-      if (cardsRef.current) {
-        setTimeout(checkScrollState, 100);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [checkScrollState]);
   
   if (loading || !data || !data.movies) return (
     <CarouselSkeleton />
