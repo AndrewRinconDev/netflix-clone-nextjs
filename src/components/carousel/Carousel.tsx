@@ -19,7 +19,7 @@ const Carousel = ({ category }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { showHover } = useHoverContext();
+  const { showHover, hideHover } = useHoverContext();
 
   const { loading, data } = useQuery(GET_MOVIES_BY_GENRE, {
     variables: { genre: category, pageState: null },
@@ -42,6 +42,8 @@ const Carousel = ({ category }: ICarouselProps) => {
 
   const scrollTo = useCallback((direction: 'left' | 'right') => {
     if (!cardsRef.current) return;
+
+    hideHover();
     
     const container = cardsRef.current;
     const scrollAmount = container.clientWidth * 0.8;

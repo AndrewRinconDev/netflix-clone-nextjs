@@ -1,20 +1,23 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
+import { IMovie } from '@/types/media';
+
 interface HoverState {
   isVisible: boolean;
   position: { x: number; y: number };
-  movieId: string | null;
+  movie: IMovie | null;
 }
 
 export const useCardHover = () => {
   const [hoverState, setHoverState] = useState<HoverState>({
     isVisible: false,
     position: { x: 0, y: 0 },
-    movieId: null,
+    movie: null,
   });
 
   const hoverTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const currentCardRef = useRef<HTMLElement | null>(null);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const calculatePosition = useCallback((cardElement: HTMLElement) => {
     const cardRect = cardElement.getBoundingClientRect();
@@ -41,41 +44,54 @@ export const useCardHover = () => {
     return { x: adjustedX, y };
   }, []);
 
-  const showHover = useCallback((event: React.MouseEvent, movieId: string) => {
+  const showHover = useCallback((event: React.MouseEvent, movie: IMovie) => {
     const cardElement = event.currentTarget as HTMLElement;
     currentCardRef.current = cardElement;
+    
+    // Clear any existing hide timeout
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = undefined;
+    }
     
     // Calculate position immediately
     const position = calculatePosition(cardElement);
     
-    // Clear any existing timeout
+    // Clear any existing show timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     
-    // Set a delay before showing the hover (500ms for better UX)
-    hoverTimeoutRef.current = setTimeout(() => {  
+    // Set a delay before showing the hover (300ms for better UX)
+    hoverTimeoutRef.current = setTimeout(() => {
       setHoverState({
         isVisible: true,
         position,
-        movieId,
+        movie,
       });
-    }, 500);
+    }, 100);
   }, [calculatePosition]);
 
   const hideHover = useCallback(() => {
-    // Clear any existing timeout
+    // Clear any existing show timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     
-    setHoverState({
-      isVisible: false,
-      position: { x: 0, y: 0 },
-      movieId: null,
-    });
+    // Clear any existing hide timeout
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+    }
     
-    currentCardRef.current = null;
+    // Set a delay before hiding to prevent flickering
+    hideTimeoutRef.current = setTimeout(() => {
+      setHoverState({
+        isVisible: false,
+        position: { x: 0, y: 0 },
+        movie: null,
+      });
+      currentCardRef.current = null;
+    }, 100);
   }, []);
 
   // Update position on scroll
@@ -94,20 +110,9 @@ export const useCardHover = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hoverState.isVisible, calculatePosition]);
 
-  const handleMouseEnter = useCallback((event: React.MouseEvent, movieId: string) => {
-    showHover(event, movieId);
-  }, [showHover]);
-
-  const handleMouseLeave = useCallback(() => {
-    // Add a small delay before hiding to prevent flickering
-    // setTimeout(() => {
-      hideHover();
-    // }, 100);
-  }, [hideHover]);
-
   return {
     hoverState,
-    handleMouseEnter,
-    handleMouseLeave,
+    showHover,
+    hideHover,
   };
 }; 

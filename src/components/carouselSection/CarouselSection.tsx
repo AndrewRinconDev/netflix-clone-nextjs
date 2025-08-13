@@ -20,7 +20,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
   
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const { hoverState } = useHoverContext();
+  const { hoverState, hideHover } = useHoverContext();
 
   const { fetchMore } = useSuspenseQuery<IGenreResponse>(GET_ALL_GENRES, {
     variables: { pageSize, pageState },
@@ -119,7 +119,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
           movie={hoverState.movie}
           isVisible={hoverState.isVisible}
           position={hoverState.position}
-          onMouseLeave={() => {}} // Empty function since we handle it globally
+          onMouseLeave={hideHover} // Empty function since we handle it globally
         />
       )}
     </>
