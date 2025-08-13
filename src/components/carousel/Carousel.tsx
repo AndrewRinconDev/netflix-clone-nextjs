@@ -7,6 +7,8 @@ import Card from "../card/Card";
 import { IMovie } from "@/types/media";
 import CarouselSkeleton from "@/components/skeletons/carouselSkeleton/CarouselSkeleton";
 import CarouselNavigationButton from "../carouselNavigationButton/CarouselNavigationButton";
+import CardHover from "../card/CardHover";
+import { useCardHover } from "@/hooks/useCardHover";
 
 import "./Carousel.styles.css";
 
@@ -18,6 +20,7 @@ const Carousel = ({ category }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const { hoverState, handleMouseEnter, handleMouseLeave } = useCardHover();
 
   const { loading, data } = useQuery(GET_MOVIES_BY_GENRE, {
     variables: { genre: category, pageState: null },
@@ -42,7 +45,7 @@ const Carousel = ({ category }: ICarouselProps) => {
     if (!cardsRef.current) return;
     
     const container = cardsRef.current;
-    const scrollAmount = container.clientWidth * 0.85;
+    const scrollAmount = container.clientWidth * 0.8;
     
     if (direction === 'left') {
       container.scrollTo({
@@ -102,35 +105,52 @@ const Carousel = ({ category }: ICarouselProps) => {
     <CarouselSkeleton />
   );
 
+  // Find the movie for the current hover state
+  const hoveredMovie = hoverState.movieId 
+    ? data.movies.values.find(movie => movie.id === hoverState.movieId)
+    : null;
+
   return (
-    <div className="title-cards">
-      <h2>{category}</h2>
-      <div className="carousel-container">
-        <div className="carousel-wrapper">
-          <div className="card-list" ref={cardsRef}>
-            {data.movies.values.map((movie: IMovie, index: number) => {
-              return (
-                <Card
-                  linkUrl={`/detail/${movie.id}`}
-                  key={`card-${category}-${index}`}
-                  imageSource={`/images/movies/${movie.imagePath}`}
-                  title={`${movie.title}-thumbnail`}
-                />
-              );
-            })}
+    <>
+      <div className="title-cards">
+        <h2>{category}</h2>
+        <div className="carousel-container">
+          <div className="carousel-wrapper">
+            <div className="card-list" ref={cardsRef}>
+              {data.movies.values.map((movie: IMovie, index: number) => {
+                return (
+                  <Card
+                    key={`card-${category}-${index}`}
+                    movie={movie}
+                    onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => handleMouseEnter(e, movie.id)}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                );
+              })}
+            </div>
+            
+            {/* Navigation Buttons */}
+            {canScrollLeft && (
+              <CarouselNavigationButton direction="left" scrollTo={scrollTo} category={category} />
+            )}
+            
+            {canScrollRight && (
+              <CarouselNavigationButton direction="right" scrollTo={scrollTo} category={category} />
+            )}
           </div>
-          
-          {/* Navigation Buttons */}
-          {canScrollLeft && (
-            <CarouselNavigationButton direction="left" scrollTo={scrollTo} category={category} />
-          )}
-          
-          {canScrollRight && (
-            <CarouselNavigationButton direction="right" scrollTo={scrollTo} category={category} />
-          )}
         </div>
       </div>
-    </div>
+
+      {/* Global Hover Card */}
+      {hoveredMovie && (
+        <CardHover
+          movie={hoveredMovie}
+          isVisible={hoverState.isVisible}
+          position={hoverState.position}
+          onMouseLeave={handleMouseLeave}
+        />
+      )}
+    </>
   );
 };
 

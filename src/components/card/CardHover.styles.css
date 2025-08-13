@@ -1,0 +1,177 @@
+.card-hover {
+  position: fixed;
+  z-index: 1000;
+  width: 320px;
+  background: #181818;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: hoverFadeIn 0.2s ease-out;
+}
+
+@keyframes hoverFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.hover-video,
+.hover-image,
+.fallback-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hover-content {
+  padding: 16px;
+  color: white;
+}
+
+.hover-header {
+  margin-bottom: 12px;
+}
+
+.hover-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.hover-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+.hover-year,
+.hover-duration,
+.hover-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hover-rating {
+  color: #d3b301;
+}
+
+.hover-synopsis {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #b3b3b3;
+  margin: 0 0 16px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hover-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.hover-play-btn,
+.hover-info-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hover-play-btn {
+  background: #ffffff;
+  color: #000000;
+}
+
+.hover-play-btn:hover {
+  background: #e6e6e6;
+  transform: scale(1.05);
+}
+
+.hover-info-btn {
+  background: rgba(109, 109, 110, 0.7);
+  color: #ffffff;
+}
+
+.hover-info-btn:hover {
+  background: rgba(109, 109, 110, 0.9);
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-hover {
+    width: 280px;
+  }
+  
+  .video-container {
+    height: 157px;
+  }
+  
+  .hover-content {
+    padding: 12px;
+  }
+  
+  .hover-title {
+    font-size: 16px;
+  }
+  
+  .hover-synopsis {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Hover states for better UX */
+.card-hover:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Ensure video doesn't interfere with layout */
+.hover-video {
+  pointer-events: none;
+}
+
+/* Loading state for video */
+.video-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #ffffff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 
