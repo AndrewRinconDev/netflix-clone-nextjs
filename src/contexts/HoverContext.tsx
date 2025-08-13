@@ -62,33 +62,6 @@ export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Smart vertical positioning based on card visibility
     let adjustedY = y;
     
-    // Check if card is cut off at the top
-    if (cardRect.top < 0) {
-      // Card is cut off at the top, show hover below
-      adjustedY = cardRect.bottom + 20;
-    }
-    
-    // Check if card is cut off at the bottom
-    if (cardRect.bottom > viewportHeight) {
-      // Card is cut off at the bottom, show hover above
-      adjustedY = cardRect.top - hoverHeight - 20;
-    }
-    
-    // Ensure the hover doesn't go above the viewport
-    if (adjustedY < 20) {
-      adjustedY = 20;
-    }
-    
-    // Ensure the hover doesn't go below the viewport
-    if (adjustedY + hoverHeight > viewportHeight - 20) {
-      adjustedY = viewportHeight - hoverHeight - 20;
-    }
-    
-    // Final fallback: if still outside viewport, center it
-    if (adjustedY < 0 || adjustedY > viewportHeight) {
-      adjustedY = Math.max(20, (viewportHeight - hoverHeight) / 2);
-    }
-    
     return { x: adjustedX, y: adjustedY };
   }, []);
 
