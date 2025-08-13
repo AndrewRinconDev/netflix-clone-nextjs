@@ -10,9 +10,8 @@
 
 /* Carousel Container */
 .carousel-container {
-  position: relative;
   width: 90vw;
-  overflow: hidden; /* Prevent horizontal scroll on the page */
+  overflow: hidden;
 }
 
 .carousel-wrapper {

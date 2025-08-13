@@ -94,7 +94,7 @@ const CardHover: React.FC<CardHoverProps> = ({
           </div>
         </div>
         
-        <p className="hover-synopsis">{movie.synopsis}</p>
+        {/* <p className="hover-synopsis">{movie.synopsis}</p> */}
         
         <div className="hover-actions">
           <Link 

@@ -107,7 +107,7 @@ const Carousel = ({ category }: ICarouselProps) => {
 
   // Find the movie for the current hover state
   const hoveredMovie = hoverState.movieId 
-    ? data.movies.values.find(movie => movie.id === hoverState.movieId)
+    ? data.movies.values.find((movie: IMovie) => movie.id === hoverState.movieId)
     : null;
 
   return (
@@ -123,7 +123,7 @@ const Carousel = ({ category }: ICarouselProps) => {
                     key={`card-${category}-${index}`}
                     movie={movie}
                     onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => handleMouseEnter(e, movie.id)}
-                    onMouseLeave={handleMouseLeave}
+                    // onMouseLeave={handleMouseLeave}
                   />
                 );
               })}

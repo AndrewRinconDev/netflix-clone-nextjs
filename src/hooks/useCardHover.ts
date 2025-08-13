@@ -16,29 +16,51 @@ export const useCardHover = () => {
   const hoverTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const showHover = useCallback((event: React.MouseEvent, movieId: string) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const cardWidth = 320; // Width of hover card
-    const cardHeight = 400; // Approximate height of hover card
+    const cardRect = event.currentTarget.getBoundingClientRect();
     
-    // Calculate position to center the hover card over the original card
-    let x = rect.left + (rect.width / 2) - (cardWidth / 2);
-    let y = rect.top - cardHeight - 20; // 20px above the card
+    // Use fixed positioning relative to the viewport
+    // Calculate the center position over the card
+    const cardWidth = 240; // Original card width
+    const hoverWidth = 280; // Hover card width
+    const offsetX = (hoverWidth - cardWidth) / 2;
+    
+    // Position the hover card centered over the original card
+    const x = cardRect.left + (cardWidth / 2) - (hoverWidth / 2);
+    const y = cardRect.top - 50; // 20px above the card
+    
+    console.log('Card position:', {
+      cardLeft: cardRect.left,
+      cardTop: cardRect.top,
+      cardWidth,
+      hoverWidth,
+      calculatedX: x,
+      calculatedY: y
+    });
     
     // Ensure the hover card doesn't go off-screen
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     
     // Adjust horizontal position if it goes off-screen
-    if (x < 20) {
-      x = 20;
-    } else if (x + cardWidth > viewportWidth - 20) {
-      x = viewportWidth - cardWidth - 20;
+    let adjustedX = x;
+    if (adjustedX < 20) {
+      adjustedX = 20;
+    } else if (adjustedX + hoverWidth > viewportWidth - 20) {
+      adjustedX = viewportWidth - hoverWidth - 20;
     }
     
     // Adjust vertical position if it goes above the viewport
-    if (y < 20) {
-      y = rect.bottom + 20; // Show below the card instead
+    let adjustedY = y;
+    if (adjustedY < 20) {
+      adjustedY = cardRect.bottom - 50; // Show below the card instead
     }
+    
+    console.log('Final position:', {
+      adjustedX,
+      adjustedY,
+      viewportWidth,
+      viewportHeight
+    });
     
     // Clear any existing timeout
     if (hoverTimeoutRef.current) {
@@ -49,7 +71,7 @@ export const useCardHover = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setHoverState({
         isVisible: true,
-        position: { x, y },
+        position: { x: adjustedX, y: adjustedY },
         movieId,
       });
     }, 300);

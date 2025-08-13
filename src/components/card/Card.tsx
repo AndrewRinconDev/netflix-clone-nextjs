@@ -5,7 +5,7 @@ import { IMovie } from "@/types/media";
 interface ICardProps {
   movie: IMovie;
   onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onMouseLeave: () => void;
+  onMouseLeave?: () => void;
 }
 
 const Card: React.FC<ICardProps> = ({ movie, onMouseEnter, onMouseLeave }) => {

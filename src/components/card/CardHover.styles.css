@@ -1,30 +1,32 @@
 .card-hover {
   position: fixed;
   z-index: 1000;
-  width: 320px;
+  width: 280px;
+  height: fit-content;
   background: #181818;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   pointer-events: auto;
-  animation: hoverFadeIn 0.2s ease-out;
+  animation: hoverZoomIn 0.2s ease-out;
+  transform-origin: center;
 }
 
-@keyframes hoverFadeIn {
+@keyframes hoverZoomIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(10px);
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
   }
 }
 
 .video-container {
   position: relative;
   width: 100%;
-  height: 180px;
+  height: 160px;
   overflow: hidden;
 }
 
@@ -124,11 +126,12 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card-hover {
-    width: 280px;
+    width: 240px;
+    height: 340px;
   }
   
   .video-container {
-    height: 157px;
+    height: 140px;
   }
   
   .hover-content {
