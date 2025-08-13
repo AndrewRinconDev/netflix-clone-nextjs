@@ -85,11 +85,11 @@ export const useCardHover = () => {
     
     // Set a delay before hiding to prevent flickering
     hideTimeoutRef.current = setTimeout(() => {
-      setHoverState({
+      setHoverState(prev => ({
+        ...prev,
         isVisible: false,
-        position: { x: 0, y: 0 },
         movie: null,
-      });
+      }));
       currentCardRef.current = null;
     }, 100);
   }, []);

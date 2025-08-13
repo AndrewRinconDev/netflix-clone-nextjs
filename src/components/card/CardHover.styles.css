@@ -126,8 +126,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card-hover {
-    width: 240px;
-    height: 340px;
+    display: none;
   }
   
   .video-container {
