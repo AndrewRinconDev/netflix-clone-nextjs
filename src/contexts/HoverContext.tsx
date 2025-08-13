@@ -41,10 +41,11 @@ export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Calculate the center position over the card
     const cardWidth = 240; // Original card width
     const hoverWidth = 280; // Hover card width
+    const hoverHeight = 290; // Approximate hover height
     
     // Position the hover card centered over the original card
     const x = cardRect.left + (cardWidth / 2) - (hoverWidth / 2);
-    const y = cardRect.top - 50; // 50px above the card
+    let y = cardRect.top - 50; // 50px above the card
     
     // Ensure the hover card doesn't go off-screen
     const viewportWidth = window.innerWidth;
@@ -58,10 +59,34 @@ export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       adjustedX = viewportWidth - hoverWidth - 20;
     }
     
-    // Adjust vertical position if it goes above the viewport
+    // Smart vertical positioning based on card visibility
     let adjustedY = y;
+    
+    // Check if card is cut off at the top
+    if (cardRect.top < 0) {
+      // Card is cut off at the top, show hover below
+      adjustedY = cardRect.bottom + 20;
+    }
+    
+    // Check if card is cut off at the bottom
+    if (cardRect.bottom > viewportHeight) {
+      // Card is cut off at the bottom, show hover above
+      adjustedY = cardRect.top - hoverHeight - 20;
+    }
+    
+    // Ensure the hover doesn't go above the viewport
     if (adjustedY < 20) {
-      adjustedY = cardRect.bottom + 20; // Show below the card instead
+      adjustedY = 20;
+    }
+    
+    // Ensure the hover doesn't go below the viewport
+    if (adjustedY + hoverHeight > viewportHeight - 20) {
+      adjustedY = viewportHeight - hoverHeight - 20;
+    }
+    
+    // Final fallback: if still outside viewport, center it
+    if (adjustedY < 0 || adjustedY > viewportHeight) {
+      adjustedY = Math.max(20, (viewportHeight - hoverHeight) / 2);
     }
     
     return { x: adjustedX, y: adjustedY };
@@ -79,6 +104,13 @@ export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     
     // Calculate position immediately
     const position = calculatePosition(cardElement);
+    
+    console.log('Hover positioning:', {
+      movie: movie.title,
+      cardRect: cardElement.getBoundingClientRect(),
+      calculatedPosition: position,
+      viewport: { width: window.innerWidth, height: window.innerHeight }
+    });
     
     // Clear any existing show timeout
     if (hoverTimeoutRef.current) {

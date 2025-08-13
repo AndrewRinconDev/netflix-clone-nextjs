@@ -22,6 +22,14 @@ const CardHover: React.FC<CardHoverProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Reset video state when movie changes
+  useEffect(() => {
+    setIsVideoLoaded(false);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+    }
+  }, [movie.id]);
+
   useEffect(() => {
     if (isVisible && videoRef.current) {
       // Start video when hover becomes visible
@@ -64,6 +72,7 @@ const CardHover: React.FC<CardHoverProps> = ({
       <div className="video-container">
         {isVideoLoaded && (
           <video
+            key={`video-${movie.id}`} // Force re-render when movie changes
             ref={videoRef}
             className="hover-video"
             autoPlay={true}
