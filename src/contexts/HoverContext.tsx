@@ -105,13 +105,6 @@ export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Calculate position immediately
     const position = calculatePosition(cardElement);
     
-    console.log('Hover positioning:', {
-      movie: movie.title,
-      cardRect: cardElement.getBoundingClientRect(),
-      calculatedPosition: position,
-      viewport: { width: window.innerWidth, height: window.innerHeight }
-    });
-    
     // Clear any existing show timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);

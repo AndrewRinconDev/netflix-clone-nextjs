@@ -32,7 +32,7 @@ exports.handler = async function (event) {
       body: JSON.stringify(responseBody)
     }
   } catch (e) {
-    console.log(e)
+    console.error(e)
     return {
       statusCode: 500,
       body: JSON.stringify(e)

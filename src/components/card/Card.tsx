@@ -9,7 +9,6 @@ interface ICardProps {
 
 const Card: React.FC<ICardProps> = ({ movie, onMouseEnter }) => {
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log('Card mouse enter:', movie.title);
     onMouseEnter(e, movie);
   };
 

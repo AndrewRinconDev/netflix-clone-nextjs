@@ -36,7 +36,7 @@ const CardHover: React.FC<CardHoverProps> = ({
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {
         // Handle autoplay restrictions
-        console.log('Video autoplay blocked');
+        console.error('Video autoplay blocked');
       });
     } else if (videoRef.current) {
       // Pause video when hover is hidden
@@ -48,13 +48,21 @@ const CardHover: React.FC<CardHoverProps> = ({
     if (isVisible) {
       const timer = setTimeout(() => {
         setIsVideoLoaded(true);
-      }, 1000); // Show video after 1 second of hover
+        // Ensure video plays after loading
+        setTimeout(() => {
+          if (videoRef.current) {
+            videoRef.current.play().catch(() => {
+              console.error('Video autoplay blocked after loading');
+            });
+          }
+        }, 100); // Small delay to ensure video is ready
+      }, 500); // Show video after 1 second of hover
 
       return () => clearTimeout(timer);
     } else {
       setIsVideoLoaded(false);
     }
-  }, [isVisible]);
+  }, [isVisible, movie.title]);
 
   if (!isVisible) return null;
 

@@ -55,38 +55,18 @@ export const useCardHover = () => {
     // Calculate position immediately
     const position = calculatePosition(cardElement);
     
-    console.log('Show hover:', {
-      movieId,
-      cardRect: cardElement.getBoundingClientRect(),
-      calculatedPosition: position,
-      currentHoverState: hoverState
-    });
-    
     // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     
     // Set a delay before showing the hover (500ms for better UX)
-    hoverTimeoutRef.current = setTimeout(() => {
-      console.log('Setting hover state:', {
-        position,
-        movieId,
-        willSetVisible: true
-      });
-      
+    hoverTimeoutRef.current = setTimeout(() => {  
       setHoverState({
         isVisible: true,
         position,
         movieId,
       });
-      
-      console.log('Hover state set, checking in 100ms...');
-      
-      // Check if state was actually updated
-      setTimeout(() => {
-        console.log('Current hover state after update:', hoverState);
-      }, 100);
     }, 500);
   }, [calculatePosition, hoverState]);
 
@@ -122,7 +102,6 @@ export const useCardHover = () => {
   }, [hoverState.isVisible, calculatePosition]);
 
   const handleMouseEnter = useCallback((event: React.MouseEvent, movieId: string) => {
-    console.log('Mouse enter called for movie:', movieId);
     showHover(event, movieId);
   }, [showHover]);
 
