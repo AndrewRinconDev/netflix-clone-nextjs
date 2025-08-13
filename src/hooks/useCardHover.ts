@@ -69,7 +69,7 @@ export const useCardHover = () => {
         position,
         movie,
       });
-    }, 100);
+    }, 300);
   }, [calculatePosition]);
 
   const hideHover = useCallback(() => {

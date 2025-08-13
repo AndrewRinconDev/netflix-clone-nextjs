@@ -1,6 +1,7 @@
 import React from "react";
-import Link from "next/link";
+
 import { IMovie } from "@/types/media";
+import LinkButton from "../detailLink/DetailLink";
 
 interface ICardProps {
   movie: IMovie;
@@ -17,12 +18,12 @@ const Card: React.FC<ICardProps> = ({ movie, onMouseEnter }) => {
       className="card"
       onMouseEnter={handleMouseEnter}
     >
-      <Link href={`/detail/${movie.id}`}>
+      <LinkButton href={`/detail/${movie.id}`}>
         <img 
           src={`/images/movies/${movie.imagePath}`} 
           alt={movie.title} 
         />
-      </Link>
+      </LinkButton>
     </div>
   );
 };
