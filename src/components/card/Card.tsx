@@ -4,16 +4,19 @@ import { IMovie } from "@/types/media";
 
 interface ICardProps {
   movie: IMovie;
-  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onMouseLeave?: () => void;
+  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>, movie: IMovie) => void;
 }
 
-const Card: React.FC<ICardProps> = ({ movie, onMouseEnter, onMouseLeave }) => {
+const Card: React.FC<ICardProps> = ({ movie, onMouseEnter }) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log('Card mouse enter:', movie.title);
+    onMouseEnter(e, movie);
+  };
+
   return (
     <div 
       className="card"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseEnter}
     >
       <Link href={`/detail/${movie.id}`}>
         <img 

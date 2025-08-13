@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/navigation/navbar/Navbar";
 import Footer from "@/components/navigation/footer/Footer";
 import ApolloWrapper from "@/provider/ApolloWrapper";
+import { HoverProvider } from "@/contexts/HoverContext";
 
 import "./globals.css";
 
@@ -24,14 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <ApolloWrapper initialState={null}>
-      <html lang="en">
-        <body className={`${inter.className} bg-black text-white`}>
-          <ToastContainer theme="dark" />
-          <Navbar />
-          <main className="pt-16 relative">{children}</main>
-          <Footer />
-        </body>
-      </html>
+      <HoverProvider>
+        <html lang="en">
+          <body className={`${inter.className} bg-black text-white`}>
+            <ToastContainer theme="dark" />
+            <Navbar />
+            <main className="pt-16 relative">{children}</main>
+            <Footer />
+          </body>
+        </html>
+      </HoverProvider>
     </ApolloWrapper>
   );
 }

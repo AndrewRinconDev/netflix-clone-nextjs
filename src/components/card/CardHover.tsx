@@ -40,7 +40,7 @@ const CardHover: React.FC<CardHoverProps> = ({
     if (isVisible) {
       const timer = setTimeout(() => {
         setIsVideoLoaded(true);
-      }, 500); // Show video after 500ms of hover
+      }, 1000); // Show video after 1 second of hover
 
       return () => clearTimeout(timer);
     } else {
@@ -66,10 +66,10 @@ const CardHover: React.FC<CardHoverProps> = ({
           <video
             ref={videoRef}
             className="hover-video"
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          poster={`/images/movies/${movie.imagePath}`}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            poster={`/images/movies/${movie.imagePath}`}
           >
             <source src={movie.thumbnail} type="video/mp4" />
           </video>

@@ -3,8 +3,10 @@ import React, { useCallback, useEffect, useRef, useState, useMemo } from "react"
 import { useSuspenseQuery } from "@apollo/client";
 
 import Carousel from "@/components/carousel/Carousel";
+import CardHover from "@/components/card/CardHover";
 import { GET_ALL_GENRES } from "@/lib/gql/queries";
 import { IGenre, IGenreResponse } from "@/types/media";
+import { useHoverContext } from "@/contexts/HoverContext";
 
 import "./CarouselSection.styles.css";
 
@@ -18,6 +20,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
   
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const { hoverState } = useHoverContext();
 
   const { fetchMore } = useSuspenseQuery<IGenreResponse>(GET_ALL_GENRES, {
     variables: { pageSize, pageState },
@@ -109,6 +112,16 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
         ))}
       </div>
       {loaderElement}
+      
+      {/* Global Hover Card */}
+      {hoverState.movie && (
+        <CardHover
+          movie={hoverState.movie}
+          isVisible={hoverState.isVisible}
+          position={hoverState.position}
+          onMouseLeave={() => {}} // Empty function since we handle it globally
+        />
+      )}
     </>
   );
 }
