@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 import CarouselSectionSkeleton from "@/components/skeletons/carouselSection.tsx/CarouselSectionSkeleton";
@@ -7,8 +7,10 @@ import { GET_ALL_GENRES } from "@/lib/gql/queries";
 import CarouselSection from "@/components/carouselSection/CarouselSection";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
+import { useCardHover } from "@/hooks/useCardHover";
 
 function HomePage() {
+  const { hideHover } = useCardHover();
   const { data, loading } = useQuery(GET_ALL_GENRES, {
       variables: { pageSize: 4, pageState: null },
       context: {
@@ -17,6 +19,10 @@ function HomePage() {
         }
       }
     });
+
+  useEffect(() => {
+    hideHover();
+  }, []);
 
   if (loading) return <LoadingSpinner width={150} height={135} />;
   if (!data || !data.genres) return <div>No data available</div>;
