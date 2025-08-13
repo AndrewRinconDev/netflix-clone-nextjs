@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import Link from "next/link";
+import React, { useState, useEffect, useRef } from "react";
 
 import { IMovie } from "@/types/media";
-import "./CardHover.styles.css";
 import LinkButton from "../detailLink/DetailLink";
+
+import "./CardHover.styles.css";
 
 interface CardHoverProps {
   movie: IMovie;
