@@ -29,7 +29,6 @@ export const useCardHover = () => {
     
     // Ensure the hover card doesn't go off-screen
     const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
     
     // Adjust horizontal position if it goes off-screen
     let adjustedX = x;
@@ -39,13 +38,7 @@ export const useCardHover = () => {
       adjustedX = viewportWidth - hoverWidth - 20;
     }
     
-    // Adjust vertical position if it goes above the viewport
-    let adjustedY = y;
-    // if (adjustedY < 20) {
-    //   adjustedY = cardRect.bottom - 50; // Show below the card instead
-    // }
-    
-    return { x: adjustedX, y: adjustedY };
+    return { x: adjustedX, y };
   }, []);
 
   const showHover = useCallback((event: React.MouseEvent, movieId: string) => {
@@ -68,7 +61,7 @@ export const useCardHover = () => {
         movieId,
       });
     }, 500);
-  }, [calculatePosition, hoverState]);
+  }, [calculatePosition]);
 
   const hideHover = useCallback(() => {
     // Clear any existing timeout
