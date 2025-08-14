@@ -1,20 +1,28 @@
 .video-player-skeleton {
-  width: 100%;
-  height: 100vh;
-  background: #000;
-  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 100vh;
+  height: 100%;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  padding: 80px 6% 0 6%;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Video container skeleton */
 .video-container-skeleton {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1a1a1a;
   position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100vh;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
 }
 
 .video-placeholder {
@@ -23,102 +31,75 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(45deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(45deg, rgba(26, 26, 26, 0.6) 25%, rgba(42, 42, 42, 0.6) 50%, rgba(26, 26, 26, 0.6) 75%);
   background-size: 200% 200%;
   animation: shimmer 2s infinite;
+  position: relative;
 }
 
 .play-icon-skeleton {
   width: 80px;
   height: 80px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 1;
 }
 
 .play-icon-skeleton::before {
   content: '';
   width: 0;
   height: 0;
-  border-left: 20px solid rgba(255, 255, 255, 0.3);
+  border-left: 20px solid rgba(255, 255, 255, 0.15);
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
   margin-left: 5px;
 }
 
-/* Controls skeleton */
-.controls-skeleton {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
+/* Overlay skeleton similar to VideoPlayer */
+.overlay-skeleton {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-}
-
-.progress-bar-skeleton {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-.progress-fill-skeleton {
-  width: 30%;
-  height: 100%;
-  background: linear-gradient(90deg, #e50914 25%, #f40612 50%, #e50914 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-  border-radius: 2px;
-}
-
-.control-buttons-skeleton {
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
+  align-items: center;
   gap: 20px;
-  align-items: center;
+  padding: 20px 50px;
+  z-index: 2;
 }
 
-.control-button-skeleton {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-  border-radius: 50%;
-}
-
-/* Back button skeleton */
 .back-button-skeleton {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 15px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 25px;
-  cursor: pointer;
+  justify-content: center;
 }
 
 .back-icon-skeleton {
   width: 20px;
   height: 20px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 25%, rgba(204, 204, 204, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: 50%;
 }
 
-.back-text-skeleton {
-  width: 60px;
-  height: 16px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+.title-skeleton {
+  width: 200px;
+  height: 24px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 25%, rgba(204, 204, 204, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: 4px;
@@ -134,7 +115,23 @@
   }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments matching VideoPlayer */
+@media screen and (max-width: 800px) {
+  .video-player-skeleton {
+    padding: 80px 2% 0 2%;
+  }
+
+  .overlay-skeleton {
+    padding: 10px 20px;
+    gap: 10px;
+  }
+
+  .title-skeleton {
+    width: 150px;
+    height: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .play-icon-skeleton {
     width: 60px;
@@ -142,30 +139,15 @@
   }
   
   .play-icon-skeleton::before {
-    border-left: 15px solid rgba(255, 255, 255, 0.3);
+    border-left: 15px solid rgba(255, 255, 255, 0.15);
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
     margin-left: 3px;
   }
   
-  .controls-skeleton {
-    padding: 15px;
-  }
-  
-  .control-button-skeleton {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .back-button-skeleton {
-    top: 15px;
-    left: 15px;
-    padding: 8px 12px;
-  }
-  
-  .back-text-skeleton {
-    width: 50px;
-    height: 14px;
+  .title-skeleton {
+    width: 120px;
+    height: 18px;
   }
 }
 
@@ -176,29 +158,15 @@
   }
   
   .play-icon-skeleton::before {
-    border-left: 12px solid rgba(255, 255, 255, 0.3);
+    border-left: 12px solid rgba(255, 255, 255, 0.15);
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     margin-left: 2px;
   }
   
-  .controls-skeleton {
-    padding: 12px;
-  }
-  
-  .control-buttons-skeleton {
-    gap: 15px;
-  }
-  
-  .control-button-skeleton {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .back-button-skeleton {
-    top: 10px;
-    left: 10px;
-    padding: 6px 10px;
+  .overlay-skeleton {
+    padding: 8px 15px;
+    gap: 8px;
   }
   
   .back-icon-skeleton {
@@ -206,8 +174,8 @@
     height: 16px;
   }
   
-  .back-text-skeleton {
-    width: 40px;
-    height: 12px;
+  .title-skeleton {
+    width: 100px;
+    height: 16px;
   }
 }

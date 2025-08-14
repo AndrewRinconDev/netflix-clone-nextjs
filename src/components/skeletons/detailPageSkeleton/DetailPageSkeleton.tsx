@@ -4,13 +4,13 @@ import "./DetailPageSkeleton.styles.css";
 const DetailPageSkeleton = () => {
   return (
     <div className="detail-page-skeleton">
-      {/* Image skeleton */}
+      {/* Image skeleton matching original layout */}
       <div className="image-skeleton">
         <div className="skeleton-image"></div>
         <div className="skeleton-overlay"></div>
       </div>
 
-      {/* Content skeleton */}
+      {/* Content skeleton matching original detail-container */}
       <div className="content-skeleton">
         {/* Title skeleton */}
         <div className="skeleton-title"></div>

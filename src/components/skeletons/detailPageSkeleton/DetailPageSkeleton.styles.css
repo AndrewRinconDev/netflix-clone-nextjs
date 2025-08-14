@@ -1,22 +1,26 @@
 .detail-page-skeleton {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  max-width: 100%;
 }
 
-/* Image skeleton */
+/* Image skeleton matching original image-container */
 .image-skeleton {
-  position: relative;
-  width: 100%;
-  height: 70vh;
+  width: 100vw;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .skeleton-image {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, rgba(26, 26, 26, 0.7) 25%, rgba(42, 42, 42, 0.7) 50%, rgba(26, 26, 26, 0.7) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -25,41 +29,40 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
 }
 
-/* Content skeleton */
+/* Content skeleton matching original detail-container */
 .content-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 170px 0 90px 90px;
+  max-width: 825px;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  padding: 40px 6%;
-  z-index: 2;
 }
 
-/* Title skeleton */
+/* Title skeleton matching original h1 */
 .skeleton-title {
   width: 60%;
   height: 48px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 25%, rgba(204, 204, 204, 0.25) 50%, rgba(255, 255, 255, 0.25) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Badges skeleton */
+/* Badges skeleton matching original detail-badges */
 .skeleton-badges {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
@@ -67,24 +70,25 @@
 .skeleton-badge {
   width: 80px;
   height: 32px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
-  border-radius: 16px;
+  border-radius: 5px;
 }
 
-/* Synopsis skeleton */
+/* Synopsis skeleton matching original p */
 .skeleton-synopsis {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .skeleton-line {
-  height: 16px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  height: 20px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 25%, rgba(204, 204, 204, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: 4px;
   margin-bottom: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .skeleton-line:nth-child(1) {
@@ -99,27 +103,33 @@
   width: 70%;
 }
 
-/* Buttons skeleton */
+/* Buttons skeleton matching original detail-buttons */
 .skeleton-buttons {
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .skeleton-button {
   height: 48px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, rgba(26, 26, 26, 0.6) 25%, rgba(42, 42, 42, 0.6) 50%, rgba(26, 26, 26, 0.6) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
 .skeleton-play {
   width: 140px;
+  background: linear-gradient(90deg, rgba(217, 30, 39, 0.4) 25%, rgba(189, 37, 45, 0.4) 50%, rgba(217, 30, 39, 0.4) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 .skeleton-back {
   width: 100px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 25%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.15) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 /* Shimmer animation */
@@ -132,10 +142,20 @@
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments matching original */
+@media screen and (max-width: 1024px) {
   .content-skeleton {
-    padding: 30px 4%;
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .content-skeleton {
+    position: relative;
+    padding: 0 20px 0 20px;
+    margin-top: -50px;
+    max-width: 100%;
+    gap: 10px;
   }
   
   .skeleton-title {
@@ -143,31 +163,44 @@
     height: 40px;
   }
   
+  .skeleton-badges {
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  
   .skeleton-badge {
     width: 70px;
     height: 28px;
+    border-radius: 3px;
+  }
+  
+  .skeleton-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
   
   .skeleton-button {
+    width: 100%;
     height: 44px;
   }
   
   .skeleton-play {
-    width: 120px;
+    width: 100%;
   }
   
   .skeleton-back {
-    width: 90px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(50, 50, 50, 0.3) 25%, rgba(50, 50, 50, 0.2) 50%, rgba(50, 50, 50, 0.3) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
 }
 
 @media (max-width: 480px) {
-  .image-skeleton {
-    height: 60vh;
-  }
-  
   .content-skeleton {
-    padding: 25px 4%;
+    padding: 0 15px 0 15px;
   }
   
   .skeleton-title {
@@ -176,11 +209,15 @@
   }
   
   .skeleton-badges {
-    gap: 10px;
+    gap: 5px;
   }
   
   .skeleton-badge {
     width: 60px;
     height: 24px;
+  }
+  
+  .skeleton-line {
+    height: 16px;
   }
 }

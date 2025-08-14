@@ -9,26 +9,14 @@ const VideoPlayerSkeleton = () => {
         <div className="video-placeholder">
           <div className="play-icon-skeleton"></div>
         </div>
-      </div>
-      
-      {/* Controls skeleton */}
-      <div className="controls-skeleton">
-        <div className="progress-bar-skeleton">
-          <div className="progress-fill-skeleton"></div>
-        </div>
         
-        <div className="control-buttons-skeleton">
-          <div className="control-button-skeleton"></div>
-          <div className="control-button-skeleton"></div>
-          <div className="control-button-skeleton"></div>
-          <div className="control-button-skeleton"></div>
+        {/* Overlay skeleton similar to VideoPlayer */}
+        <div className="overlay-skeleton">
+          <div className="back-button-skeleton">
+            <div className="back-icon-skeleton"></div>
+          </div>
+          <div className="title-skeleton"></div>
         </div>
-      </div>
-      
-      {/* Back button skeleton */}
-      <div className="back-button-skeleton">
-        <div className="back-icon-skeleton"></div>
-        <div className="back-text-skeleton"></div>
       </div>
     </div>
   );
