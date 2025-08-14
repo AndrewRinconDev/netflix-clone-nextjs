@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useCategoriesCache } from '@/contexts/CategoriesCacheContext';
+import { getCategories } from '@/services/categoriesService';
 
 export interface IMovie {
   id: string;
@@ -31,7 +32,7 @@ export interface IGenreResponse {
 export const useCategories = (initialPageSize: number = 4, initialData?: IGenreResponse | null) => {
   const { cachedData, setCachedData, isDataCached, clearCache } = useCategoriesCache();
   
-  // local state
+  // Local state
   const [data, setData] = useState<IGenreResponse | null>(initialData || cachedData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,18 +51,11 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
       setLoading(true);
       setError(null);
 
-      const params = new URLSearchParams({
-        pageSize: pageSize.toString(),
-        ...(currentPageState && { pageState: currentPageState })
-      });
-
-      const response = await fetch(`/api/categories?${params}`);
+      const result = await getCategories(pageSize, currentPageState);
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!result) {
+        throw new Error('Failed to fetch categories');
       }
-
-      const result: IGenreResponse = await response.json();
       
       if (currentPageState) {
         // Append new data for pagination

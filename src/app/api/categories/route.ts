@@ -19,7 +19,6 @@ export async function GET(request: NextRequest) {
       }
     });
 
-
     if (genresResponse.error) {
       throw new Error(`GraphQL errors: ${JSON.stringify(genresResponse.error)}`);
     }

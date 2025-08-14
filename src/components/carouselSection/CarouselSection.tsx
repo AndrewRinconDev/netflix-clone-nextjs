@@ -79,7 +79,7 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     [loading, hasMore]
   );
 
-  // Si no hay datos iniciales y está cargando, mostrar loading
+  // Show loading if no initial data and currently loading
   if (isLoading && !displayData) {
     return <LoadingSpinner width={100} height={100} />;
   }

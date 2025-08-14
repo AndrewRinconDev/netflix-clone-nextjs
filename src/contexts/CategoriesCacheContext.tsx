@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { IGenreResponse } from '@/hooks/useCategories';
 
+/**
+ * Context interface for categories cache management
+ */
 interface CategoriesCacheContextType {
   cachedData: IGenreResponse | null;
   setCachedData: (data: IGenreResponse | null) => void;
@@ -11,6 +14,11 @@ interface CategoriesCacheContextType {
 
 const CategoriesCacheContext = createContext<CategoriesCacheContextType | undefined>(undefined);
 
+/**
+ * Hook to use the categories cache context
+ * @returns CategoriesCacheContextType
+ * @throws Error if used outside of CategoriesCacheProvider
+ */
 export const useCategoriesCache = () => {
   const context = useContext(CategoriesCacheContext);
   if (context === undefined) {
@@ -23,6 +31,10 @@ interface CategoriesCacheProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Provider component for categories cache context
+ * Manages global state for cached categories data
+ */
 export const CategoriesCacheProvider: React.FC<CategoriesCacheProviderProps> = ({ children }) => {
   const [cachedData, setCachedData] = useState<IGenreResponse | null>(null);
 
