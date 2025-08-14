@@ -1,11 +1,14 @@
 'use client'
-import { useState } from "react";
+import { useState, lazy, Suspense, useMemo } from "react";
 
 import { IMovie } from "@/types/media";
 import HeroDetail from "../heroDetail/HeroDetail";
-import VideoPlayer from "../videoPlayer/VideoPlayer";
+import VideoPlayerSkeleton from "../skeletons/videoPlayerSkeleton/VideoPlayerSkeleton";
 
 import "./DetailPageWrapper.styles.css";
+
+// Lazy load VideoPlayer component for better performance
+const VideoPlayer = lazy(() => import("../videoPlayer/VideoPlayer"));
 
 interface IDetailPageWrapperProps {
   movie: IMovie;
@@ -14,19 +17,30 @@ interface IDetailPageWrapperProps {
 function DetailPageWrapper({ movie }: IDetailPageWrapperProps) {
   const [showPlayer, setShowPlayer] = useState(false);
 
+  // Memoize the movie data to prevent unnecessary re-renders
+  const memoizedMovie = useMemo(() => movie, [movie]);
+
+  // Memoize the HeroDetail component to prevent unnecessary re-renders
+  const heroDetailComponent = useMemo(() => (
+    <HeroDetail movie={memoizedMovie} onPlayClick={() => setShowPlayer(true)} />
+  ), [memoizedMovie]);
+
+  // Memoize the VideoPlayer component to prevent unnecessary re-renders
+  const videoPlayerComponent = useMemo(() => (
+    <Suspense fallback={<VideoPlayerSkeleton />}>
+      <VideoPlayer
+        movie={memoizedMovie}
+        autoPlay
+        loop
+        controls
+        onBackClick={() => setShowPlayer(false)}
+      />
+    </Suspense>
+  ), [memoizedMovie]);
+
   return (
     <div className="detail-page-wrapper">
-      {!showPlayer ? (
-        <HeroDetail movie={movie} onPlayClick={() => setShowPlayer(true)} />
-      ) : (
-        <VideoPlayer
-          movie={movie}
-          autoPlay
-          loop
-          controls
-          onBackClick={() => setShowPlayer(false)}
-        />
-      )}
+      {!showPlayer ? heroDetailComponent : videoPlayerComponent}
     </div>
   );
 }
