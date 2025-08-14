@@ -54,12 +54,6 @@ function CarouselSection() {
     };
   }, [handleIntersection, observerOptions, hasMore]);
 
-  // // Memoize the filtered items to avoid unnecessary re-renders
-  // const filteredItems = useMemo(() => 
-  //   data?.genres.values.filter((_, index) => index >= 0) || [],
-  //   [data?.genres.values]
-  // );
-
   // Memoize the loader element
   const loaderElement = useMemo(() => 
     !loading && hasMore ? (

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useCategoriesCache } from '@/contexts/CategoriesCacheContext';
 
 export interface IMovie {
   id: string;
@@ -28,11 +29,13 @@ export interface IGenreResponse {
 }
 
 export const useCategories = (initialPageSize: number = 4) => {
-  const [data, setData] = useState<IGenreResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { cachedData, setCachedData, isDataCached, clearCache } = useCategoriesCache();
+  
+  const [data, setData] = useState<IGenreResponse | null>(cachedData);
+  const [loading, setLoading] = useState(!isDataCached);
   const [error, setError] = useState<string | null>(null);
-  const [hasMore, setHasMore] = useState(false);
-  const [pageState, setPageState] = useState<string | null>(null);
+  const [hasMore, setHasMore] = useState(cachedData?.genres.hasMore || false);
+  const [pageState, setPageState] = useState<string | null>(cachedData?.genres.pageState || null);
 
   const fetchCategories = useCallback(async (pageSize: number, currentPageState: string | null = null) => {
     try {
@@ -54,16 +57,20 @@ export const useCategories = (initialPageSize: number = 4) => {
       
       if (currentPageState) {
         // Append new data for pagination
-        setData(prev => prev ? {
+        const updatedData = {
           genres: {
-            values: [...prev.genres.values, ...result.genres.values],
+            values: [...(data?.genres.values || []), ...result.genres.values],
             pageState: result.genres.pageState,
             hasMore: result.genres.hasMore
           }
-        } : result);
+        };
+        
+        setData(updatedData);
+        setCachedData(updatedData);
       } else {
         // Initial load
         setData(result);
+        setCachedData(result);
       }
       
       setPageState(result.genres.pageState);
@@ -74,17 +81,47 @@ export const useCategories = (initialPageSize: number = 4) => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [data?.genres.values, setCachedData]);
 
   const loadMore = useCallback(() => {
     if (!hasMore || loading || !pageState) return;
     fetchCategories(initialPageSize, pageState);
   }, [hasMore, loading, pageState, fetchCategories, initialPageSize]);
 
-  // Initial fetch
-  useEffect(() => {
+  const forceRefresh = useCallback(() => {
+    clearCache();
+    setData(null);
+    setLoading(true);
+    setError(null);
+    setHasMore(false);
+    setPageState(null);
     fetchCategories(initialPageSize);
-  }, [fetchCategories, initialPageSize]);
+  }, [clearCache, fetchCategories, initialPageSize]);
+
+  // Initial fetch only if no cached data
+  useEffect(() => {
+    if (!isDataCached) {
+      fetchCategories(initialPageSize);
+    }
+  }, [fetchCategories, initialPageSize, isDataCached]);
+
+  // Update local state when cache changes
+  useEffect(() => {
+    if (cachedData && !data) {
+      setData(cachedData);
+      setHasMore(cachedData.genres.hasMore);
+      setPageState(cachedData.genres.pageState);
+      setLoading(false);
+    }
+  }, [cachedData, data]);
+
+  // Cleanup effect - don't clear cache on unmount to preserve data between navigations
+  useEffect(() => {
+    return () => {
+      // Keep the cache when component unmounts to preserve data between navigations
+      // The cache will be cleared only when explicitly called or when the app is refreshed
+    };
+  }, []);
 
   return {
     data,
@@ -92,7 +129,8 @@ export const useCategories = (initialPageSize: number = 4) => {
     error,
     hasMore,
     loadMore,
-    refetch: () => fetchCategories(initialPageSize)
+    refetch: () => fetchCategories(initialPageSize),
+    forceRefresh
   };
 };
 

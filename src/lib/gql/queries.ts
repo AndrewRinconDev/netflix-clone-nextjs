@@ -1,34 +1,31 @@
 import { gql } from '@apollo/client'
 import { MovieFields } from './fragments'
 
-export const GET_ALL_GENRES = gql`
-  query getAllGenres($pageSize: Int!, $pageState: String) {
-      genres (
-        value: { label: "genre"},
-        options: { pageSize: $pageSize, pageState: $pageState}
-      ) {
-        values {
-          value
-        }
-        pageState
-      }
+export const GET_ALL_GENRES = `
+  query getAllGenre($pageSize: Int, $pageState: String) {
+    genres (
+      value: {label: "genre"},
+      options: { pageSize: $pageSize, pageState: $pageState }
+    ) {
+      values {
+        value
+      },
+      pageState
     }
-`
+  }
+`;
 
 export const GET_MOVIES_BY_GENRE = gql`
-  query getMovieAction ($genre: String!) {
-  # query getMovieAction ($genre: String!, $pageState: String) {
+  query getMovieByGenre($genre: String) {
     movies (
-      value: { genre: $genre },
-      # orderBy: [year_DESC],
-      # options: { pageSize: 6, pageState: $pageState}
+      value: {genre: $genre}
     ) {
-      values {...MovieFields}
+      values {...MovieFields},
       pageState
     }
   }
   ${MovieFields}
-`
+`;
 
 export const GET_MOVIES_BY_ID = gql`
   query getMovieById($id: Uuid!) {

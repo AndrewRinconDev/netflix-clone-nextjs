@@ -1,38 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// GraphQL queries
-const GET_ALL_GENRES = `
-  query getAllGenre($pageSize: Int, $pageState: String) {
-    genres (
-      value: {label: "genre"},
-      options: { pageSize: $pageSize, pageState: $pageState }
-    ) {
-      values {
-        value
-      },
-      pageState
-    }
-  }
-`;
-
-const GET_MOVIES_BY_GENRE = `
-  query getMovieByGenre($genre: String) {
-    movies (
-      value: {genre: $genre}
-    ) {
-      values {
-        id,
-        genre,
-        year,
-        title,
-        duration,
-        synopsis,
-        thumbnail,
-        imagePath
-      }
-    }
-  }
-`;
+import { GET_ALL_GENRES, GET_MOVIES_BY_GENRE } from '@/lib/gql/queries';
 
 export async function GET(request: NextRequest) {
   try {
