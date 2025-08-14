@@ -14,6 +14,7 @@ interface HoverContextType {
   hoverState: HoverState;
   showHover: (event: React.MouseEvent, movie: IMovie) => void;
   hideHover: () => void;
+  forceHideHover: () => void;
 }
 
 const HoverContext = createContext<HoverContextType | undefined>(undefined);
@@ -27,10 +28,10 @@ export const useHoverContext = () => {
 };
 
 export const HoverProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { hoverState, showHover, hideHover } = useCardHover()
+  const { hoverState, showHover, hideHover, forceHideHover } = useCardHover()
 
   return (
-    <HoverContext.Provider value={{ hoverState, showHover, hideHover }}>
+    <HoverContext.Provider value={{ hoverState, showHover, hideHover, forceHideHover }}>
       {children}
     </HoverContext.Provider>
   );

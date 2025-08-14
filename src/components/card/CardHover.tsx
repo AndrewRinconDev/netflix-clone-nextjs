@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import { IMovie } from "@/hooks/useCategories";
 import DetailLink from "../detailLink/DetailLink";
@@ -22,13 +22,18 @@ const CardHover: React.FC<CardHoverProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const mouseLeaveTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const lastMovieIdRef = useRef<string | null>(null);
   const detailLink = `/detail/${movie.id}`;
 
   // Reset video state when movie changes
   useEffect(() => {
-    setIsVideoLoaded(false);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
+    if (lastMovieIdRef.current !== movie.id) {
+      setIsVideoLoaded(false);
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+      }
+      lastMovieIdRef.current = movie.id;
     }
   }, [movie.id]);
 
@@ -57,14 +62,36 @@ const CardHover: React.FC<CardHoverProps> = ({
               console.error("Video autoplay blocked after loading");
             });
           }
-        }, 100); // Small delay to ensure video is ready
-      }, 500); // Show video after 1 second of hover
+        }, 30); // Reduced delay for better responsiveness
+      }, 200); // Reduced from 300ms to 200ms for faster video loading
 
       return () => clearTimeout(timer);
     } else {
       setIsVideoLoaded(false);
     }
   }, [isVisible, movie.title]);
+
+  // Enhanced mouse leave handling with shorter delay
+  const handleMouseLeave = useCallback(() => {
+    // Clear any existing timeout
+    if (mouseLeaveTimeoutRef.current) {
+      clearTimeout(mouseLeaveTimeoutRef.current);
+    }
+    
+    // Set a very small delay to prevent flickering when moving between elements
+    mouseLeaveTimeoutRef.current = setTimeout(() => {
+      onMouseLeave();
+    }, 20); // Reduced from 30ms to 20ms for better responsiveness
+  }, [onMouseLeave]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (mouseLeaveTimeoutRef.current) {
+        clearTimeout(mouseLeaveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   if (!isVisible) return null;
 
@@ -73,10 +100,10 @@ const CardHover: React.FC<CardHoverProps> = ({
       ref={containerRef}
       className="card-hover"
       style={{
-        left: position.x,
-        top: position.y,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
       }}
-      onMouseLeave={onMouseLeave}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Video Preview */}
       <DetailLink href={detailLink}>

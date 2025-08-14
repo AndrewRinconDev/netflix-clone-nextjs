@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { IMovie } from "@/hooks/useCategories";
 import DetailLink from "../detailLink/DetailLink";
@@ -9,9 +9,9 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({ movie, onMouseEnter }) => {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     onMouseEnter(e, movie);
-  };
+  }, [movie, onMouseEnter]);
 
   return (
     <div 
@@ -22,6 +22,8 @@ const Card: React.FC<ICardProps> = ({ movie, onMouseEnter }) => {
         <img 
           src={`/images/movies/${movie.imagePath}`} 
           alt={movie.title} 
+          loading="lazy"
+          decoding="async"
         />
       </DetailLink>
     </div>

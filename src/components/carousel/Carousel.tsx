@@ -18,7 +18,7 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { showHover, hideHover } = useHoverContext();
+  const { showHover, hideHover, forceHideHover } = useHoverContext();
 
   const checkScrollState = useCallback(() => {
     if (!cardsRef.current) return;
@@ -38,7 +38,8 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
   const scrollTo = useCallback((direction: 'left' | 'right') => {
     if (!cardsRef.current) return;
 
-    hideHover();
+    // Force hide hover immediately when scrolling
+    forceHideHover();
     
     const container = cardsRef.current;
     const scrollAmount = container.clientWidth * 0.8;
@@ -60,7 +61,7 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
 
     // Check scroll state after smooth scroll completes
     setTimeout(checkScrollState, 500);
-  }, [checkScrollState, hideHover]);
+  }, [checkScrollState, forceHideHover]);
 
   // Single useEffect to handle scroll events and initial setup
   useEffect(() => {
@@ -70,6 +71,9 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
     let scrollTimeout: NodeJS.Timeout;
     
     const handleScroll = () => {
+      // Hide hover on scroll to prevent positioning issues
+      forceHideHover();
+      
       clearTimeout(scrollTimeout);
       checkScrollState();
       
@@ -88,7 +92,7 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
       clearTimeout(scrollTimeout);
       clearTimeout(initialTimer);
     };
-  }, [checkScrollState]);
+  }, [checkScrollState, forceHideHover]);
 
   // Check scroll state when data changes
   useEffect(() => {
