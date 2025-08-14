@@ -102,7 +102,7 @@ export const useCardHover = () => {
         // Reset transition flag after showing
         isTransitioningRef.current = false;
       }
-    }, 100);
+    }, 200);
   }, [calculatePosition]);
 
   const hideHover = useCallback(() => {
