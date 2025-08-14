@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GET_ALL_GENRES, GET_MOVIES_BY_GENRE } from '@/lib/gql/queries';
 import { getApolloClient } from '@/lib/apollo/client';
-import { IGenreResponse, IMovieResponse } from '@/types/media';
+import { IGenreResponse, IMovie, IMovieResponse } from '@/types/media';
 
 export async function GET(request: NextRequest) {
   try {
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
           };
         }
 
-        const movies = moviesResponse.data.movies.values.map((movie: any) => ({
+        const movies = moviesResponse.data.movies.values.map((movie: IMovie) => ({
           ...movie,
           voteAverage: movie.voteAverage || 8.0, // Use the value from the fragment
           thumbnail: movie.thumbnail || `/videos/${movie.title.toLowerCase().replace(/\s+/g, '_')}.mp4`

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { useCategoriesCache } from '@/contexts/CategoriesCacheContext';
 import { getCategories } from '@/services/categoriesService';
 
@@ -32,14 +32,13 @@ export interface IGenreResponse {
 export const useCategories = (initialPageSize: number = 4, initialData?: IGenreResponse | null) => {
   const { cachedData, setCachedData, isDataCached, clearCache } = useCategoriesCache();
   
-  // Local state
   const [data, setData] = useState<IGenreResponse | null>(initialData || cachedData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(initialData?.genres.hasMore || cachedData?.genres.hasMore || false);
   const [pageState, setPageState] = useState<string | null>(initialData?.genres.pageState || cachedData?.genres.pageState || null);
   
-  // Ref to avoid duplicate calls
+  // Refs to prevent duplicate calls and track initialization
   const loadingRef = useRef(false);
   const initialLoadDone = useRef(!!initialData);
 
@@ -54,7 +53,7 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
       const result = await getCategories(pageSize, currentPageState);
       
       if (!result) {
-        throw new Error('Failed to fetch categories');
+        throw new Error('Failed to fetch categories from API');
       }
       
       if (currentPageState) {
@@ -79,7 +78,9 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
       setHasMore(result.genres.hasMore);
       
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+      setError(errorMessage);
+      console.error('Error in fetchCategories:', err);
     } finally {
       setLoading(false);
       loadingRef.current = false;
@@ -102,7 +103,20 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
     fetchCategories(initialPageSize);
   }, [clearCache, fetchCategories, initialPageSize]);
 
-  // Initial fetch only if no initial data and no cached data
+  /**
+   * Refetches the current page of categories
+   * Useful for refreshing data without clearing cache
+   */
+  const refetch = useCallback(() => {
+    fetchCategories(initialPageSize);
+  }, [fetchCategories, initialPageSize]);
+
+  // Memoized values for performance optimization
+  const memoizedData = useMemo(() => data, [data]);
+  const memoizedHasMore = useMemo(() => hasMore, [hasMore]);
+  const memoizedPageState = useMemo(() => pageState, [pageState]);
+
+  // Initial fetch effect - only runs if no initial data and no cached data
   useEffect(() => {
     if (!initialLoadDone.current && !isDataCached && !initialData) {
       initialLoadDone.current = true;
@@ -110,7 +124,7 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
     }
   }, [fetchCategories, initialPageSize, isDataCached, initialData]);
 
-  // Update local state when cache changes
+  // Cache synchronization effect - updates local state when cache changes
   useEffect(() => {
     if (cachedData && !data) {
       setData(cachedData);
@@ -120,7 +134,7 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
     }
   }, [cachedData, data]);
 
-  // Cleanup effect - don't clear cache on unmount to preserve data between navigations
+  // Cleanup effect - preserves cache between component unmounts
   useEffect(() => {
     return () => {
       // Keep the cache when component unmounts to preserve data between navigations
@@ -129,12 +143,13 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
   }, []);
 
   return {
-    data,
+    data: memoizedData,
     loading,
     error,
-    hasMore,
+    hasMore: memoizedHasMore,
+    pageState: memoizedPageState,
     loadMore,
-    refetch: () => fetchCategories(initialPageSize),
+    refetch,
     forceRefresh
   };
 };

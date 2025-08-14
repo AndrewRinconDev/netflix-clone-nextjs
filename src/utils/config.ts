@@ -1,52 +1,60 @@
 /**
- * Configuration file for environment variables and app settings
- * Centralizes all configuration values for easy maintenance
+ * Main configuration object containing all app settings
  */
 export const config = {
-  // Base URL for API calls
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
   
-  // API endpoints
   api: {
     categories: '/api/categories',
     graphqlProxy: '/api/graphql-proxy',
   },
   
-  // Pagination settings
   pagination: {
-    defaultPageSize: 4,
-    initialLoadSize: 2, // Load only 2 categories initially for faster display
+    defaultPageSize: 4,        // Default categories per page
+    initialLoadSize: 2,        // Initial categories for SSR (faster display)
   },
   
-  // Loading settings
   loading: {
-    intersectionThreshold: 0.1,
-    intersectionRootMargin: '200px 0px',
+    intersectionThreshold: 0.1,        // When to trigger lazy loading (10% visible)
+    intersectionRootMargin: '300px 0px', // Pre-load margin for smooth UX
   },
   
-  // Cache settings
   cache: {
-    enableCache: true,
-    cacheTimeout: 5 * 60 * 1000, // 5 minutes
+    enableCache: true,                 // Whether to enable caching
+    cacheTimeout: 5 * 60 * 1000,      // Cache timeout in milliseconds (5 minutes)
   }
-};
+} as const;
 
 /**
- * Helper function to build API URLs with query parameters
- * @param endpoint - API endpoint path
- * @param params - Query parameters object
- * @returns Complete API URL string
+ * Helper function to build complete API URLs with query parameters
  */
 export const buildApiUrl = (endpoint: string, params?: Record<string, string>): string => {
-  const url = new URL(endpoint, config.baseUrl);
+  if (!endpoint || typeof endpoint !== 'string') {
+    throw new Error('Endpoint must be a non-empty string');
+  }
+
+  const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  const url = new URL(normalizedEndpoint, config.baseUrl);
   
-  if (params) {
+  if (params && typeof params === 'object') {
     Object.entries(params).forEach(([key, value]) => {
-      if (value) {
-        url.searchParams.append(key, value);
+      if (value !== null && value !== undefined && value !== '') {
+        url.searchParams.append(key, value.toString());
       }
     });
   }
   
   return url.toString();
+};
+
+export const getEnvironment = (): string => {
+  return process.env.NODE_ENV || 'development';
+};
+
+export const isDevelopment = (): boolean => {
+  return getEnvironment() === 'development';
+};
+
+export const isProduction = (): boolean => {
+  return getEnvironment() === 'production';
 };

@@ -5,7 +5,7 @@ import HeroBanner from "@/components/heroBanner/HeroBanner";
 import { getInitialCategories } from "@/services/categoriesService";
 
 async function HomePage() {
-  // Preload initial categories for faster content display
+  // Pre-fetch initial categories for Server-Side Rendering
   const initialData = await getInitialCategories();
 
   return (

@@ -20,7 +20,6 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const { hoverState, hideHover } = useHoverContext();
 
-  // Use initialData if available, otherwise use data from the hook
   const { data, loading, error, hasMore, loadMore } = useCategories(pageSize, initialData);
 
   const displayData = initialData || data;
@@ -31,7 +30,6 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     loadMore();
   }, [hasMore, loading, loadMore]);
 
-  // Memoize the intersection observer callback
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
     if (entry.isIntersecting && !loading && hasMore) {
@@ -39,9 +37,8 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     }
   }, [loading, hasMore, loadMoreData]);
 
-  // Memoize the intersection observer options
   const observerOptions = useMemo(() => ({
-    threshold: 0.1, // Trigger earlier for better UX
+    threshold: 0.1, // Trigger when 10% of element is visible
     rootMargin: "300px 0px", // Start loading 300px before reaching the loader
   }), []);
 
@@ -63,7 +60,10 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     };
   }, [handleIntersection, observerOptions, hasMore]);
 
-  // Memoize the loader element
+  /**
+   * Memoized loader element for infinite scroll
+   * Only renders when there are more categories to load
+   */
   const loaderElement = useMemo(() => 
     !loading && hasMore ? (
       <div
@@ -79,7 +79,6 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     [loading, hasMore]
   );
 
-  // Show loading if no initial data and currently loading
   if (isLoading && !displayData) {
     return <LoadingSpinner width={100} height={100} />;
   }
@@ -93,6 +92,7 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
           <button 
             onClick={() => window.location.reload()} 
             className="retry-button"
+            aria-label="Retry loading categories"
           >
             Try Again
           </button>
@@ -122,9 +122,10 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
         ))}
       </div>
       
+      {/* Infinite scroll loader */}
       {loaderElement}
       
-      {/* Global Hover Card */}
+      {/* Global hover card for movie details */}
       {hoverState.movie && (
         <CardHover
           movie={hoverState.movie}
