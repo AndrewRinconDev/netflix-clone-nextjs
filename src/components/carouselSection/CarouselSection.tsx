@@ -5,6 +5,7 @@ import Carousel from "@/components/carousel/Carousel";
 import CardHover from "@/components/card/CardHover";
 import { useCategories, IGenre } from "@/hooks/useCategories";
 import { useHoverContext } from "@/contexts/HoverContext";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 import "./CarouselSection.styles.css";
 
@@ -66,7 +67,7 @@ function CarouselSection() {
   );
 
   if (loading && !data) {
-    return <div className="flex justify-center py-8">Loading categories...</div>;
+    return <LoadingSpinner width={100} height={100} />;
   }
 
   if (error) {
