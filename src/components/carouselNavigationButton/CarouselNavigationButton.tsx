@@ -1,4 +1,5 @@
 import "./CarouselNavigationButton.style.css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface ICarouselNavigationButtonProps {
   direction: 'left' | 'right';
@@ -13,7 +14,7 @@ const CarouselNavigationButton = ({ direction, scrollTo, category }: ICarouselNa
       onClick={() => scrollTo(direction)}
       aria-label={`Scroll ${direction} in ${category}`}
     >
-      {direction === 'left' ? "<" : ">"}
+      {direction === 'left' ? <FaChevronLeft /> : <FaChevronRight />}
     </button>
   )
 }
