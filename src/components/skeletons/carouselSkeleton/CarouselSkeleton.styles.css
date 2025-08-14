@@ -1,72 +1,96 @@
-.title-cards-skeleton {
+/* Carousel Skeleton Styles - Identical to real Carousel */
+.carousel-skeleton-container {
   margin-top: 50px;
   margin-bottom: 30px;
   padding-left: 6%;
 }
 
-.title-cards-skeleton h2 {
+.carousel-skeleton-title {
   margin-bottom: 8px;
-  color: transparent;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.card-list-skeleton {
+.carousel-skeleton-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-skeleton-card-list {
   display: flex;
   gap: 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
 }
 
-.card-list-skeleton::-webkit-scrollbar {
+.carousel-skeleton-card-list::-webkit-scrollbar {
   display: none;
 }
 
-.card-list-skeleton img,
-.card-list-skeleton video {
-  width: 240px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.card-list-skeleton .card-skeleton {
+.carousel-skeleton-card {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  flex-shrink: 0;
   width: 240px;
   height: 135px;
-  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
+.carousel-skeleton-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive adjustments matching real Carousel */
 @media (max-width: 800px) {
-  .title-cards-skeleton {
+  .carousel-skeleton-container {
     margin-top: 20px;
     margin-bottom: 0;
   }
 
-  .title-cards-skeleton h2 {
+  .carousel-skeleton-title {
     font-size: 20px;
   }
 
-  .card-list-skeleton img,
-  .card-list-skeleton video {
+  .carousel-skeleton-card {
     width: 200px;
-  }
-
-  .card-list-skeleton p {
-    font-size: 12px;
+    height: 112px;
   }
 }
 
 @media (max-width: 500px) {
-
-  .title-cards-skeleton h2 {
+  .carousel-skeleton-title {
     font-size: 15px;
   }
 
-  .card-list-skeleton img,
-  .card-list-skeleton video {
+  .carousel-skeleton-card {
     width: 165px;
+    height: 93px;
   }
+}
 
-  .card-list-skeleton p {
-    font-size: 10px;
-  }
+/* Hover effect matching real cards */
+.carousel-skeleton-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }

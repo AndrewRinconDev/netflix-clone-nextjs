@@ -18,7 +18,7 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { showHover, hideHover, forceHideHover } = useHoverContext();
+  const { showHover, hideHover, forceHideHover, resetHoverState } = useHoverContext();
 
   const checkScrollState = useCallback(() => {
     if (!cardsRef.current) return;
@@ -101,6 +101,13 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
       return () => clearTimeout(timer);
     }
   }, [movies, checkScrollState]);
+
+  // Reset hover state when component unmounts or movies change
+  useEffect(() => {
+    return () => {
+      resetHoverState();
+    };
+  }, [resetHoverState]);
 
   // Show skeleton while movies are loading
   if (!movies || movies.length === 0) {

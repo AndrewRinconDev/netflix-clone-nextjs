@@ -29,23 +29,25 @@ export const useCardHover = () => {
     // Card dimensions
     const cardWidth = 240; // Original card width
     const hoverWidth = 280; // Hover card width
+    const hoverHeight = 400; // Approximate hover card height
     
     // Position the hover card centered over the original card
-    const x = cardRect.left + (cardWidth / 2) - (hoverWidth / 2);
-    const y = cardRect.top - 50; // 50px above the card
+    let x = cardRect.left + (cardWidth / 2) - (hoverWidth / 2);
+    let y = cardRect.top - 50; // 50px above the card
     
     // Ensure the hover card doesn't go off-screen
     const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
     
     // Adjust horizontal position if it goes off-screen
-    let adjustedX = x;
-    if (adjustedX < 20) {
-      adjustedX = 20;
-    } else if (adjustedX + hoverWidth > viewportWidth - 20) {
-      adjustedX = viewportWidth - hoverWidth - 20;
+    if (x < 20) {
+      x = 20;
+    } else if (x + hoverWidth > viewportWidth - 20) {
+      x = viewportWidth - hoverWidth - 20;
     }
     
-    return { x: Math.round(adjustedX), y: Math.round(y) };
+    
+    return { x: Math.round(x), y: Math.round(y) };
   }, []);
 
   const showHover = useCallback((event: React.MouseEvent, movie: IMovie) => {
@@ -165,6 +167,31 @@ export const useCardHover = () => {
     lastMovieIdRef.current = null;
   }, []);
 
+  // Reset hover state when navigating away (e.g., to detail page)
+  const resetHoverState = useCallback(() => {
+    isMouseOverCardRef.current = false;
+    isTransitioningRef.current = false;
+    
+    // Clear all timeouts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = undefined;
+    }
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = undefined;
+    }
+    
+    // Reset state completely
+    setHoverState({
+      isVisible: false,
+      position: { x: 0, y: 0 },
+      movie: null,
+    });
+    currentCardRef.current = null;
+    lastMovieIdRef.current = null;
+  }, []);
+
   // Update position on scroll and resize
   useEffect(() => {
     const handleScroll = () => {
@@ -187,14 +214,24 @@ export const useCardHover = () => {
       }
     };
 
+    // Handle page visibility changes (when returning from detail page)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is hidden (navigating away), reset hover state
+        resetHoverState();
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [hoverState.isVisible, calculatePosition]);
+  }, [hoverState.isVisible, calculatePosition, resetHoverState]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -213,5 +250,6 @@ export const useCardHover = () => {
     showHover,
     hideHover,
     forceHideHover,
+    resetHoverState,
   };
 }; 
