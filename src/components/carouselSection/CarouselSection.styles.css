@@ -17,7 +17,7 @@
   position: absolute;
   width: 100%;
   padding-left: 6%;
-  bottom: 0;
+  bottom: 200px;
 }
 
 .caption-img {
@@ -75,7 +75,7 @@
 
 .more-cards {
   padding-left: 6%;
-  margin-top: -30px;
+  margin-top: -200px;
 }
 
 @media (max-width: 1024px) {
@@ -90,11 +90,20 @@
   .hero-btns {
     margin-bottom: 30px;
   }
+
+  .hero-caption {
+    bottom: 100px;
+  }
+
+  .more-cards {
+    margin-top: -100px;
+  }
 }
 
 @media (max-width: 800px) {
   .hero-caption {
     padding-left: 4%;
+    bottom: 50px;
   }
 
   .banner-img{
@@ -118,11 +127,11 @@
 
   .more-cards {
     padding-left: 4%;
+    margin-top: -30px;
   }
 }
 
 @media (max-width: 500px) {
-
   .caption-img,
   .hero-caption > p {
     display: none;
