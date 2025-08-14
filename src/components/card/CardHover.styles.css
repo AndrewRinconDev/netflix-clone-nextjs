@@ -23,6 +23,7 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -109,6 +110,12 @@
   gap: 6px;
 }
 
+.hover-play-btn img,
+.hover-info-btn img {
+  width: 20px;
+  height: 20px;
+}
+
 .hover-play-btn {
   background: #ffffff;
   color: #000000;
@@ -134,19 +141,19 @@
   .card-hover {
     display: none;
   }
-  
+
   .video-container {
     height: 140px;
   }
-  
+
   .hover-content {
     padding: 12px;
   }
-  
+
   .hover-title {
     font-size: 16px;
   }
-  
+
   .hover-synopsis {
     font-size: 13px;
     -webkit-line-clamp: 2;
@@ -180,8 +187,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Enhanced positioning and performance */
@@ -201,8 +213,9 @@
     opacity: 1;
     transform: scale(1);
   }
+
   to {
     opacity: 0;
     transform: scale(0.9);
   }
-} 
+}

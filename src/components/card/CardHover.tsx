@@ -1,8 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 
 import { IMovie } from "@/hooks/useCategories";
 import DetailLink from "../detailLink/DetailLink";
+import info_icon from "@/assets/icons/info_icon.png";
+import play_icon from "@/assets/icons/play_icon.png";
 
 import "./CardHover.styles.css";
 
@@ -77,7 +80,7 @@ const CardHover: React.FC<CardHoverProps> = ({
     if (mouseLeaveTimeoutRef.current) {
       clearTimeout(mouseLeaveTimeoutRef.current);
     }
-    
+
     // Set a very small delay to prevent flickering when moving between elements
     mouseLeaveTimeoutRef.current = setTimeout(() => {
       onMouseLeave();
@@ -108,26 +111,26 @@ const CardHover: React.FC<CardHoverProps> = ({
       {/* Video Preview */}
       <DetailLink href={detailLink}>
         <div className="video-container">
-            {isVideoLoaded && (
-              <video
-                key={`video-${movie.id}`} // Force re-render when movie changes
-                ref={videoRef}
-                className="hover-video"
-                autoPlay={true}
-                loop={true}
-                muted={true}
-                poster={`/images/movies/${movie.imagePath}`}
-              >
-                <source src={movie.thumbnail} type="video/mp4" />
-              </video>
-            )}
-            {!isVideoLoaded && (
-              <img
-                src={`/images/movies/${movie.imagePath}`}
-                alt={movie.title}
-                className="hover-image"
-              />
-            )}
+          {isVideoLoaded && (
+            <video
+              key={`video-${movie.id}`} // Force re-render when movie changes
+              ref={videoRef}
+              className="hover-video"
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              poster={`/images/movies/${movie.imagePath}`}
+            >
+              <source src={movie.thumbnail} type="video/mp4" />
+            </video>
+          )}
+          {!isVideoLoaded && (
+            <img
+              src={`/images/movies/${movie.imagePath}`}
+              alt={movie.title}
+              className="hover-image"
+            />
+          )}
         </div>
       </DetailLink>
 
@@ -147,8 +150,14 @@ const CardHover: React.FC<CardHoverProps> = ({
         {/* <p className="hover-synopsis">{movie.synopsis}</p> */}
 
         <div className="hover-actions">
-          <DetailLink href={detailLink} className="hover-play-btn">▶ Play</DetailLink>
-          <DetailLink href={detailLink} className="hover-info-btn">ℹ More Info</DetailLink>
+          <DetailLink href={detailLink} className="hover-play-btn">
+            <Image src={play_icon} alt="" />
+            Play
+          </DetailLink>
+          <DetailLink href={detailLink} className="hover-info-btn">
+            <Image src={info_icon} alt="" />
+            More Info
+          </DetailLink>
         </div>
       </div>
     </div>

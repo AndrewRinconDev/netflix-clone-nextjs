@@ -4,7 +4,7 @@ import hero_banner from "@/assets/hero_banner.jpg";
 import hero_title from "@/assets/hero_title.png";
 import play_icon from "@/assets/icons/play_icon.png";
 import info_icon from "@/assets/icons/info_icon.png";
-import LinkButton from '../detailLink/DetailLink';
+import DetailLink from '../detailLink/DetailLink';
 
 export default function HeroBanner() {
   return (
@@ -18,16 +18,15 @@ export default function HeroBanner() {
         immortal enemy.
       </p>
       <div className="hero-btns">
-        <LinkButton href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn text-black">
+        <DetailLink href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn text-black">
           <Image src={play_icon} alt="" />
           Play
-        </LinkButton>
-        <LinkButton href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn dark-btn">
+        </DetailLink>
+        <DetailLink href="/detail/e3fe8d54-9457-4340-8b22-2285761c21e1" className="btn dark-btn">
           <Image src={info_icon} alt="" />
           More Info
-        </LinkButton>
+        </DetailLink>
       </div>
-      {/* <Carousel category="Action" /> */}
     </div>
   </div>
   )
