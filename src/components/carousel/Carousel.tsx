@@ -1,10 +1,8 @@
 'use client';
 import React, { memo, useRef, useState, useCallback, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_MOVIES_BY_GENRE } from "@/lib/gql/queries";
 
 import Card from "../card/Card";
-import { IMovie } from "@/types/media";
+import { IMovie } from "@/hooks/useCategories";
 import CarouselSkeleton from "@/components/skeletons/carouselSkeleton/CarouselSkeleton";
 import CarouselNavigationButton from "../carouselNavigationButton/CarouselNavigationButton";
 import { useHoverContext } from "@/contexts/HoverContext";
@@ -13,17 +11,19 @@ import "./Carousel.styles.css";
 
 interface ICarouselProps {
   category?: string;
+  movies: IMovie[];
 }
 
-const Carousel = ({ category }: ICarouselProps) => {
+const Carousel = ({ category, movies }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const { showHover, hideHover } = useHoverContext();
 
-  const { loading, data } = useQuery(GET_MOVIES_BY_GENRE, {
-    variables: { genre: category, pageState: null },
-  });
+  // Show skeleton while movies are loading
+  if (!movies || movies.length === 0) {
+    return <CarouselSkeleton />;
+  }
 
   const checkScrollState = useCallback(() => {
     if (!cardsRef.current) return;
@@ -65,7 +65,7 @@ const Carousel = ({ category }: ICarouselProps) => {
 
     // Check scroll state after smooth scroll completes
     setTimeout(checkScrollState, 500);
-  }, [checkScrollState]);
+  }, [checkScrollState, hideHover]);
 
   // Single useEffect to handle scroll events and initial setup
   useEffect(() => {
@@ -97,41 +97,43 @@ const Carousel = ({ category }: ICarouselProps) => {
 
   // Check scroll state when data changes
   useEffect(() => {
-    if (data?.movies?.values) {
-      setTimeout(checkScrollState, 200);
+    if (movies) {
+      const timer = setTimeout(checkScrollState, 100);
+      return () => clearTimeout(timer);
     }
-  }, [data, checkScrollState]);
-  
-  if (loading || !data || !data.movies) return (
-    <CarouselSkeleton />
-  );
+  }, [movies, checkScrollState]);
 
   return (
-    <div className="title-cards">
-      <h2>{category}</h2>
-      <div className="carousel-container">
-        <div className="carousel-wrapper">
-          <div className="card-list" ref={cardsRef}>
-            {data.movies.values.map((movie: IMovie, index: number) => {
-              return (
-                <Card
-                  key={`card-${category}-${index}`}
-                  movie={movie}
-                  onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => showHover(e, movie)}
-                />
-              );
-            })}
-          </div>
-          
-          {/* Navigation Buttons */}
-          {canScrollLeft && (
-            <CarouselNavigationButton direction="left" scrollTo={scrollTo} category={category} />
-          )}
-          
-          {canScrollRight && (
-            <CarouselNavigationButton direction="right" scrollTo={scrollTo} category={category} />
-          )}
+    <div className="carousel-container">
+      <h2 className="carousel-title">{category}</h2>
+      
+      <div className="carousel-wrapper">
+        <div className="card-list" ref={cardsRef}>
+          {movies.map((movie) => (
+            <Card
+              key={movie.id}
+              movie={movie}
+              onMouseEnter={(e) => showHover(e, movie)}
+            />
+          ))}
         </div>
+        
+        {/* Navigation Buttons */}
+        {canScrollLeft && (
+          <CarouselNavigationButton
+            direction="left"
+            scrollTo={scrollTo}
+            category={category}
+          />
+        )}
+        
+        {canScrollRight && (
+          <CarouselNavigationButton
+            direction="right"
+            scrollTo={scrollTo}
+            category={category}
+          />
+        )}
       </div>
     </div>
   );

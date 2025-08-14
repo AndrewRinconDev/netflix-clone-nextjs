@@ -1,0 +1,16 @@
+.detail-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.detail-link:hover {
+  transform: scale(1.05);
+}
+
+.detail-link:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+

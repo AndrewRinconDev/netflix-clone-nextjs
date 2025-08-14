@@ -1,20 +1,21 @@
-import { useHoverContext } from "@/contexts/HoverContext";
+import React from "react";
 import Link from "next/link";
 
-interface ILinkButtonProps {
+import "./DetailLink.styles.css";
+
+interface DetailLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-const LinkButton = ({ href, children, className }: ILinkButtonProps) => {
-  const { hideHover } = useHoverContext();
-  
+const DetailLink: React.FC<DetailLinkProps> = ({ href, children, className, onClick }) => {
   return (
-    <Link href={href} onClick={hideHover} className={className}>
+    <Link href={href} className={`detail-link ${className || ''}`} onClick={onClick}>
       {children}
     </Link>
   );
 };
 
-export default LinkButton;
+export default DetailLink;

@@ -1,64 +1,34 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { useSuspenseQuery } from "@apollo/client";
+import React, { useCallback, useEffect, useRef, useMemo } from "react";
 
 import Carousel from "@/components/carousel/Carousel";
 import CardHover from "@/components/card/CardHover";
-import { GET_ALL_GENRES } from "@/lib/gql/queries";
-import { IGenre, IGenreResponse } from "@/types/media";
+import { useCategories, IGenre } from "@/hooks/useCategories";
 import { useHoverContext } from "@/contexts/HoverContext";
 
 import "./CarouselSection.styles.css";
 
-function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
-  const TOTAL_RESULTS = 15;
-  const [items, setItems] = useState(initialData.genres.values);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState<boolean | null>(initialData.genres.values.length < TOTAL_RESULTS);
-  const [pageState, setPageState] = useState<string | null>(initialData.genres.pageState);
+function CarouselSection() {
   const pageSize = 4;
   
   const loaderRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const { hoverState, hideHover } = useHoverContext();
 
-  const { fetchMore } = useSuspenseQuery<IGenreResponse>(GET_ALL_GENRES, {
-    variables: { pageSize, pageState },
-    skip: true,
-  });
+  const { data, loading, error, hasMore, loadMore } = useCategories(pageSize);
 
   const loadMoreData = useCallback(async () => {
-    if (!hasMore || isLoading) return;
-
-    setIsLoading(true);
-
-    try {
-      const { data } = await fetchMore({
-        variables: { pageSize, pageState },
-      });
-
-      if (!data) return;
-
-      const newItems = [...items, ...data.genres.values];
-      const newHasMore = !!data.genres.pageState && newItems.length < TOTAL_RESULTS;
-
-      setItems(newItems);
-      setHasMore(newHasMore);
-      setPageState(data.genres.pageState);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error loading more categories:", error);
-    }
-  }, [hasMore, isLoading, items, pageState, pageSize, fetchMore]);
+    if (!hasMore || loading) return;
+    loadMore();
+  }, [hasMore, loading, loadMore]);
 
   // Memoize the intersection observer callback
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
-    if (entry.isIntersecting && !isLoading && hasMore) {
+    if (entry.isIntersecting && !loading && hasMore) {
       loadMoreData();
     }
-  }, [isLoading, hasMore, loadMoreData]);
+  }, [loading, hasMore, loadMoreData]);
 
   // Memoize the intersection observer options
   const observerOptions = useMemo(() => ({
@@ -84,30 +54,43 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
     };
   }, [handleIntersection, observerOptions, hasMore]);
 
-  // Memoize the filtered items to avoid unnecessary re-renders
-  const filteredItems = useMemo(() => 
-    items.filter((_, index) => index > 0),
-    [items]
-  );
+  // // Memoize the filtered items to avoid unnecessary re-renders
+  // const filteredItems = useMemo(() => 
+  //   data?.genres.values.filter((_, index) => index >= 0) || [],
+  //   [data?.genres.values]
+  // );
 
   // Memoize the loader element
   const loaderElement = useMemo(() => 
-    !isLoading && hasMore ? (
+    !loading && hasMore ? (
       <div
         ref={loaderRef}
         className="flex justify-center py-8 min-h-20"
       />
     ) : null,
-    [isLoading, hasMore]
+    [loading, hasMore]
   );
+
+  if (loading && !data) {
+    return <div className="flex justify-center py-8">Loading categories...</div>;
+  }
+
+  if (error) {
+    return <div className="flex justify-center py-8 text-red-500">Error: {error}</div>;
+  }
+
+  if (!data || !data.genres.values.length) {
+    return <div className="flex justify-center py-8">No categories available</div>;
+  }
 
   return (
     <>
       <div className="more-cards">
-        {filteredItems.map((genre: IGenre, index: number) => (
+        {data?.genres.values.map((genre: IGenre, index: number) => (
           <Carousel
             key={`${genre.value}-carousel-${index + 1}`}
             category={genre.value}
+            movies={genre.movies}
           />
         ))}
       </div>
@@ -119,7 +102,7 @@ function CarouselSection({ initialData }: { initialData: IGenreResponse }) {
           movie={hoverState.movie}
           isVisible={hoverState.isVisible}
           position={hoverState.position}
-          onMouseLeave={hideHover} // Empty function since we handle it globally
+          onMouseLeave={hideHover}
         />
       )}
     </>

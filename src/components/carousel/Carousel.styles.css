@@ -10,22 +10,33 @@
 
 /* Carousel Container */
 .carousel-container {
+  position: relative;
   width: 90vw;
-  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.carousel-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+  padding-left: 4%;
 }
 
 .carousel-wrapper {
   position: relative;
+  overflow: hidden;
   width: 100%;
 }
 
 .card-list {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0;
 }
 
 .card-list::-webkit-scrollbar {
@@ -54,16 +65,6 @@
   right: 10px;
   text-decoration: none;
   color: #fff;
-}
-
-/* Hide navigation buttons on mobile */
-@media (max-width: 768px) {
-  
-  .card-list {
-    gap: 8px;
-    padding: 0 10px;
-    margin: 0 -10px;
-  }
 }
 
 @media (max-width: 800px) {
@@ -101,5 +102,13 @@
 
   .card-list p {
     font-size: 10px;
+  }
+} 
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-title {
+    font-size: 20px;
+    padding-left: 2%;
   }
 } 

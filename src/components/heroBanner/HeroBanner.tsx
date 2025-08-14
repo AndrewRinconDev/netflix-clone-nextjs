@@ -28,7 +28,7 @@ export default function HeroBanner() {
           More Info
         </LinkButton>
       </div>
-      <Carousel category="Action" />
+      {/* <Carousel category="Action" /> */}
     </div>
   </div>
   )

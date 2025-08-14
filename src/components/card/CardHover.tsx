@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 
-import { IMovie } from "@/types/media";
-import LinkButton from "../detailLink/DetailLink";
+import { IMovie } from "@/hooks/useCategories";
+import DetailLink from "../detailLink/DetailLink";
 
 import "./CardHover.styles.css";
 
@@ -79,7 +79,7 @@ const CardHover: React.FC<CardHoverProps> = ({
       onMouseLeave={onMouseLeave}
     >
       {/* Video Preview */}
-      <LinkButton href={detailLink}>
+      <DetailLink href={detailLink}>
         <div className="video-container">
             {isVideoLoaded && (
               <video
@@ -102,7 +102,7 @@ const CardHover: React.FC<CardHoverProps> = ({
               />
             )}
         </div>
-      </LinkButton>
+      </DetailLink>
 
       {/* Content Overlay */}
       <div className="hover-content">
@@ -120,8 +120,8 @@ const CardHover: React.FC<CardHoverProps> = ({
         {/* <p className="hover-synopsis">{movie.synopsis}</p> */}
 
         <div className="hover-actions">
-          <LinkButton href={detailLink} className="hover-play-btn">▶ Play</LinkButton>
-          <LinkButton href={detailLink} className="hover-info-btn">ℹ More Info</LinkButton>
+          <DetailLink href={detailLink} className="hover-play-btn">▶ Play</DetailLink>
+          <DetailLink href={detailLink} className="hover-info-btn">ℹ More Info</DetailLink>
         </div>
       </div>
     </div>
