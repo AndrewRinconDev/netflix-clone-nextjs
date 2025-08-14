@@ -20,11 +20,6 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const { showHover, hideHover } = useHoverContext();
 
-  // Show skeleton while movies are loading
-  if (!movies || movies.length === 0) {
-    return <CarouselSkeleton />;
-  }
-
   const checkScrollState = useCallback(() => {
     if (!cardsRef.current) return;
     
@@ -102,6 +97,11 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
       return () => clearTimeout(timer);
     }
   }, [movies, checkScrollState]);
+
+  // Show skeleton while movies are loading
+  if (!movies || movies.length === 0) {
+    return <CarouselSkeleton />;
+  }
 
   return (
     <div className="carousel-container">

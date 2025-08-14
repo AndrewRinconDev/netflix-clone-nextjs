@@ -4,7 +4,6 @@ import hero_banner from "@/assets/hero_banner.jpg";
 import hero_title from "@/assets/hero_title.png";
 import play_icon from "@/assets/icons/play_icon.png";
 import info_icon from "@/assets/icons/info_icon.png";
-import Carousel from '../carousel/Carousel'
 import LinkButton from '../detailLink/DetailLink';
 
 export default function HeroBanner() {

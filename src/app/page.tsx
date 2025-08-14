@@ -3,7 +3,6 @@ import React, { Suspense, useEffect } from "react";
 
 import CarouselSectionSkeleton from "@/components/skeletons/carouselSection.tsx/CarouselSectionSkeleton";
 import CarouselSection from "@/components/carouselSection/CarouselSection";
-import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
 import { useCardHover } from "@/hooks/useCardHover";
 
