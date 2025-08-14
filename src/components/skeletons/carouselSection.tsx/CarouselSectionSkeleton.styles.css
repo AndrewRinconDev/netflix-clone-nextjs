@@ -1,0 +1,90 @@
+.carousel-skeleton-container {
+  padding: 20px 0;
+}
+
+.carousel-skeleton-row {
+  margin-bottom: 40px;
+}
+
+.carousel-skeleton-title {
+  margin-bottom: 20px;
+  padding: 0 4%;
+}
+
+.skeleton-title-bar {
+  height: 24px;
+  width: 200px;
+  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+}
+
+.carousel-skeleton-cards {
+  display: flex;
+  gap: 10px;
+  padding: 0 4%;
+  overflow-x: hidden;
+}
+
+.skeleton-card {
+  flex: 0 0 200px;
+  min-width: 200px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.skeleton-text {
+  padding: 0 5px;
+}
+
+.skeleton-line {
+  height: 16px;
+  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-skeleton-cards {
+    padding: 0 2%;
+  }
+  
+  .skeleton-card {
+    flex: 0 0 150px;
+    min-width: 150px;
+  }
+  
+  .skeleton-image {
+    height: 225px;
+  }
+  
+  .skeleton-title-bar {
+    width: 150px;
+    height: 20px;
+  }
+}
