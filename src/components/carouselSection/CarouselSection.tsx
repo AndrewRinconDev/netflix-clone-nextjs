@@ -20,28 +20,40 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const { hoverState, hideHover } = useHoverContext();
 
-  const { data, loading, error, hasMore, loadMore } = useCategories(pageSize, initialData);
+  // Categories data management with initial data support
+  const { data, loading, error, hasMore, pageState, loadMore } = useCategories(pageSize, initialData);
 
-  const displayData = initialData || data;
-  const isLoading = !initialData && loading;
+  // Determine which data to display - prioritize hook data over initialData when available
+  // Use useMemo to prevent unnecessary re-renders
+  const displayData = useMemo(() => {
+    return data || initialData;
+  }, [data, initialData]);
+  
+  const isLoading = !displayData && loading;
 
   const loadMoreData = useCallback(async () => {
-    if (!hasMore || loading) return;
+    if (!hasMore || loading) {
+      return;
+    }
     loadMore();
-  }, [hasMore, loading, loadMore]);
+  }, [hasMore, loading, loadMore, pageState]);
 
+  // Memoize the intersection observer callback
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
-    if (entry.isIntersecting && !loading && hasMore) {
+    
+    if (entry.isIntersecting && !loading && hasMore && pageState) {
       loadMoreData();
     }
-  }, [loading, hasMore, loadMoreData]);
+  }, [loading, hasMore, pageState, loadMoreData]);
 
+  // Memoize the intersection observer options
   const observerOptions = useMemo(() => ({
     threshold: 0.1, // Trigger when 10% of element is visible
     rootMargin: "300px 0px", // Start loading 300px before reaching the loader
   }), []);
 
+  // Set up and manage the intersection observer for lazy loading
   useEffect(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
@@ -49,7 +61,8 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
 
     observerRef.current = new IntersectionObserver(handleIntersection, observerOptions);
 
-    if (loaderRef.current && hasMore) {
+    // Solo observar si hay más datos para cargar y no está cargando
+    if (loaderRef.current && hasMore && !loading && pageState) {
       observerRef.current.observe(loaderRef.current);
     }
 
@@ -58,14 +71,12 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
         observerRef.current.disconnect();
       }
     };
-  }, [handleIntersection, observerOptions, hasMore]);
+  }, [handleIntersection, observerOptions, hasMore, pageState, loading]);
 
-  /**
-   * Memoized loader element for infinite scroll
-   * Only renders when there are more categories to load
-   */
-  const loaderElement = useMemo(() => 
-    !loading && hasMore ? (
+  // Memoize the loader element for infinite scroll
+  const loaderElement = useMemo(() => {
+    // Solo mostrar el loader si hay más datos y no está cargando
+    return !loading && hasMore && pageState ? (
       <div
         ref={loaderRef}
         className="flex justify-center py-8 min-h-20"
@@ -75,14 +86,15 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
           <p>Loading more categories...</p>
         </div>
       </div>
-    ) : null,
-    [loading, hasMore]
-  );
+    ) : null;
+  }, [loading, hasMore, pageState]);
 
-  if (isLoading && !displayData) {
+  // Loading state - shows spinner when no data available and currently loading
+  if (isLoading) {
     return <LoadingSpinner width={100} height={100} />;
   }
 
+  // Error state - shows user-friendly error message with retry option
   if (error) {
     return (
       <div className="error-container">
@@ -101,6 +113,7 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     );
   }
 
+  // Empty state - shows when no categories are available
   if (!displayData || !displayData.genres.values.length) {
     return (
       <div className="empty-state">
@@ -110,17 +123,23 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     );
   }
 
+  // Memoize the carousel content to prevent unnecessary re-renders
+  const carouselContent = useMemo(() => (
+    <div className="more-cards">
+      {displayData?.genres.values.map((genre: IGenre, index: number) => (
+        <Carousel
+          key={`${genre.value}-carousel-${index + 1}`}
+          category={genre.value}
+          movies={genre.movies}
+        />
+      ))}
+    </div>
+  ), [displayData?.genres.values]);
+
   return (
     <>
-      <div className="more-cards">
-        {displayData?.genres.values.map((genre: IGenre, index: number) => (
-          <Carousel
-            key={`${genre.value}-carousel-${index + 1}`}
-            category={genre.value}
-            movies={genre.movies}
-          />
-        ))}
-      </div>
+      {/* Main carousel content */}
+      {carouselContent}
       
       {/* Infinite scroll loader */}
       {loaderElement}

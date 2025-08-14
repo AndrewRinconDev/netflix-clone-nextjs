@@ -16,7 +16,7 @@ export const config = {
   
   loading: {
     intersectionThreshold: 0.1,        // When to trigger lazy loading (10% visible)
-    intersectionRootMargin: '300px 0px', // Pre-load margin for smooth UX
+    intersectionRootMargin: '200px 0px', // Pre-load margin for smooth UX
   },
   
   cache: {

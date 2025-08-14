@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useCategoriesCache } from '@/contexts/CategoriesCacheContext';
 import { getCategories } from '@/services/categoriesService';
 
@@ -32,6 +32,7 @@ export interface IGenreResponse {
 export const useCategories = (initialPageSize: number = 4, initialData?: IGenreResponse | null) => {
   const { cachedData, setCachedData, isDataCached, clearCache } = useCategoriesCache();
   
+  // Local state management - start with initialData if available
   const [data, setData] = useState<IGenreResponse | null>(initialData || cachedData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,11 +57,11 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
         throw new Error('Failed to fetch categories from API');
       }
       
-      if (currentPageState) {
-        // Append new data for pagination
+      if (currentPageState && data) {
+        // Append new data for pagination - concatenate with existing data
         const updatedData = {
           genres: {
-            values: [...(data?.genres.values || []), ...result.genres.values],
+            values: [...data.genres.values, ...result.genres.values],
             pageState: result.genres.pageState,
             hasMore: result.genres.hasMore
           }
@@ -69,11 +70,12 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
         setData(updatedData);
         setCachedData(updatedData);
       } else {
-        // Initial load
+        // Initial load or refresh - this will replace initialData
         setData(result);
         setCachedData(result);
       }
       
+      // Update pagination state
       setPageState(result.genres.pageState);
       setHasMore(result.genres.hasMore);
       
@@ -85,12 +87,15 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
       setLoading(false);
       loadingRef.current = false;
     }
-  }, [data?.genres.values, setCachedData]);
+  }, [data, setCachedData, initialData]);
 
   const loadMore = useCallback(() => {
-    if (!hasMore || loading || !pageState || loadingRef.current) return;
+    if (!hasMore || loading || !pageState || loadingRef.current) {
+      return;
+    }
+    
     fetchCategories(initialPageSize, pageState);
-  }, [hasMore, loading, pageState, fetchCategories, initialPageSize]);
+  }, [hasMore, loading, pageState, fetchCategories, initialPageSize, data?.genres.values.length]);
 
   const forceRefresh = useCallback(() => {
     clearCache();
@@ -103,18 +108,9 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
     fetchCategories(initialPageSize);
   }, [clearCache, fetchCategories, initialPageSize]);
 
-  /**
-   * Refetches the current page of categories
-   * Useful for refreshing data without clearing cache
-   */
   const refetch = useCallback(() => {
     fetchCategories(initialPageSize);
   }, [fetchCategories, initialPageSize]);
-
-  // Memoized values for performance optimization
-  const memoizedData = useMemo(() => data, [data]);
-  const memoizedHasMore = useMemo(() => hasMore, [hasMore]);
-  const memoizedPageState = useMemo(() => pageState, [pageState]);
 
   // Initial fetch effect - only runs if no initial data and no cached data
   useEffect(() => {
@@ -134,20 +130,12 @@ export const useCategories = (initialPageSize: number = 4, initialData?: IGenreR
     }
   }, [cachedData, data]);
 
-  // Cleanup effect - preserves cache between component unmounts
-  useEffect(() => {
-    return () => {
-      // Keep the cache when component unmounts to preserve data between navigations
-      // The cache will be cleared only when explicitly called or when the app is refreshed
-    };
-  }, []);
-
   return {
-    data: memoizedData,
+    data,
     loading,
     error,
-    hasMore: memoizedHasMore,
-    pageState: memoizedPageState,
+    hasMore,
+    pageState,
     loadMore,
     refetch,
     forceRefresh

@@ -6,6 +6,12 @@ import { IGenreResponse } from "@/hooks/useCategories";
  * Handles all API calls related to categories and movies
  */
 export class CategoriesService {
+  /**
+   * Fetches initial categories for Server-Side Rendering (SSR)
+   * This function is optimized for the first page load to show content quickly
+   * @returns Promise<IGenreResponse | null> - Categories data or null if error
+   * @throws Will not throw, returns null on error for graceful degradation
+   */
   static async getInitialCategories(): Promise<IGenreResponse | null> {
     try {
       const url = buildApiUrl(config.api.categories, {
@@ -32,6 +38,13 @@ export class CategoriesService {
     }
   }
 
+  /**
+   * Fetches categories with pagination support
+   * Used for lazy loading additional categories as user scrolls
+   * @param pageSize - Number of categories to fetch per request
+   * @param pageState - Pagination token for next page (optional)
+   * @returns Promise<IGenreResponse | null> - Paginated categories data or null if error
+   */
   static async getCategories(
     pageSize: number, 
     pageState?: string | null
@@ -72,6 +85,12 @@ export class CategoriesService {
     }
   }
 
+  /**
+   * Fetches a specific category by its value/name
+   * Useful for getting detailed information about a single category
+   * @param categoryValue - The category value/name to fetch
+   * @returns Promise<IGenreResponse | null> - Category data or null if error
+   */
   static async getCategoryByValue(categoryValue: string): Promise<IGenreResponse | null> {
     try {
       if (!categoryValue || categoryValue.trim() === '') {
@@ -104,6 +123,7 @@ export class CategoriesService {
   }
 }
 
+// Export individual functions for backward compatibility
 export const getInitialCategories = CategoriesService.getInitialCategories;
 export const getCategories = CategoriesService.getCategories;
 export const getCategoryByValue = CategoriesService.getCategoryByValue;
