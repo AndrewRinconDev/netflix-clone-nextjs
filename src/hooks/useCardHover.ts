@@ -29,15 +29,13 @@ export const useCardHover = () => {
     // Card dimensions
     const cardWidth = 240; // Original card width
     const hoverWidth = 280; // Hover card width
-    const hoverHeight = 400; // Approximate hover card height
     
     // Position the hover card centered over the original card
     let x = cardRect.left + (cardWidth / 2) - (hoverWidth / 2);
-    let y = cardRect.top - 50; // 50px above the card
+    const y = cardRect.top - 50; // 50px above the card
     
     // Ensure the hover card doesn't go off-screen
     const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
     
     // Adjust horizontal position if it goes off-screen
     if (x < 20) {

@@ -4,35 +4,6 @@ import { MovieFields } from "./fragments";
 export const GET_ALL_GENRES = gql`
   query getAllGenre($pageSize: Int, $pageState: String) {
     genres(
-      value: { label: "genre" }
-      options: { pageSize: $pageSize, pageState: $pageState }
-    ) {
-      values {
-        value
-      }
-      pageState
-    }
-  }
-`;
-
-// Alternative query that might work better with Astra DB
-export const GET_ALL_GENRES_ALT = gql`
-  query getAllGenreAlt($pageSize: Int, $pageState: String) {
-    genres(
-      options: { pageSize: $pageSize, pageState: $pageState }
-    ) {
-      values {
-        value
-      }
-      pageState
-    }
-  }
-`;
-
-// Query with explicit ordering for Astra DB
-export const GET_ALL_GENRES_ORDERED = gql`
-  query getAllGenreOrdered($pageSize: Int, $pageState: String) {
-    genres(
       options: { pageSize: $pageSize, pageState: $pageState }
     ) {
       values {

@@ -18,7 +18,7 @@ const Carousel = ({ category, movies }: ICarouselProps) => {
   const cardsRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { showHover, hideHover, forceHideHover, resetHoverState } = useHoverContext();
+  const { showHover, forceHideHover, resetHoverState } = useHoverContext();
 
   const checkScrollState = useCallback(() => {
     if (!cardsRef.current) return;

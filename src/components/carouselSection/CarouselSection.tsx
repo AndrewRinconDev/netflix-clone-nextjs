@@ -89,6 +89,19 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
     ) : null;
   }, [loading, hasMore, pageState]);
 
+  // Memoize the carousel content to prevent unnecessary re-renders
+  const carouselContent = useMemo(() => (
+    <div className="more-cards">
+      {displayData?.genres.values.map((genre: IGenre, index: number) => (
+        <Carousel
+          key={`${genre.value}-carousel-${index + 1}`}
+          category={genre.value}
+          movies={genre.movies}
+        />
+      ))}
+    </div>
+  ), [displayData?.genres.values]);
+
   // Loading state - shows spinner when no data available and currently loading
   if (isLoading) {
     return <LoadingSpinner width={100} height={100} />;
@@ -122,19 +135,6 @@ function CarouselSection({ initialData }: CarouselSectionProps) {
       </div>
     );
   }
-
-  // Memoize the carousel content to prevent unnecessary re-renders
-  const carouselContent = useMemo(() => (
-    <div className="more-cards">
-      {displayData?.genres.values.map((genre: IGenre, index: number) => (
-        <Carousel
-          key={`${genre.value}-carousel-${index + 1}`}
-          category={genre.value}
-          movies={genre.movies}
-        />
-      ))}
-    </div>
-  ), [displayData?.genres.values]);
 
   return (
     <>
